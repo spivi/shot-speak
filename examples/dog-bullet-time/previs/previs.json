@@ -1,0 +1,437 @@
+{
+  "tool": "shot-speak",
+  "schema": 1,
+  "phrase": "I want my dog to do a bullet time thingy when I throw him a bone, dramatically",
+  "route": "headless",
+  "blender_version": "5.2.2",
+  "skipped": null,
+  "use": "A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.",
+  "options": [
+    {
+      "label": "A",
+      "technique": "frozen_arc",
+      "pro_term": "Frozen-moment arc (bullet time)",
+      "status": "ok",
+      "message": null,
+      "script": "option_A/blocking.py",
+      "script_sha256": "9566609ad2eec483224d5bb41d1aa0923fe0d6cb429b7b58cae584082516244e",
+      "frames": 60,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "arc",
+        "people": 1,
+        "start": {
+          "height_m": 1.1123,
+          "distance_m": 2.5,
+          "azimuth_deg": 159.9987,
+          "lens_mm": 35.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.1123,
+          "distance_m": 2.5,
+          "azimuth_deg": 29.9996,
+          "lens_mm": 35.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 5.6717,
+        "placement_words": "at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move",
+        "lens_words": "35 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": -0.0148,
+            "body_share": 0.5082,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 159.5633
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.4978,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 96.652
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0223,
+            "body_share": 0.5077,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 30.6575
+          }
+        ]
+      },
+      "notes": [
+        "The thrown object is a simple bone shape. It arrives at the middle frame. Its path is a real curve of gravity.",
+        "The stand-in is a simple four-legged shape. It shows the size and the position of the animal, not its body."
+      ],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_A/still_start.png",
+          "bytes": 84210,
+          "sha256": "37960c84c61c48477abf928dbe1c9477edc72476c6de0bedf9020e802feff721"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_A/still_mid.png",
+          "bytes": 70721,
+          "sha256": "76073af810b89d4d495bc9218d1bacce81ff7cd3ed9fa26f51c5f71cae5a8a9b"
+        },
+        {
+          "role": "still_end",
+          "path": "option_A/still_end.png",
+          "bytes": 89328,
+          "sha256": "d381d7ae584f8e0bc3c3001e259592a17ec92e17fd1820012613b0eb9fc4a74a"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_A/plan_overhead.png",
+          "bytes": 15764,
+          "sha256": "8496c30d86d3082f1fb4876af54e9c2f3d1c0575c2b8eed3a2fd8ab65964173d"
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "status": "ok",
+      "message": null,
+      "script": "option_B/blocking.py",
+      "script_sha256": "097b28a77ee746321cd8f253421594e44ff1ac910e3de330b09bafe4fbcdceb0",
+      "frames": 72,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "locked",
+        "people": 1,
+        "start": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.0,
+        "placement_words": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+        "lens_words": "18 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": -0.1823,
+            "body_share": 0.2133,
+            "shot_size": "extreme wide shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 79.6684
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.2133,
+            "shot_size": "extreme wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.1875,
+            "body_share": 0.2133,
+            "shot_size": "extreme wide shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 100.6197
+          }
+        ]
+      },
+      "notes": [
+        "The thrown object is a simple bone shape. It arrives at the middle frame. Its path is a real curve of gravity.",
+        "The stand-in is a simple four-legged shape. It shows the size and the position of the animal, not its body."
+      ],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_B/still_start.png",
+          "bytes": 29950,
+          "sha256": "4418b621006d3c34cfbfdd7ee47941510e9b49b33c795799db8b7719e68e8b87"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_B/still_mid.png",
+          "bytes": 31027,
+          "sha256": "e4d4ba960e2da29f774e158bec376fdc5f5a6a514f9a91ea227b2dfbd895bf0e"
+        },
+        {
+          "role": "still_end",
+          "path": "option_B/still_end.png",
+          "bytes": 30319,
+          "sha256": "4f636cb4bf7abc54408bbe66b8e38adf39629ec4c0968aaddbe6b0b6ba93d811"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_B/plan_overhead.png",
+          "bytes": 9082,
+          "sha256": "64264d8220eef401a02c376bc3c752280087b62f6aea025f29195fa002812e22"
+        }
+      ]
+    },
+    {
+      "label": "C",
+      "technique": "speed_ramp",
+      "pro_term": "Speed ramp",
+      "status": "ok",
+      "message": null,
+      "script": "option_C/blocking.py",
+      "script_sha256": "57ac302211502ae136591d0510249ced511ff7c1ccf628deddb0d91d64d75553",
+      "frames": 96,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "track",
+        "people": 1,
+        "start": {
+          "height_m": 1.0,
+          "distance_m": 4.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 50.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.0,
+          "distance_m": 4.0,
+          "azimuth_deg": 89.9995,
+          "lens_mm": 50.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 3.7217,
+        "placement_words": "side-on at hip height, 4 m away, travelling parallel to the action",
+        "lens_words": "50 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.4366,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.4468,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.4366,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ]
+      },
+      "notes": [
+        "The thrown object is a simple bone shape. It arrives at the middle frame. Its path is a real curve of gravity.",
+        "The stand-in is a simple four-legged shape. It shows the size and the position of the animal, not its body."
+      ],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_C/still_start.png",
+          "bytes": 63114,
+          "sha256": "549b2c1829756ae96ba139b394c435195eb3730fca0ccbe9e0870e6099a9053c"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_C/still_mid.png",
+          "bytes": 63006,
+          "sha256": "83a3eea9a4c79da5f7914472476d491277a21780edd1036bcaffae3c0dbf8bf8"
+        },
+        {
+          "role": "still_end",
+          "path": "option_C/still_end.png",
+          "bytes": 62875,
+          "sha256": "751bf778a3377c0e70462eb42d4b73238007b36f0ee9c8bf7ebc5337491cd5c8"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_C/plan_overhead.png",
+          "bytes": 13427,
+          "sha256": "a1c1e50f1feb329bc482ba6568b4a74eff4f88457a4a342addb057654023f387"
+        }
+      ]
+    },
+    {
+      "label": "D",
+      "technique": "long_lens_profile",
+      "pro_term": "Long-lens profile close-up",
+      "status": "ok",
+      "message": null,
+      "script": "option_D/blocking.py",
+      "script_sha256": "520298d9b71bfbc8e4dfa3a855866994ec3f1a0d6fd4aded6a54b167817759b2",
+      "frames": 48,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "locked",
+        "people": 1,
+        "start": {
+          "height_m": 1.3,
+          "distance_m": 6.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 85.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.3,
+          "distance_m": 5.95,
+          "azimuth_deg": 90.0,
+          "lens_mm": 85.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.05,
+        "placement_words": "exactly side-on, at the subject's chest height, 6 m away, never in front of the face",
+        "lens_words": "85 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": -1.1203,
+            "body_share": 0.4939,
+            "shot_size": "wide shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 76.5268
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.5053,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": 1.1787,
+            "body_share": 0.4979,
+            "shot_size": "wide shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 104.1495
+          }
+        ]
+      },
+      "notes": [
+        "The thrown object is a simple bone shape. It arrives at the middle frame. Its path is a real curve of gravity.",
+        "The stand-in is a simple four-legged shape. It shows the size and the position of the animal, not its body.",
+        "start still: the head of S1 is outside the frame.",
+        "end still: the head of S1 is outside the frame."
+      ],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_D/still_start.png",
+          "bytes": 58955,
+          "sha256": "a542bd3cf292d6e6b4d5c35b258dd6b2e9f42a8c78a84c90807ffa18acfa3524"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_D/still_mid.png",
+          "bytes": 63621,
+          "sha256": "75a661ef6efb1859f69f3e355f494a41f8c83587fea2c00a0a9d0550df99d39a"
+        },
+        {
+          "role": "still_end",
+          "path": "option_D/still_end.png",
+          "bytes": 56962,
+          "sha256": "b30623cf2d7294d8a8db2aa8d79f146cf9ff5a1a5b42e8d367be9a08aafbfad3"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_D/plan_overhead.png",
+          "bytes": 11172,
+          "sha256": "c360ecf5f4b3dfa8af6716cd9f1dbf9fbb72247f1cbeb68a55a774f7568f4703"
+        }
+      ]
+    }
+  ]
+}

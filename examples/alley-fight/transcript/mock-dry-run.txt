@@ -1,0 +1,66 @@
+SHOT-SPEAK MOCK CARD  "two guys fight in an alley and I want to feel every punch, raw and shaky"
+
+--- Option A: Handheld close coverage  [recommended]
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a close three-quarter frame at chest height with a soft out-of-focus shoulder or object in the foreground edge, slightly off-level, the subject caught mid-gesture. Camera placement: close, 1.5 m away, at chest height, three-quarter to the subject, with a shoulder or an object soft in the foreground.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/alley-fight/option_A.png
+
+--- Option B: Contact insert with a ramp on contact
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a tight side-on frame of the instant of contact, the point of contact on one third of the frame, the one who takes the force in profile. Camera placement: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.
+COLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.
+MOMENT: the exact frame of contact: the moving part stopped on its target, the surface pushed in, everything sharp.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/alley-fight/option_B.png
+
+--- Option C: Low-angle wide shot
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.
+LENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.
+LIGHT: the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/alley-fight/option_C.png
+
+--- Option D: Whip pan (swish pan)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the frame at the end of a whip pan: the subject sharp and side-on on one third of the frame, the rest streaked with strong horizontal motion blur. Camera placement: on a fixed spot at shoulder height, side-on to the action, 4 m away.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.
+COLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/alley-fight/option_D.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    4
+Estimate:  0.28 USD
+Basis:     4 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      9c0a26d6cae6
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
+After a clear yes, run again with
+  --confirm 9c0a26d6cae6

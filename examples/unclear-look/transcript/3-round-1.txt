@@ -1,0 +1,7 @@
+ROUND 1 of 3 at most. The same shot (option A), 3 times. Only the light changes.
+  A: overcast_soft - A grey sky. Even, honest light with soft shadows under things.
+  B: soft_window - A large window on one side. Gentle, but still with a dark side.
+  C: hard_backlight - A single low, hard sun behind the subject. The camera looks toward it.
+Saved: examples/unclear-look/round_1/options.json
+Next: shotspeak.py mock --options examples/unclear-look/round_1/options.json --dry-run   (a paid request: show the card, get a clear yes)
+With no image backend, add --backend text and show the text diagrams. Say that the look is less certain without pictures.

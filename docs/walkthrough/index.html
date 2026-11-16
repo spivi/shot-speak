@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>shot-speak: interactive walkthrough</title>
+<style>
+:root{--bg:#f4f1ea;--ink:#1c1b19;--dim:#6b665c;--card:#fffdf8;--line:#d9d3c5;--accent:#b4491f;--good:#2f6b3c;--term:#1d2330;--termink:#d8dee9}
+@media (prefers-color-scheme:dark){:root{--bg:#16171a;--ink:#ecebe6;--dim:#9a968c;--card:#202227;--line:#34373e;--accent:#f08a5d;--good:#8fcf9b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:1060px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:30px;margin:0 0 4px;text-wrap:balance}
+h2{font-size:21px;margin:44px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+p.lead{color:var(--dim);margin:0 0 18px;max-width:70ch}
+blockquote{margin:14px 0;padding:10px 16px;border-left:4px solid var(--accent);background:var(--card);font-size:18px}
+button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:7px}
+button:hover{border-color:var(--accent)}
+button[aria-pressed="true"],button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+button:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.steps{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.steps button{padding:5px 11px;font-size:14px}
+.stage{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;min-height:230px}
+.who{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:6px}
+.say{font-size:20px;margin:0}
+.note{color:var(--dim);font-size:14px;margin-top:8px}
+pre{background:var(--term);color:var(--termink);padding:14px;border-radius:8px;overflow-x:auto;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;margin:10px 0;white-space:pre-wrap;word-break:break-word}
+pre.cmd{color:#88c0d0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px;text-align:left;display:block;width:100%}
+.opt[aria-pressed="true"]{background:var(--card);color:var(--ink);border-color:var(--accent)}
+.opt img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;background:#c4c4c4;display:block}
+.opt b{display:block;margin-top:8px}
+.opt span{color:var(--dim);font-size:14px}
+.opt .badge{color:#fff}
+.badge{display:inline-block;font-size:11px;background:var(--good);color:#fff;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;margin-top:16px}
+@media (max-width:760px){.detail{grid-template-columns:1fr}}
+.detail img{width:100%;border-radius:8px;background:#c4c4c4;display:block}
+.previs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.previs figure{margin:0}
+.previs figcaption,.cap{font-size:12px;color:var(--dim)}
+.noimg{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;border:1px dashed var(--dim);border-radius:8px;color:var(--dim);font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{width:150px;color:var(--dim);font-weight:600}
+select{font:inherit;padding:6px 8px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+label{font-size:14px;color:var(--dim)}
+.tiers{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px}
+@media (max-width:760px){.tiers{grid-template-columns:1fr}}
+.tiers img{width:100%;border-radius:8px;background:#c4c4c4}
+.get{font-size:17px;margin:8px 0}
+ul{margin:6px 0;padding-left:20px}
+footer{margin-top:50px;color:var(--dim);font-size:13px}
+</style>
+</head>
+<body>
+<main>
+<h1>shot-speak: an interactive walkthrough</h1>
+<p class="lead">This page replays 1 real session. Every text on it comes from the files that the real commands wrote.
+The page is static. It sends nothing and it loads nothing from the internet.</p>
+<blockquote id="phrase"></blockquote>
+
+<h2>1. The session, step by step</h2>
+<div class="steps" id="stepnav" role="tablist" aria-label="Steps of the session"></div>
+<div class="stage" id="stage" aria-live="polite"></div>
+<div class="row"><button id="prev">Back</button><button id="next">Next step</button></div>
+
+<h2>2. The 4 options</h2>
+<p class="lead">Each option is a different idea, not a variant. Select one to see its card.</p>
+<div class="grid" id="options"></div>
+<div id="card"></div>
+
+<h2>3. Try a mix</h2>
+<p class="lead">Take the shot of 1 option, the light of another and the grade of a third. The final spec changes.</p>
+<div class="row">
+  <label>Shot <select id="mixpick"></select></label>
+  <label>Light from <select id="mixlight"></select></label>
+  <label>Grade from <select id="mixgrade"></select></label>
+  <button id="mixreset">What the user said</button>
+</div>
+<div id="mix"></div>
+
+<h2>4. Bad prompt, good prompt, shot-speak</h2>
+<p class="lead">The same idea 3 times. Select a scene, then a prompt.</p>
+<div class="row" id="scenes"></div>
+<div class="row" id="tierbtns"></div>
+<div id="tier"></div>
+
+<footer>Generated from <code>examples/</code> by <code>scripts/build_walkthrough.py</code>.
+The comparison images are in <code>docs/img/</code>. A grey picture is a slot with no image yet.</footer>
+</main>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var D = window.WALKTHROUGH;
+  var ROOT = "../../";
+  function el(tag, attrs, kids) {
+    var node = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === "text") node.textContent = attrs[k]; else if (k === "on") node.addEventListener("click", attrs[k]); else node.setAttribute(k, attrs[k]);
+    });
+    (kids || []).forEach(function (kid) { if (kid) node.appendChild(typeof kid === "string" ? document.createTextNode(kid) : kid); });
+    return node;
+  }
+  function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+  function table(rows) {
+    return el("table", {}, Object.keys(rows).map(function (k) { return el("tr", {}, [el("th", { text: k }), el("td", { text: String(rows[k]) })]); }));
+  }
+  if (!D) { document.getElementById("stage").textContent = "data.js is missing. Run: python3 scripts/build_walkthrough.py"; return; }
+  document.getElementById("phrase").textContent = "“" + D.phrase + ".”";
+
+  // 1. Session
+  var step = 0, stage = document.getElementById("stage"), nav = document.getElementById("stepnav");
+  var names = D.session.map(function (s) { return s.who === "user" ? "You" : s.who === "agent" ? "Agent" : s.title; });
+  function showStep(i) {
+    step = Math.max(0, Math.min(D.session.length - 1, i));
+    var s = D.session[step];
+    clear(stage);
+    Array.prototype.forEach.call(nav.children, function (b, n) { b.setAttribute("aria-selected", n === step ? "true" : "false"); });
+    if (s.who === "user" || s.who === "agent") {
+      stage.appendChild(el("div", { class: "who", text: s.who === "user" ? "You" : "Agent" }));
+      stage.appendChild(el("p", { class: "say", text: s.text }));
+      if (s.note) stage.appendChild(el("div", { class: "note", text: s.note }));
+    } else if (s.who === "cards") {
+      stage.appendChild(el("div", { class: "who", text: "Agent" }));
+      stage.appendChild(el("p", { class: "say", text: "4 different ways to shoot it. Pick 1, mix parts of 2, or ask for other options." }));
+      var g = el("div", { class: "grid" });
+      D.options.forEach(function (o) {
+        g.appendChild(el("div", { class: "opt" }, [el("img", { src: ROOT + o.image, alt: "Mock still of option " + o.label + ": " + o.pro_term }),
+          el("b", { text: o.label + ". " + o.pro_term }), el("span", { text: o.plain })]));
+      });
+      stage.appendChild(g);
+    } else {
+      stage.appendChild(el("div", { class: "who", text: "Tool: " + s.title }));
+      if (s.command) stage.appendChild(el("pre", { class: "cmd", text: "$ " + s.command }));
+      stage.appendChild(el("pre", { text: s.lines.join("\n") }));
+    }
+  }
+  names.forEach(function (name, i) { nav.appendChild(el("button", { role: "tab", text: (i + 1) + ". " + name, on: function () { showStep(i); } })); });
+  document.getElementById("prev").addEventListener("click", function () { showStep(step - 1); });
+  document.getElementById("next").addEventListener("click", function () { showStep(step + 1); });
+  showStep(0);
+
+  // 2. Options
+  var optBox = document.getElementById("options"), card = document.getElementById("card");
+  function showOption(label) {
+    var o = D.options.filter(function (x) { return x.label === label; })[0];
+    Array.prototype.forEach.call(optBox.children, function (b) { b.setAttribute("aria-pressed", b.dataset.label === label ? "true" : "false"); });
+    clear(card);
+    var left = el("div", {}, [el("img", { src: ROOT + o.image, alt: "Mock still of option " + o.label }),
+      el("div", { class: "cap", text: "Mock still: framing, lens feel, light and colour. It is not a frame of the final video." })]);
+    if (o.previs) {
+      var pv = el("div", { class: "previs" });
+      [["still_start", "first frame"], ["still_mid", "middle"], ["still_end", "last frame"], ["plan_overhead", "overhead plan"]].forEach(function (r) {
+        if (o.previs.files[r[0]]) pv.appendChild(el("figure", {}, [el("img", { src: ROOT + o.previs.files[r[0]], alt: "Blocking previs, " + r[1] }), el("figcaption", { text: r[1] })]));
+      });
+      left.appendChild(pv);
+      left.appendChild(el("div", { class: "cap", text: "Blocking previs (free, local Blender). " + D.use_rule }));
+      left.appendChild(el("pre", { text: o.previs.lines.join("\n") + (o.previs.notes.length ? "\n" + o.previs.notes.map(function (n) { return "Note: " + n; }).join("\n") : "") }));
+    } else {
+      left.appendChild(el("pre", { text: o.diagram }));
+    }
+    var right = el("div", {}, [
+      el("h3", { text: "Option " + o.label + ": " + o.pro_term }),
+      o.recommended ? el("p", {}, [el("b", { text: "Recommended. " }), o.recommended_because]) : null,
+      el("p", {}, [el("b", { text: "In plain words: " }), o.plain]),
+      el("p", {}, [el("b", { text: "What the viewer feels: " }), o.feel]),
+      el("p", {}, [el("b", { text: "Choose it when: " }), o.when]),
+      table(o.decisions),
+      el("b", { text: "Risks with AI video generators" }),
+      el("ul", {}, o.risks.map(function (r) { return el("li", { text: r }); })),
+      el("b", { text: "Say this to a video model" }), el("pre", { text: o.video_snippet })
+    ]);
+    card.appendChild(el("div", { class: "detail" }, [left, right]));
+  }
+  D.options.forEach(function (o) {
+    var b = el("button", { class: "opt", "data-label": o.label, "aria-pressed": "false", on: function () { showOption(o.label); } }, [
+      el("img", { src: ROOT + (o.previs ? o.previs.files.still_mid : o.image), alt: "Option " + o.label + ", " + o.pro_term }),
+      el("b", {}, [o.label + ". " + o.pro_term, o.recommended ? el("span", { class: "badge", text: "recommended" }) : null]),
+      el("span", { text: o.plain })]);
+    optBox.appendChild(b);
+  });
+  showOption(D.picked.pick);
+
+  // 3. Mix
+  var mp = document.getElementById("mixpick"), ml = document.getElementById("mixlight"), mg = document.getElementById("mixgrade"), mixBox = document.getElementById("mix");
+  D.options.forEach(function (o) {
+    mp.appendChild(el("option", { value: o.label, text: o.label + ": " + o.pro_term }));
+    ml.appendChild(el("option", { value: o.label, text: o.label + ": " + o.light_name }));
+    mg.appendChild(el("option", { value: o.label, text: o.label + ": " + o.grade_name }));
+  });
+  function showMix() {
+    var m = D.mixes[[mp.value, ml.value, mg.value].join("|")];
+    clear(mixBox);
+    mixBox.appendChild(el("pre", { class: "cmd", text: "$ " + m.command }));
+    mixBox.appendChild(table({ "Shot": m.spec.pro_term, "Camera movement": m.spec.movement, "Camera placement": m.spec.placement, "Lens": m.spec.lens,
+      "Light": m.spec.light, "Colour grade": m.spec.grade, "Speed": m.spec.speed, "Length": m.spec.duration }));
+    mixBox.appendChild(el("pre", { text: m.prompt_block }));
+  }
+  function resetMix() { mp.value = D.picked.pick; ml.value = D.picked.mixed.light || D.picked.pick; mg.value = D.picked.mixed.grade || D.picked.pick; showMix(); }
+  mp.addEventListener("change", function () { ml.value = mp.value; mg.value = mp.value; showMix(); });
+  ml.addEventListener("change", showMix); mg.addEventListener("change", showMix);
+  document.getElementById("mixreset").addEventListener("click", resetMix);
+  resetMix();
+
+  // 4. Tiers
+  var sceneBox = document.getElementById("scenes"), tierBtns = document.getElementById("tierbtns"), tierBox = document.getElementById("tier");
+  var scene = 0, tier = "bad";
+  var TIERS = [["bad", "1. The first prompt"], ["plain", "2. Clear, no film language"], ["skill", "3. With shot-speak"]];
+  function showTier() {
+    var s = D.scenes[scene], t = s[tier];
+    Array.prototype.forEach.call(sceneBox.children, function (b, n) { b.setAttribute("aria-pressed", n === scene ? "true" : "false"); });
+    Array.prototype.forEach.call(tierBtns.children, function (b) { b.setAttribute("aria-pressed", b.dataset.tier === tier ? "true" : "false"); });
+    clear(tierBox);
+    var left;
+    if (t.image) {
+      left = el("div", {}, [el("img", { src: ROOT + t.image, alt: s.title + ", " + tier + " prompt result" }),
+        el("div", { class: "cap", text: "1 still from 1 run of an image model with this prompt." })]);
+    } else {
+      var why = (tier === "bad" && t.named && t.named.length)
+        ? "No image. This prompt names a film title, and shot-speak never sends a title to an image model."
+        : "No image was generated for this example.";
+      left = el("div", {}, [el("div", { class: "noimg", text: why })]);
+    }
+    if (tier === "skill" && s.previs) left.appendChild(el("img", { src: ROOT + s.previs.files.still_mid, alt: "Blocking previs of this shot", style: "margin-top:8px" }));
+    var right = el("div", {}, [el("blockquote", { text: s.phrase }), el("p", { class: "get" }, [el("b", { text: "What you get: " }), t.what_you_get])]);
+    if (tier === "bad") {
+      right.appendChild(el("pre", { text: t.prompt }));
+      right.appendChild(el("b", { text: t.tells.length + " AI-slop tells that deslop finds" }));
+      right.appendChild(el("ul", {}, t.tells.map(function (x) { return el("li", { text: x }); })));
+      if (t.named.length) right.appendChild(el("p", { class: "note", text: "It also names a title. Many generators refuse a title." }));
+    } else if (tier === "plain") {
+      right.appendChild(el("pre", { text: t.prompt }));
+      right.appendChild(el("b", { text: "Correct, but these decisions are open. The generator makes them." }));
+      right.appendChild(el("ul", {}, t.missing.map(function (x) { return el("li", { text: x }); })));
+    } else {
+      right.appendChild(el("p", {}, [el("b", { text: t.pro_term + ". " }), t.plain_words + " " + t.feel]));
+      if (t.look_makes.length) { right.appendChild(el("b", { text: "What makes that look" })); right.appendChild(el("ul", {}, t.look_makes.map(function (x) { return el("li", { text: x }); }))); }
+      right.appendChild(table(t.decisions));
+      right.appendChild(el("pre", { text: t.prompt_block }));
+    }
+    tierBox.appendChild(el("div", { class: "tiers" }, [left, right]));
+  }
+  D.scenes.forEach(function (s, n) { sceneBox.appendChild(el("button", { text: s.title, "aria-pressed": "false", on: function () { scene = n; showTier(); } })); });
+  TIERS.forEach(function (t) { tierBtns.appendChild(el("button", { text: t[1], "data-tier": t[0], "aria-pressed": "false", on: function () { tier = t[0]; showTier(); } })); });
+  showTier();
+})();
+</script>
+</body>
+</html>

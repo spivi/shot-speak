@@ -1,0 +1,278 @@
+# Shot options for: "my kid lands a skateboard trick and I want it to look like a skate video"
+
+**What your words mean in film language:**
+
+- The look you named is, in film language: fisheye skate video. An extremely wide lens is very low and very close. The ground rushes past. Straight lines bend at the edges of the frame. The light is plain daylight. The camera rides along with the person.
+- A hit, a catch or a landing is a contact. Show the move wide, then the contact tight, at full speed from the contact.
+- Air moments read best from a low camera, with a real height and real gravity.
+
+Subject: a kid on a skateboard landing a kickflip off a low kerb. Place: an empty car park on a grey day. Frame: 16:9.
+
+## Option A: Low-angle wide shot  (recommended)
+
+**Why recommended:** It is the look you named, as decisions: fisheye skate video. An extremely wide lens is very low and very close. The ground rushes past.
+
+**In plain words:** The camera sits on the floor with a wide lens and looks along the ground. The subject towers.
+**What the viewer feels:** Scale and power. The subject is bigger than the viewer.
+**Pro term to learn:** Low-angle wide shot
+**Choose it when:** A landing, an entrance, the top of a jump. It makes a modest real jump look heroic.
+
+**What makes that look (fisheye skate video):**
+- An extremely wide lens is very low and very close. The ground rushes past.
+- Straight lines bend at the edges of the frame.
+- The light is plain daylight. The camera rides along with the person.
+
+| Decision | This option |
+|---|---|
+| Camera movement | locked: the camera does not move, the action comes to it |
+| Camera placement | on the floor, 3 m away, the lens level and looking along the ground into the light |
+| Lens | 18 mm. An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale. |
+| Light | Flat overcast daylight: A grey sky. Even, honest light with soft shadows under things. |
+| Colour grade | Muted earth tones: Browns, greys and dull greens. Worn and real. |
+| Speed | Slow motion (one beat): The moment is stretched. Use it for one moment in the whole piece. |
+| Length | 2 to 4 s |
+
+**AI look it avoids:** Eye-level medium shot as the default; The 35 to 50 mm default.
+
+**Risks with AI video generators:**
+- Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.
+- Slow motion plus a jump invites floating. Write a real height and real gravity.
+
+**Say this to a video model:**
+
+```text
+A kid on a skateboard landing a kickflip off a low kerb, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats; an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW                 light
+                              |
+                              v
+            S ->               S = subject, side-on to the camera
+                               C = camera, locked, low or close
+            ^                  The camera looks toward the light.
+            |
+            C
+
+   FRAME SKETCH
+   +------------------------------+
+   |                    *sun      |
+   |            o>                |
+   |           /|\                |
+   |  _________/_\_____________   |
+   | /  /   /   /   \   \   \   \ |
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.
+LENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.
+LOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option B: Follow shot (from behind)
+
+**In plain words:** The camera walks or runs behind the subject, close to their shoulder.
+**What the viewer feels:** The viewer is with the subject and discovers the place at the same time.
+**Pro term to learn:** Follow shot (from behind)
+**Choose it when:** Entering a place, a chase, a walk into trouble.
+
+| Decision | This option |
+|---|---|
+| Camera movement | a follow move close behind the subject at their speed, with the natural small bounce of a carried camera |
+| Camera placement | behind one shoulder at shoulder height, 1 m back |
+| Lens | 24 mm. A wide lens close behind the shoulder shows where the subject is going. |
+| Light | Night, practical lights only: Only the lamps that exist in the place: a street light, a sign, a screen. |
+| Colour grade | Neon noir: Night colours from signs and lamps against black. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 4 to 8 s |
+
+**AI look it avoids:** Centred, front-facing subject; Eyes into the lens.
+
+**Risks with AI video generators:**
+- Generators swing round to show the face. Write 'the camera stays behind the shoulder for the whole shot'.
+- Long corridors change shape over time. Keep it under 8 s.
+
+**Say this to a video model:**
+
+```text
+The camera follows close behind one shoulder of a kid on a skateboard landing a kickflip off a low kerb, at their speed, with a small natural bounce, and stays behind the shoulder for the whole shot; 24 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; night grade with two saturated practical colours against true black, colour only where a light source reaches; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                               S = subject, moving ->
+        C -> S -> -> ->        C = camera, 1 m behind one shoulder
+                               The camera stays behind for the whole shot.
+
+   FRAME SKETCH
+   +------------------------------+
+   |####                          |
+   |######        .  door  .      |
+   |#(o)###       |        |      |
+   |########      |        |      |
+   |#########_____|________|______|
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a frame from close behind one shoulder at shoulder height: the back of the head and one shoulder large on one side, the place they walk into open ahead. Camera placement: behind one shoulder at shoulder height, 1 m back.
+LENS: 24 mm; wide lens look: the place is as present as the subject, clear depth from foreground to background.
+LIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.
+COLOUR: night grade with two saturated practical colours against true black, colour only where a light source reaches.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option C: Speed ramp
+
+**In plain words:** Normal speed, a short slow-down at the best instant, then normal speed again.
+**What the viewer feels:** The viewer feels the speed and then gets a clear look at the best instant.
+**Pro term to learn:** Speed ramp
+**Choose it when:** Sport, tricks, a jump, a throw: fast action with one peak.
+
+| Decision | This option |
+|---|---|
+| Camera movement | a side-on tracking move that travels with the subject at their speed |
+| Camera placement | side-on at hip height, 4 m away, travelling parallel to the action |
+| Lens | 50 mm. A normal lens side-on keeps body shapes true while the speed change does the work. |
+| Light | Flat overcast daylight: A grey sky. Even, honest light with soft shadows under things. |
+| Colour grade | Cool and desaturated: Cold, quiet, a little grey-blue. Serious. |
+| Speed | Speed ramp: Normal speed, a short slow-down at the peak, then back to normal speed. |
+| Length | 3 to 5 s |
+
+**AI look it avoids:** Slow motion everywhere; Centred, front-facing subject.
+
+**Risks with AI video generators:**
+- Generators stay slow after the ramp. Write 'back to real time before the landing'.
+- Say exactly which instant is slow.
+
+**Say this to a video model:**
+
+```text
+A kid on a skateboard landing a kickflip off a low kerb, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time; 50 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact. Avoid: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                               S = subject, moving ->
+        S -> -> -> -> S'       C = camera, travelling parallel
+        |  |  |  |  |          | = foreground posts or shapes that wipe past
+        C -> -> -> -> C'       One screen direction for the whole shot.
+
+   FRAME SKETCH
+   +------------------------------+
+   |- - - - - - - - - - - - - - - |
+   |- - - - -    \o/    - - - - - |
+   |- - - - -     |>    - - - - - |
+   |- - - - -    / \    - - - - - |
+   |______________________________|
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option D: Tracking shot (lateral dolly)
+
+**In plain words:** The camera travels sideways with the subject, like a car driving beside them.
+**What the viewer feels:** Momentum. The viewer travels with the subject.
+**Pro term to learn:** Tracking shot (lateral dolly)
+**Choose it when:** Running, riding, walking with purpose.
+
+| Decision | This option |
+|---|---|
+| Camera movement | a lateral tracking move at the subject's speed, things in the foreground wiping past the lens |
+| Camera placement | side-on at waist height, 5 m away, with posts, people or plants passing between camera and subject |
+| Lens | 85 mm. A long lens makes the foreground and background rush past, so the move feels fast. |
+| Light | Flat overcast daylight: A grey sky. Even, honest light with soft shadows under things. |
+| Colour grade | Warm natural: Warm sunlight colour, but real: no orange wash over everything. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 3 to 6 s |
+
+**AI look it avoids:** Aquarium speed: slow floating camera and slow bodies; Centred, front-facing subject.
+
+**Risks with AI video generators:**
+- Generators drift ahead of or behind the subject. Write 'the subject stays on the same third of the frame'.
+- Keep one screen direction: left to right or right to left, for the whole sequence.
+
+**Say this to a video model:**
+
+```text
+A kid on a skateboard landing a kickflip off a low kerb, tracked side-on from a long lens at their speed, the subject held on the same third of the frame while foreground shapes wipe past; 85 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                               S = subject, moving ->
+        S -> -> -> -> S'       C = camera, travelling parallel
+        |  |  |  |  |          | = foreground posts or shapes that wipe past
+        C -> -> -> -> C'       One screen direction for the whole shot.
+
+   FRAME SKETCH
+   +------------------------------+
+   |- - - - - - - - - - - - - - - |
+   |- - - - - - - -      o>       |
+   |- - - - - - - -     /|        |
+   |- - - - - - - -     / \       |
+   |______________________________|
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a side-on frame from a long lens: the subject sharp in profile on one third of the frame, blurred foreground shapes wiping past, the background streaked sideways. Camera placement: side-on at waist height, 5 m away, with posts, people or plants passing between camera and subject.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+---
+
+Pick 1 option, mix parts of 2 options (for example "A with the light of C"), or ask for other options.
+
+Anti-slop check: passed for every option.
+Saved: examples/skate-kickflip/options.json and examples/skate-kickflip/options.md

@@ -1,0 +1,370 @@
+[
+  {
+    "file": "dog-bullet-time_bad.jpg",
+    "status": "ok",
+    "image_sha256": "8d42aa55b91ee02ff2a9ed2506f1bd40364fe3449e0dffa1ee70230a6417cd66",
+    "prompt_sha256": "6dd4fbfb80437e397f7a64bfbcf948de0ce9fc74962605dba2505034046384b1",
+    "usage": {
+      "input_tokens": 54,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 54
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 334
+    },
+    "measured_usd_at_published_rates": 0.00867,
+    "file_sha256": "4b7b6d2c92bfd05e831b0e727d86037b227138aea873517d026f76dec4903309",
+    "file_bytes": 118131,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_plain.jpg",
+    "status": "ok",
+    "image_sha256": "d9284899e1e1c83fd452740f4560316b19b4241cf81fb546bfe5f08e8d26cb73",
+    "prompt_sha256": "b4d1f98d8fb2b47840a035ddaf80d29f38f66f95c0a5773093e2c00d2f7cdf8d",
+    "usage": {
+      "input_tokens": 55,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 55
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 335
+    },
+    "measured_usd_at_published_rates": 0.008675,
+    "file_sha256": "04525f7dcf54cc1da99c2bbec5d51e304840ca96dc17013e2e2f64a0cb96fa8f",
+    "file_bytes": 146728,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_skill.jpg",
+    "status": "ok",
+    "image_sha256": "a6e7b8513cd38b8a477f6970bf401eab0ca537864cc608c47971a31ca0dcd6ac",
+    "prompt_sha256": "6437fb4573c814b42573075ded7b3a84454de16b39012a11418c172065fb0a8e",
+    "usage": {
+      "input_tokens": 429,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 429
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 709
+    },
+    "measured_usd_at_published_rates": 0.010545,
+    "file_sha256": "a0f29b9438b1ec17d7da1c8219650acc61429ab6901fcae533785555eeebf93f",
+    "file_bytes": 165344,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "skate-kickflip_bad.jpg",
+    "status": "ok",
+    "image_sha256": "7f465f8083a88ffdd67569e38fb615241f1c3b2e07c7b8e0ecba887ff0b51f93",
+    "prompt_sha256": "c491f51ccec8ee7d50bbda41cff4f6804ade2e0696ff52562baea68d4e4ef184",
+    "usage": {
+      "input_tokens": 49,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 49
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 329
+    },
+    "measured_usd_at_published_rates": 0.008645,
+    "file_sha256": "6e5415ba4e0e060e1aa7cd316cee1513ef12057298d771299e4ffc3e1064f610",
+    "file_bytes": 97658,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "skate-kickflip_plain.jpg",
+    "status": "ok",
+    "image_sha256": "985bdff17c3bdda6cf5d3a717f2ffe15e7bcbebec68ec1ce54161b310cd6481f",
+    "prompt_sha256": "1d8b017f79fb33e350a83ca88a4f27b9e15691b05d1697f7e757f2437fac15d2",
+    "usage": {
+      "input_tokens": 52,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 52
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 332
+    },
+    "measured_usd_at_published_rates": 0.00866,
+    "file_sha256": "e178305ca0325c5b90e02ea29bf8a277cb0e6991a538d836aab33387ed82ef5c",
+    "file_bytes": 109996,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "skate-kickflip_skill.jpg",
+    "status": "ok",
+    "image_sha256": "eadcd3b5d1f60434f81fc52c61944907c08c75df7ca916bdae1b44484b40a9c7",
+    "prompt_sha256": "20b073d9be2f5e9f09c7a8acf55288de15f7b5a983c6499928e6d2b348d4841e",
+    "usage": {
+      "input_tokens": 425,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 425
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 705
+    },
+    "measured_usd_at_published_rates": 0.010525,
+    "file_sha256": "64790f710c34e638c9eeed1cd370b5989c64c4cef72cd1c2933b6e1034ed7883",
+    "file_bytes": 80716,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "alley-fight_bad.jpg",
+    "status": "ok",
+    "image_sha256": "12ba191700e2e7ddfd5efb3a3738cb15c89d31160df45a2b395cf48fd35e2216",
+    "prompt_sha256": "b4d1be37206a56c4e87e4c8bc273784c75c321b6569da3e3cd8ba32a85750ad7",
+    "usage": {
+      "input_tokens": 54,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 54
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 334
+    },
+    "measured_usd_at_published_rates": 0.00867,
+    "file_sha256": "b9e045c00c7cde8b4071638277ff7ed3c40640630fd111ab02d2ef1b5e87f788",
+    "file_bytes": 106821,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "alley-fight_plain.jpg",
+    "status": "ok",
+    "image_sha256": "b6a6ac08b70ca089c5a1762194ec9fb865e03605137a7902311aa66b3fdd785c",
+    "prompt_sha256": "e58bc840b8b99c76046d084dc4f65dbfecbd3b7438b8b8582820431e3860c815",
+    "usage": {
+      "input_tokens": 52,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 52
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 332
+    },
+    "measured_usd_at_published_rates": 0.00866,
+    "file_sha256": "f6217433902ceba46c8be4a8ec3f17e84b7b8c3e5f8f191fb6ed2b65fe28d9df",
+    "file_bytes": 86789,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "alley-fight_skill.jpg",
+    "status": "ok",
+    "image_sha256": "757060a967af577cc34bda95da1f1f7ed76bb937df9a7e227171ea4b9ef9ccaf",
+    "prompt_sha256": "8cf36acb4a0ae3fb1d779e6a645486be8e50ea131ac3d26602a757090f68d935",
+    "usage": {
+      "input_tokens": 432,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 432
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 712
+    },
+    "measured_usd_at_published_rates": 0.01056,
+    "file_sha256": "9424943cca0a8894f4db5711ffddb52bb48ac2f2ca8a1ab6f1f1dbbb55f83dce",
+    "file_bytes": 82025,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "birthday-candles_bad.jpg",
+    "status": "ok",
+    "image_sha256": "04926e21d411f25bf404571edd8398dfb92cecf512ca4ac4bbfc5c74128655ea",
+    "prompt_sha256": "9e79b31a08555c05d261c59623cd26111899a0c09debd198c8b4335570c44322",
+    "usage": {
+      "input_tokens": 47,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 47
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 327
+    },
+    "measured_usd_at_published_rates": 0.008635,
+    "file_sha256": "184f1edf13ad7f77a1cf691fb71a5a89430e4ea033faf2e6c3d08d7f7befc792",
+    "file_bytes": 83579,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "birthday-candles_plain.jpg",
+    "status": "ok",
+    "image_sha256": "646b85ca564a20644ebe0c67169c6524680a9ef8746a6044ff2601e134ad7c5d",
+    "prompt_sha256": "25382a13815c62e4eb9e9f8006233e2dad0b7767cfba2463e5f29132ef9d4564",
+    "usage": {
+      "input_tokens": 55,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 55
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 335
+    },
+    "measured_usd_at_published_rates": 0.008675,
+    "file_sha256": "3ecdfc7b7086550eb21dc9d2a786ec1d3eaada51c87d5ec604000b100c398ad9",
+    "file_bytes": 49533,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "birthday-candles_skill.jpg",
+    "status": "ok",
+    "image_sha256": "dd2abf0f8be5f1be32efb40a91df858a2beefa59e7cae649b63b5e97db2ab39e",
+    "prompt_sha256": "af9a696e7a6deb56d747853c5225825dc39538b58a09b6a2b22ae8ba4ef27119",
+    "usage": {
+      "input_tokens": 388,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 388
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 668
+    },
+    "measured_usd_at_published_rates": 0.01034,
+    "file_sha256": "cd3e0f13c79c623cc42ef0204e101018053a1c58ccf92f7f030869388776f79a",
+    "file_bytes": 51289,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_option_A.jpg",
+    "status": "ok",
+    "image_sha256": "c4189f52616a2906010d46216c201b9436340f5acd30896bbb8f107f48ad4095",
+    "prompt_sha256": "b6dcafebc7e4c89a0e4fcdb39674cc64d8dc702988ae1840771ac1248b836506",
+    "usage": {
+      "input_tokens": 434,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 434
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 714
+    },
+    "measured_usd_at_published_rates": 0.01057,
+    "file_sha256": "edbbfede251a6d29cc2e292cda09564697b146b4869242424f7767cff474daa9",
+    "file_bytes": 177692,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_option_B.jpg",
+    "status": "ok",
+    "image_sha256": "99e7ff31bf4c5dac3db2cc7c9a2b581cd58bf4a8b5efc6a8848e765025935ae7",
+    "prompt_sha256": "21e33816c0e9cadd0025327bf2b41cdfffabae97c252cc5e940062903e942178",
+    "usage": {
+      "input_tokens": 434,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 434
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 714
+    },
+    "measured_usd_at_published_rates": 0.01057,
+    "file_sha256": "83b5db2e44d869988ba25f16e0d50f87dda3b6e9e426333725cfe013fb26fca2",
+    "file_bytes": 156467,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_option_C.jpg",
+    "status": "ok",
+    "image_sha256": "34d1e57108454db4586feb0eadbc31226f799a24ccda56946347a5c8d9d7edbe",
+    "prompt_sha256": "a36975e9e9dea75a765ff47588e7731b199571d3c2e0e03c6d917ee36140a2b9",
+    "usage": {
+      "input_tokens": 441,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 441
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 721
+    },
+    "measured_usd_at_published_rates": 0.010605,
+    "file_sha256": "b14f17e68e4106286766479fdc3a3cc7d88ac439199fd9b16d6aeeeb7de6ea82",
+    "file_bytes": 101488,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  },
+  {
+    "file": "dog-bullet-time_option_D.jpg",
+    "status": "ok",
+    "image_sha256": "d67fc9ad321d1db9a14b5455b15daf4ac63fdf26f0b3352a6771172aa85b737f",
+    "prompt_sha256": "48faa85a5622b0dc5d5a803cf7e3655984f6c1a3166c238937d306500b432c0f",
+    "usage": {
+      "input_tokens": 422,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 422
+      },
+      "output_tokens": 280,
+      "output_tokens_details": {
+        "image_tokens": 280,
+        "text_tokens": 0
+      },
+      "total_tokens": 702
+    },
+    "measured_usd_at_published_rates": 0.01051,
+    "file_sha256": "487895ddf5ad68c604d9656d950ef492610f7f2926a9dec715b7af42d6b38f5e",
+    "file_bytes": 56340,
+    "file_format": "JPEG 1280x720, no metadata; image_sha256 is the provider's PNG"
+  }
+]

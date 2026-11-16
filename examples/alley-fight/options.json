@@ -1,0 +1,206 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "two guys fight in an alley and I want to feel every punch, raw and shaky",
+  "matched": true,
+  "interpretation": [
+    "A hit, a catch or a landing is a contact. Show the move wide, then the contact tight, at full speed from the contact.",
+    "'Shaky' or 'raw' is handheld coverage, close to the action."
+  ],
+  "subject": "two stunt fighters in plain dark clothes",
+  "action": "trading blows, one hard right hook lands on the jaw",
+  "setting": "a narrow brick alley at night",
+  "aspect": "16:9",
+  "options": [
+    {
+      "label": "A",
+      "technique": "handheld_close",
+      "pro_term": "Handheld close coverage",
+      "plain": "A camera on the shoulder, close to the action, a little rough.",
+      "movement": "handheld: small, nervous reframing that reacts a moment late to the action",
+      "placement": "close, 1.5 m away, at chest height, three-quarter to the subject, with a shoulder or an object soft in the foreground",
+      "lens": "35 mm",
+      "lens_why": "Close and moderately wide puts the viewer inside the event without bending faces.",
+      "light": {
+        "key": "practicals_night",
+        "name": "Night, practical lights only",
+        "plain": "Only the lamps that exist in the place: a street light, a sign, a screen.",
+        "prompt": "night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them"
+      },
+      "grade": {
+        "key": "muted_earth",
+        "name": "Muted earth tones",
+        "plain": "Browns, greys and dull greens. Worn and real.",
+        "prompt": "muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "2 to 5 s",
+      "feel": "It is happening now and nobody planned it.",
+      "when": "Arguments, fights, panic, documentary truth.",
+      "risks": [
+        "Generators produce either no shake or an earthquake. Write 'small, late reframing'.",
+        "Chest height from the front is the AI default. Keep the three-quarter angle and a foreground shape."
+      ],
+      "still": "a close three-quarter frame at chest height with a soft out-of-focus shoulder or object in the foreground edge, slightly off-level, the subject caught mid-gesture",
+      "snippet": "handheld and close: {subject} {action}, seen from a three-quarter position past a soft foreground shoulder, with small, late reframing",
+      "slop_avoided": [
+        "Aquarium speed: slow floating camera and slow bodies",
+        "Perfect, clean textures"
+      ],
+      "topdown": "static",
+      "frame": "tight_three_quarter",
+      "recommended": true,
+      "recommended_because": "It is the closest match to your words. Best for: arguments, fights, panic, documentary truth.",
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a close three-quarter frame at chest height with a soft out-of-focus shoulder or object in the foreground edge, slightly off-level, the subject caught mid-gesture. Camera placement: close, 1.5 m away, at chest height, three-quarter to the subject, with a shoulder or an object soft in the foreground.\nLENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; no over-saturated HDR look; restrained colour and true blacks.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Handheld and close: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, seen from a three-quarter position past a soft foreground shoulder, with small, late reframing; 35 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    },
+    {
+      "label": "B",
+      "technique": "impact_insert",
+      "pro_term": "Contact insert with a ramp on contact",
+      "plain": "A tight shot of the instant of contact. Slow on the way in, full speed from the contact.",
+      "movement": "locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles",
+      "placement": "exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+      "lens": "85 mm",
+      "lens_why": "A long lens from the side isolates the contact and keeps the camera out of the action.",
+      "light": {
+        "key": "practicals_night",
+        "name": "Night, practical lights only",
+        "plain": "Only the lamps that exist in the place: a street light, a sign, a screen.",
+        "prompt": "night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them"
+      },
+      "grade": {
+        "key": "bleach_bypass",
+        "name": "Bleach bypass",
+        "plain": "Harsh and silvery: strong contrast, washed-out colour.",
+        "prompt": "bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain"
+      },
+      "speed": {
+        "key": "ramp_on_contact",
+        "name": "Ramp on contact",
+        "plain": "Slow on the way in. Full speed from the instant of contact.",
+        "prompt": "slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends",
+        "still": "the exact frame of contact: the moving part stopped on its target, the surface pushed in, everything sharp"
+      },
+      "duration": "1.5 to 2.5 s",
+      "feel": "The viewer feels the contact, not only sees it.",
+      "when": "One decisive contact: a hit, a catch, a landing, a ball on a bat. Show the whole move in a wider shot first.",
+      "risks": [
+        "Generators add a slow wind-up. Write 'the first visible motion is the action itself'.",
+        "The contact goes soft or misses. Name the part that strikes, the exact target and the reaction along the line of the force.",
+        "Generators stretch the whole shot into slow motion. State the frame where real speed returns."
+      ],
+      "still": "a tight side-on frame of the instant of contact, the point of contact on one third of the frame, the one who takes the force in profile",
+      "snippet": "a tight contact insert: {subject} {action}, exactly side-on to the line of the force, the frame kicking a hand's width with the force at the contact",
+      "slop_avoided": [
+        "Slow motion everywhere",
+        "Aquarium speed: slow floating camera and slow bodies"
+      ],
+      "topdown": "static_side",
+      "frame": "profile_cu",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a tight side-on frame of the instant of contact, the point of contact on one third of the frame, the one who takes the force in profile. Camera placement: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.\nLENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: the exact frame of contact: the moving part stopped on its target, the surface pushed in, everything sharp.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A tight contact insert: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, exactly side-on to the line of the force, the frame kicking a hand's width with the force at the contact; 85 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends. Avoid: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "C",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "plain": "The camera sits on the floor with a wide lens and looks along the ground. The subject towers.",
+      "movement": "locked: the camera does not move, the action comes to it",
+      "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens": "18 mm",
+      "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+      "light": {
+        "key": "silhouette_rim",
+        "name": "Silhouette with a rim",
+        "plain": "The subject is a dark shape against a bright opening, with a thin edge of light.",
+        "prompt": "the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow"
+      },
+      "grade": {
+        "key": "film_deep_blacks",
+        "name": "Film print, deep blacks",
+        "plain": "Looks like real film: fine grain, true black shadows, natural colour.",
+        "prompt": "photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation"
+      },
+      "speed": {
+        "key": "slow_motion",
+        "name": "Slow motion (one beat)",
+        "plain": "The moment is stretched. Use it for one moment in the whole piece.",
+        "prompt": "slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats",
+        "still": "a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement"
+      },
+      "duration": "2 to 4 s",
+      "feel": "Scale and power. The subject is bigger than the viewer.",
+      "when": "A landing, an entrance, the top of a jump. It makes a modest real jump look heroic.",
+      "risks": [
+        "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+        "Slow motion plus a jump invites floating. Write a real height and real gravity."
+      ],
+      "still": "the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground",
+      "snippet": "{subject} {action}, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light",
+      "slop_avoided": [
+        "Eye-level medium shot as the default",
+        "The 35 to 50 mm default"
+      ],
+      "topdown": "static",
+      "frame": "low_wide",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "D",
+      "technique": "whip_pan",
+      "pro_term": "Whip pan (swish pan)",
+      "plain": "The camera snaps sideways so fast that the picture streaks, then lands on the subject.",
+      "movement": "a whip pan: the camera snaps sideways in a streak of motion blur and lands locked on the subject",
+      "placement": "on a fixed spot at shoulder height, side-on to the action, 4 m away",
+      "lens": "35 mm",
+      "lens_why": "Wide enough for a clear streak, tight enough that the landing frame has a subject.",
+      "light": {
+        "key": "low_side_sun",
+        "name": "Low hard side sun",
+        "plain": "Late sun from one side. One half of everything is lit, one half is dark.",
+        "prompt": "low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground"
+      },
+      "grade": {
+        "key": "warm_natural",
+        "name": "Warm natural",
+        "plain": "Warm sunlight colour, but real: no orange wash over everything.",
+        "prompt": "warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "1 to 2 s",
+      "feel": "A jolt. It says 'look here, now'.",
+      "when": "To join two moments or two places with energy. The blur also hides a cut.",
+      "risks": [
+        "Some generators cannot hold a subject through the blur. Use the whip as the cut point between two clips.",
+        "State where the pan lands, or it wanders."
+      ],
+      "still": "the frame at the end of a whip pan: the subject sharp and side-on on one third of the frame, the rest streaked with strong horizontal motion blur",
+      "snippet": "the camera whip-pans in a streak of motion blur and lands locked on {subject} {action}, seen side-on",
+      "slop_avoided": [
+        "Aquarium speed: slow floating camera and slow bodies",
+        "Centred, front-facing subject"
+      ],
+      "topdown": "whip",
+      "frame": "side_third",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the frame at the end of a whip pan: the subject sharp and side-on on one third of the frame, the rest streaked with strong horizontal motion blur. Camera placement: on a fixed spot at shoulder height, side-on to the action, 4 m away.\nLENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "The camera whip-pans in a streak of motion blur and lands locked on two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, seen side-on; 35 mm lens; low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground; warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    }
+  ]
+}

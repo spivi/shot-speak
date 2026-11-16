@@ -1,0 +1,66 @@
+SHOT-SPEAK MOCK CARD  "grandma blows out the candles, zoom in slowly, make it warm and emotional"
+
+--- Option A: Push-in (dolly in)  [recommended]
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old woman blowing out the candles on a birthday cake, in a small dark kitchen. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame from a three-quarter side position at the subject's eye height, with a soft foreground edge on one side of the frame that shows the camera is moving in. Camera placement: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/birthday-candles/option_A.png
+
+--- Option B: Crash zoom (snap zoom)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old woman blowing out the candles on a birthday cake, in a small dark kitchen. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a tight, slightly rough telephoto frame of the subject in three-quarter view, as if just reached by a fast zoom: flattened depth, faint radial streaks toward the frame edges. Camera placement: far away, 8 m or more, at shoulder height, three-quarter to the subject.
+LENS: 24 mm zooming to 85 mm; zoom lens caught at its long end, 85 mm: long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/birthday-candles/option_B.png
+
+--- Option C: Pull-back (dolly out)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old woman blowing out the candles on a birthday cake, in a small dark kitchen. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a wide frame with the subject small, seen three-quarter from behind, alone in a large empty place, a lot of empty ground between camera and subject. Camera placement: at the subject's eye height, three-quarter from behind, ending 12 m away.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: one cold hard light from high on one side, like a full moon; hard-edged shadows, most of the frame dark, details held in the blacks.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/birthday-candles/option_C.png
+
+--- Option D: Locked-off wide (tableau)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old woman blowing out the candles on a birthday cake, in a small dark kitchen. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a composed wide frame from waist height: a dark foreground shape on one side, the subject small and off-centre in the middle distance, seen from the side. Camera placement: far back at waist height, the lens level, with a dark foreground shape on one side.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/birthday-candles/option_D.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    4
+Estimate:  0.28 USD
+Basis:     4 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      aa563678e2fe
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
+After a clear yes, run again with
+  --confirm aa563678e2fe

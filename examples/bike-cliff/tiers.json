@@ -1,0 +1,31 @@
+{
+  "title": "Bike over a cliff",
+  "phrase": "10 seconds of a cool action scene: a guy rides a bike over a cliff, ditches the bike mid-air and does a superhero landing",
+  "compare_gif": "docs/video/bike-cliff/compare.gif",
+  "tiers": [
+    {
+      "key": "noob",
+      "label": "1. The first prompt",
+      "prompt": "examples/bike-cliff/1_noob.txt",
+      "video": "docs/video/bike-cliff/1_noob.mp4",
+      "poster": "docs/video/bike-cliff/1_noob.jpg",
+      "what_you_get": "A man in a dark red shirt and dark trousers, not the grey hoodie of the idea. He hangs in the air for about 4 seconds, the camera looks up at him, and he lands on a fist and stares into the lens."
+    },
+    {
+      "key": "plain",
+      "label": "2. A clear prompt, no film language",
+      "prompt": "examples/bike-cliff/2_plain.txt",
+      "video": "docs/video/bike-cliff/2_plain.mp4",
+      "poster": "docs/video/bike-cliff/2_plain.jpg",
+      "what_you_get": "The grey hoodie and jeans, a fast ride off the edge, and a landing on a knee and a fist. Dust fills the frame and the light is warm and even. He ends upright and looks off to the side."
+    },
+    {
+      "key": "skill",
+      "label": "3. With shot-speak",
+      "prompt": "examples/bike-cliff/3_skill.txt",
+      "video": "docs/video/bike-cliff/3_skill.mp4",
+      "poster": "docs/video/bike-cliff/3_skill.jpg",
+      "what_you_get": "5 shots in black and white, with 1 hard sun. The close-up is on his hands as the bike leaves them. The landing is a low shot on the ground, then he stands with his back to the lens."
+    }
+  ]
+}

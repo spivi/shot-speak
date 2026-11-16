@@ -1,0 +1,4 @@
+Previs route: headless
+Reason: Blender 5.2.2 runs without a window (found by a standard install folder). No MCP add-on answers on localhost:9876.
+Blender: /Applications/Blender.app/Contents/MacOS/Blender (version 5.2.2)
+MCP add-on socket localhost:9876: closed

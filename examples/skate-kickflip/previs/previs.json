@@ -1,0 +1,114 @@
+{
+  "tool": "shot-speak",
+  "schema": 1,
+  "phrase": "my kid lands a skateboard trick and I want it to look like a skate video",
+  "route": "headless",
+  "blender_version": "5.2.2",
+  "skipped": null,
+  "use": "A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.",
+  "options": [
+    {
+      "label": "A",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "status": "ok",
+      "message": null,
+      "script": "option_A/blocking.py",
+      "script_sha256": "54fc2c493c9c23842b949376d1fc43838ad2fd19368665b20a9f710f20f1123b",
+      "frames": 72,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "locked",
+        "people": 1,
+        "start": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.0,
+        "placement_words": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+        "lens_words": "18 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.0,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 90.0
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_A/still_start.png",
+          "bytes": 47803,
+          "sha256": "97fc2716b73b3ac0bfe9422841c648c028c06f7fee10e103aa5099bb2ba67d17"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_A/still_mid.png",
+          "bytes": 47803,
+          "sha256": "97fc2716b73b3ac0bfe9422841c648c028c06f7fee10e103aa5099bb2ba67d17"
+        },
+        {
+          "role": "still_end",
+          "path": "option_A/still_end.png",
+          "bytes": 47803,
+          "sha256": "97fc2716b73b3ac0bfe9422841c648c028c06f7fee10e103aa5099bb2ba67d17"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_A/plan_overhead.png",
+          "bytes": 12510,
+          "sha256": "9cce3c0343b31d2fd6c68b5e53b28fdbe5f9510c280e43e551841f2a60333e98"
+        }
+      ]
+    }
+  ]
+}

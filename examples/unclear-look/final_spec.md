@@ -1,0 +1,41 @@
+# Final shot spec: Pull-back (dolly out)
+
+Picked: option A. Mixed in: none.
+
+**LOCKED: the user approved these decisions.**
+
+| Decision | Final |
+|---|---|
+| Camera movement | a steady pull-back: the camera travels away from the subject in a straight line, from a tight view to a wide view |
+| Camera placement | 3 m up, looking down at a steep angle, three-quarter to the subject, 4 m away |
+| Lens | 35 mm. Moderately wide, so the growing space is felt without bending the subject at the start. |
+| Light | Flat overcast daylight |
+| Colour grade | Cool and desaturated |
+| Speed | Real time |
+| Length | 4 to 6 s |
+
+## Watch for
+
+- Generators change the subject during a long pull-back. Keep them still.
+- Describe what enters the frame, or it fills with random objects.
+
+## Prompt block
+
+```text
+SHOT: Pull-back (dolly out). 16:9 frame, 4 to 6 s.
+SUBJECT AND ACTION: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud.
+CAMERA MOVE: a steady pull-back: the camera travels away from the subject in a straight line, from a tight view to a wide view.
+CAMERA PLACEMENT: 3 m up, looking down at a steep angle, three-quarter to the subject, 4 m away.
+LENS: 35 mm.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+SPEED: real time for the whole shot, fast and crisp, no slow motion.
+RULES: State the exact number of people. Screen direction stays the same for the whole shot.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.
+```
+
+## One line
+
+```text
+A lone hiker reaching the top of a ridge; the camera travels steadily away from them in a straight line, from a tight view to a wide view, until they are small in a large empty place; 35 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```

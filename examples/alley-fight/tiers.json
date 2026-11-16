@@ -1,0 +1,58 @@
+{
+  "slug": "alley-fight",
+  "title": "The punch in the alley",
+  "phrase": "two guys fight in an alley and I want to feel every punch, raw and shaky",
+  "user_says": "B",
+  "commands": {
+    "plan": "python3 scripts/shotspeak.py plan --phrase \"two guys fight in an alley and I want to feel every punch, raw and shaky\" --subject \"two stunt fighters in plain dark clothes\" --action \"trading blows, one hard right hook lands on the jaw\" --setting \"a narrow brick alley at night\" --out examples/alley-fight",
+    "choose": "python3 scripts/shotspeak.py choose --options examples/alley-fight/options.json --pick B"
+  },
+  "bad": {
+    "prompt": "epic fight scene between two men in a dark alley, cinematic, dramatic lighting, slow motion, camera circling around them, wet street, volumetric fog, 4k",
+    "what_you_get": "Two men who look the same and dance around each other in slow motion. No punch lands. A wet floor, fog, and a camera that circles.",
+    "tells": [
+      "180 or 360 degree orbit",
+      "No camera position stated",
+      "Bloom, haze, fog and god rays",
+      "Glossy wet floors",
+      "No light source stated",
+      "No lens stated",
+      "Over-saturated HDR look",
+      "'Cinematic' and 'epic' with no direction"
+    ],
+    "named": [],
+    "image": "docs/img/alley-fight_bad.jpg"
+  },
+  "plain": {
+    "prompt": "Two men fight in a narrow brick alley at night. One man throws a hard right hook. The punch lands on the other man's jaw, and he steps back.",
+    "what_you_get": "A wide view of 2 small men. The punch is slow and soft, and it stops before the jaw. The camera does not help.",
+    "missing": [
+      "No camera position stated",
+      "No light source stated",
+      "No lens stated",
+      "No speed stated"
+    ],
+    "image": "docs/img/alley-fight_plain.jpg"
+  },
+  "skill": {
+    "picked": "B",
+    "mixed": {},
+    "pro_term": "Contact insert with a ramp on contact",
+    "plain_words": "A tight shot of the instant of contact. Slow on the way in, full speed from the contact.",
+    "feel": "The viewer feels the contact, not only sees it.",
+    "look_makes": [],
+    "what_you_get": "A tight side-on view of the jaw. The fist comes in slowly and lands at full speed. The frame kicks with the force.",
+    "decisions": {
+      "Camera movement": "locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles",
+      "Camera placement": "exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+      "Lens": "85 mm",
+      "Light": "Night, practical lights only",
+      "Colour grade": "Bleach bypass",
+      "Speed": "Ramp on contact"
+    },
+    "prompt_block": "SHOT: Contact insert with a ramp on contact. 16:9 frame, 1.5 to 2.5 s.\nSUBJECT AND ACTION: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night.\nCAMERA MOVE: locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles.\nCAMERA PLACEMENT: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.\nLENS: 85 mm.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nSPEED: slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; no soft even glow; one motivated light source with a real dark side; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+    "one_line": "A tight contact insert: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, exactly side-on to the line of the force, the frame kicking a hand's width with the force at the contact; 85 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends. Avoid: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.",
+    "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a tight side-on frame of the instant of contact, the point of contact on one third of the frame, the one who takes the force in profile. Camera placement: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.\nLENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: the exact frame of contact: the moving part stopped on its target, the surface pushed in, everything sharp.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+    "image": "docs/img/alley-fight_skill.jpg"
+  }
+}

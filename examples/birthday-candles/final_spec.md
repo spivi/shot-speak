@@ -1,0 +1,53 @@
+# Final shot spec: Push-in (dolly in)
+
+Picked: option A. Mixed in: none.
+
+**UNLOCKED: decisions may still change.**
+
+| Decision | Final |
+|---|---|
+| Camera movement | a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view |
+| Camera placement | at the subject's eye height, from the side at a three-quarter angle, starting 3 m away |
+| Lens | 50 mm. A normal lens keeps the face natural while the camera does the work. This is a decision here, not a default: the move carries the feeling. |
+| Light | Firelight |
+| Colour grade | Film print, deep blacks |
+| Speed | Real time |
+| Length | 3 to 5 s |
+
+## Watch for
+
+- Generators mix up a push-in and a zoom. Write 'the camera travels toward them, the background slides past'.
+- From the front it becomes the standard AI frame. Push in from the side.
+
+## Prompt block
+
+```text
+SHOT: Push-in (dolly in). 16:9 frame, 3 to 5 s.
+SUBJECT AND ACTION: an old woman blowing out the candles on a birthday cake, in a small dark kitchen.
+CAMERA MOVE: a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view.
+CAMERA PLACEMENT: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.
+LENS: 50 mm.
+LIGHT: one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+SPEED: real time for the whole shot, fast and crisp, no slow motion.
+RULES: State the exact number of people. Screen direction stays the same for the whole shot.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.
+```
+
+## One line
+
+```text
+An old woman blowing out the candles on a birthday cake; the camera itself travels steadily toward them from a three-quarter side position at eye height, from a medium view to chest-up, the background sliding past; 50 mm lens; one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+## Blocking previs
+
+A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.
+
+- still start: `previs/option_A/still_start.png`
+- still mid: `previs/option_A/still_mid.png`
+- still end: `previs/option_A/still_end.png`
+- plan overhead: `previs/option_A/plan_overhead.png`
+
+Optional, and free: attach `previs/option_A/still_start.png` as a layout reference or a start frame, and `previs/option_A/still_end.png` as an end frame, when the video tool accepts them.
+Give the reference 1 job in the prompt. Check the generated take for grey surfaces, a checker floor or mannequin shapes.

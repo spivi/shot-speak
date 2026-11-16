@@ -1,0 +1,543 @@
+{
+  "tool": "shot-speak",
+  "schema": 1,
+  "phrase": "two guys fight in an alley and I want to feel every punch, raw and shaky",
+  "route": "headless",
+  "blender_version": "5.2.2",
+  "skipped": null,
+  "use": "A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.",
+  "options": [
+    {
+      "label": "A",
+      "technique": "handheld_close",
+      "pro_term": "Handheld close coverage",
+      "status": "ok",
+      "message": null,
+      "script": "option_A/blocking.py",
+      "script_sha256": "9a59e0286d7d276e45643e4a28886ab19cf44ccc50aaacdadf162a83aa6706c3",
+      "frames": 84,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "handheld",
+        "people": 2,
+        "start": {
+          "height_m": 1.3082,
+          "distance_m": 1.5209,
+          "azimuth_deg": 50.1028,
+          "lens_mm": 35.0,
+          "roll_deg": -0.2671
+        },
+        "end": {
+          "height_m": 1.3061,
+          "distance_m": 1.5044,
+          "azimuth_deg": 49.8965,
+          "lens_mm": 35.0,
+          "roll_deg": -0.457
+        },
+        "camera_path_m": 1.3175,
+        "placement_words": "close, 1.5 m away, at chest height, three-quarter to the subject, with a shoulder or an object soft in the foreground",
+        "lens_words": "35 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": -0.387,
+            "body_share": 1.7204,
+            "shot_size": "medium shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 37.4111
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.8209,
+            "body_share": 2.9232,
+            "shot_size": "medium close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 110.0355
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": -0.4099,
+            "body_share": 1.8216,
+            "shot_size": "medium shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 37.7519
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.8616,
+            "body_share": 3.1575,
+            "shot_size": "medium close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 109.231
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": -0.4745,
+            "body_share": 1.8099,
+            "shot_size": "medium shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 37.1435
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.7673,
+            "body_share": 3.0791,
+            "shot_size": "medium close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 110.0123
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_A/still_start.png",
+          "bytes": 99658,
+          "sha256": "c4e7c46e1907635f40c4e82adf22e1d1a77814877952b708ff1728dfe21602a6"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_A/still_mid.png",
+          "bytes": 97217,
+          "sha256": "4c8a61ff7fd3626a66cc83416b4af5492a4648dadb597bfb44a2c326c1458d0f"
+        },
+        {
+          "role": "still_end",
+          "path": "option_A/still_end.png",
+          "bytes": 96602,
+          "sha256": "bdedf987d37bd90f34c6f56b3784404c9da5c23b05e128a2a3a11ca1d1870e8b"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_A/plan_overhead.png",
+          "bytes": 16062,
+          "sha256": "929443e7c34114c07cbf9fb0d300226ed72d4b1e8ee29953dbfcf58221b0d93e"
+        }
+      ]
+    },
+    {
+      "label": "B",
+      "technique": "impact_insert",
+      "pro_term": "Contact insert with a ramp on contact",
+      "status": "ok",
+      "message": null,
+      "script": "option_B/blocking.py",
+      "script_sha256": "5bee76c20f9d6b089612ab37634b4ebac2e144e28692b30080947569a6d34afc",
+      "frames": 48,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "locked",
+        "people": 2,
+        "start": {
+          "height_m": 1.3,
+          "distance_m": 2.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 85.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.3,
+          "distance_m": 2.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 85.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.1974,
+        "placement_words": "exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+        "lens_words": "85 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": -2.2559,
+            "body_share": 4.1798,
+            "shot_size": "close-up",
+            "screen_side": "left",
+            "face_to_lens_deg": 74.6237
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.5136,
+            "body_share": 3.7969,
+            "shot_size": "close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 74.6237
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": -2.2559,
+            "body_share": 4.1798,
+            "shot_size": "close-up",
+            "screen_side": "left",
+            "face_to_lens_deg": 74.6237
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.5136,
+            "body_share": 3.7969,
+            "shot_size": "close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 74.6237
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": -2.2559,
+            "body_share": 4.1798,
+            "shot_size": "close-up",
+            "screen_side": "left",
+            "face_to_lens_deg": 74.6237
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.5136,
+            "body_share": 3.7969,
+            "shot_size": "close-up",
+            "screen_side": "right",
+            "face_to_lens_deg": 74.6237
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_B/still_start.png",
+          "bytes": 68743,
+          "sha256": "cba3ec7cac307e0f60d3ffe047d13f1525159e55577d6adadc22ac2ceee90b42"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_B/still_mid.png",
+          "bytes": 68743,
+          "sha256": "cba3ec7cac307e0f60d3ffe047d13f1525159e55577d6adadc22ac2ceee90b42"
+        },
+        {
+          "role": "still_end",
+          "path": "option_B/still_end.png",
+          "bytes": 68743,
+          "sha256": "cba3ec7cac307e0f60d3ffe047d13f1525159e55577d6adadc22ac2ceee90b42"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_B/plan_overhead.png",
+          "bytes": 15221,
+          "sha256": "cc09d347c69b154298b0d7760f263fdfe7a13035b142b4627f4e450c5721da59"
+        }
+      ]
+    },
+    {
+      "label": "C",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "status": "ok",
+      "message": null,
+      "script": "option_C/blocking.py",
+      "script_sha256": "e48fb164f594e43f8e9ffd508fe013d80c4b338c2ca2f79745b94ffcfdf206f2",
+      "frames": 72,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "locked",
+        "people": 2,
+        "start": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 0.15,
+          "distance_m": 3.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 18.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.0,
+        "placement_words": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+        "lens_words": "18 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": -0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 79.6111
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 79.6111
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": -0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 79.6111
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 79.6111
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": -0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 79.6111
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": true,
+            "frame_x": 0.182,
+            "body_share": 0.5111,
+            "shot_size": "wide shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 79.6111
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_C/still_start.png",
+          "bytes": 37497,
+          "sha256": "0debbd9b8fe78c2c91b5852100620ec33a914349dbf5661420f574a5caefb82a"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_C/still_mid.png",
+          "bytes": 37497,
+          "sha256": "0debbd9b8fe78c2c91b5852100620ec33a914349dbf5661420f574a5caefb82a"
+        },
+        {
+          "role": "still_end",
+          "path": "option_C/still_end.png",
+          "bytes": 37497,
+          "sha256": "0debbd9b8fe78c2c91b5852100620ec33a914349dbf5661420f574a5caefb82a"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_C/plan_overhead.png",
+          "bytes": 13367,
+          "sha256": "107cf85059d311a60053d25fdf48fd1200f9c1547de7686daf1ee24e7111aa97"
+        }
+      ]
+    },
+    {
+      "label": "D",
+      "technique": "whip_pan",
+      "pro_term": "Whip pan (swish pan)",
+      "status": "ok",
+      "message": null,
+      "script": "option_D/blocking.py",
+      "script_sha256": "36a1980ddaa14bbd6861676c50cbe7956810791c1c168179f557adbc3a3e1b0f",
+      "frames": 36,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "whip",
+        "people": 2,
+        "start": {
+          "height_m": 1.45,
+          "distance_m": 4.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 35.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.45,
+          "distance_m": 4.0,
+          "azimuth_deg": 90.0,
+          "lens_mm": 35.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 0.0,
+        "placement_words": "on a fixed spot at shoulder height, side-on to the action, 4 m away",
+        "lens_words": "35 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": 2.5797,
+            "body_share": 1.237,
+            "shot_size": "medium-full shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 82.1709
+          },
+          {
+            "id": "S2",
+            "head_in_frame": false,
+            "feet_in_frame": false,
+            "frame_x": 4.9691,
+            "body_share": 2.0382,
+            "shot_size": "medium shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 82.1709
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": -0.017,
+            "body_share": 0.7417,
+            "shot_size": "full shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 82.1709
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.5239,
+            "body_share": 0.768,
+            "shot_size": "full shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 82.1709
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": -0.266,
+            "body_share": 0.7485,
+            "shot_size": "full shot",
+            "screen_side": "left",
+            "face_to_lens_deg": 82.1709
+          },
+          {
+            "id": "S2",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.266,
+            "body_share": 0.7485,
+            "shot_size": "full shot",
+            "screen_side": "right",
+            "face_to_lens_deg": 82.1709
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_D/still_start.png",
+          "bytes": 84423,
+          "sha256": "37a54458e968f30e1426070f59133134a5f4012984a01dc1594182b97a59f7f2"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_D/still_mid.png",
+          "bytes": 68874,
+          "sha256": "56d5024ad483c577d5cbe191a89dcc769de42c5a2f621850043ce6311ce82746"
+        },
+        {
+          "role": "still_end",
+          "path": "option_D/still_end.png",
+          "bytes": 47154,
+          "sha256": "155f0970820297d0be289f8d4f1d171903714e66719be2273922f87782e2a82f"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_D/plan_overhead.png",
+          "bytes": 12610,
+          "sha256": "439e3fd60a5d0b0872aa2560cc18a0a7ce5538b972e09cbddbb31f2173766a19"
+        }
+      ]
+    }
+  ]
+}

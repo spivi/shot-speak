@@ -1,0 +1,63 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "dramatic like the dark family crime drama look dinner scene",
+  "picked": "A",
+  "mixed": {},
+  "spec": {
+    "pro_term": "Push-in (dolly in)",
+    "movement": "a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view",
+    "placement": "at the subject's eye height, from the side at a three-quarter angle, starting 3 m away",
+    "lens": "50 mm",
+    "lens_why": "A normal lens keeps the face natural while the camera does the work. This is a decision here, not a default: the move carries the feeling.",
+    "light": "Pool of top light",
+    "grade": "Film print, deep blacks",
+    "speed": "Real time",
+    "duration": "3 to 5 s",
+    "risks": [
+      "Generators mix up a push-in and a zoom. Write 'the camera travels toward them, the background slides past'.",
+      "From the front it becomes the standard AI frame. Push in from the side."
+    ]
+  },
+  "anti_slop_findings": [],
+  "one_line": "An old man at the head of a long table listening without a word; the camera itself travels steadily toward them from a three-quarter side position at eye height, from a medium view to chest-up, the background sliding past; 50 mm lens; one hard overhead source that makes a pool of light on the floor; the eyes fall into shadow under the brow; everything outside the pool is near black; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; real time for the whole shot, fast and crisp, no slow motion; the light comes from straight above, so the eyes sink into shadow; warm amber tones, underexposed, most of the room black; the camera at eye height, almost still. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.",
+  "prompt_block": "SHOT: Push-in (dolly in). 16:9 frame, 3 to 5 s.\nSUBJECT AND ACTION: an old man at the head of a long table listening without a word, in a dark dining room.\nCAMERA MOVE: a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view.\nCAMERA PLACEMENT: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.\nLENS: 50 mm.\nLIGHT: one hard overhead source that makes a pool of light on the floor; the eyes fall into shadow under the brow; everything outside the pool is near black.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nSPEED: real time for the whole shot, fast and crisp, no slow motion.\nLOOK: the light comes from straight above, so the eyes sink into shadow; warm amber tones, underexposed, most of the room black; the camera at eye height, almost still.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+  "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: an old man at the head of a long table listening without a word, in a dark dining room. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a chest-up frame from a three-quarter side position at the subject's eye height, with a soft foreground edge on one side of the frame that shows the camera is moving in. Camera placement: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.\nLENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.\nLIGHT: one hard overhead source that makes a pool of light on the floor; the eyes fall into shadow under the brow; everything outside the pool is near black.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nLOOK: the light comes from straight above, so the eyes sink into shadow; warm amber tones, underexposed, most of the room black; the camera at eye height, almost still.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+  "previs": {
+    "label": "A",
+    "files": {
+      "still_start": "option_A/still_start.png",
+      "still_mid": "option_A/still_mid.png",
+      "still_end": "option_A/still_end.png",
+      "plan_overhead": "option_A/plan_overhead.png"
+    },
+    "summary": {
+      "move": "dolly",
+      "people": 1,
+      "start": {
+        "height_m": 1.6,
+        "distance_m": 3.0,
+        "azimuth_deg": 49.999,
+        "lens_mm": 50.0,
+        "roll_deg": 0.0
+      },
+      "end": {
+        "height_m": 1.6,
+        "distance_m": 1.8,
+        "azimuth_deg": 50.0008,
+        "lens_mm": 50.0,
+        "roll_deg": 0.0
+      },
+      "camera_path_m": 1.2,
+      "placement_words": "at the subject's eye height, from the side at a three-quarter angle, starting 3 m away",
+      "lens_words": "50 mm"
+    },
+    "notes": []
+  },
+  "layout_reference": false,
+  "lock": {
+    "status": "UNLOCKED",
+    "approval": null,
+    "locked_at": null
+  }
+}

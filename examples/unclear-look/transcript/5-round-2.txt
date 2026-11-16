@@ -1,0 +1,9 @@
+Settled so far: light: overcast_soft. Saved in examples/unclear-look/refined.json.
+ROUND 2 of 3 at most. The same shot (option A), 3 times. Only the height changes.
+  A: low - From the ground. The subject looks large.
+  B: eye - From eye height. The viewer is beside the subject.
+  C: high - From above. The subject looks small.
+Rejected before, not shown again: light: hard_backlight
+Saved: examples/unclear-look/round_2/options.json
+Next: shotspeak.py mock --options examples/unclear-look/round_2/options.json --dry-run   (a paid request: show the card, get a clear yes)
+With no image backend, add --backend text and show the text diagrams. Say that the look is less certain without pictures.

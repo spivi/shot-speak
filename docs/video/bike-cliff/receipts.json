@@ -1,0 +1,77 @@
+{
+  "videos": [
+    {
+      "file": "1_noob.mp4",
+      "poster": "1_noob.jpg",
+      "poster_frame_at_s": 9.0,
+      "source_file": "bike_1_noob_seedance25_480p_v1.mp4",
+      "source_sha256": "f975fd5d04b0fd9636a27cb089fd7b0de706519124ff7ff90d4fc8fe47a31119",
+      "file_sha256": "cfeeb00e1f75a3e84a3683aac354f722a0f72eb911b34c8fd32f7c2182371d81",
+      "file_bytes": 1359860,
+      "poster_sha256": "a365130552ffab12fa64890e08c647b4798e2e82cc5ca03c6f7e47f85cef2394",
+      "model": "Seedance 2.5 reference-to-video",
+      "duration_s": 10,
+      "resolution": "480p",
+      "takes": 1,
+      "prompt_file_as_sent": "1_noob.txt",
+      "prompt_file_sha256": "838ed18d3908aae7df65c0a631d4119bffbf5d63ad304763edc61c15e9a91cac",
+      "prompt_file_committed": "examples/bike-cliff/1_noob.txt",
+      "prompt_file_committed_sha256": "3ad2713fabd567655c71e4adba7bead621a37e49b4836b217c3ab8ca4ad8a379",
+      "file_format": "MP4, H.264 yuv420p 854x480 24 fps, AAC stereo, faststart, no metadata; re-encoded from the source",
+      "encode": "ffmpeg -i SOURCE -map 0:v:0 -map 0:a:0 -map_metadata -1 -map_chapters -1 -c:v libx264 -preset slow -crf 22 -maxrate 2000k -bufsize 4000k -pix_fmt yuv420p -c:a aac -b:a 96k -ac 2 -movflags +faststart -fflags +bitexact -flags:v +bitexact -flags:a +bitexact OUT.mp4"
+    },
+    {
+      "file": "2_plain.mp4",
+      "poster": "2_plain.jpg",
+      "poster_frame_at_s": 5.6,
+      "source_file": "bike_2_plain_seedance25_480p_v1.mp4",
+      "source_sha256": "329a9a6f54f9e00d31983cd976984593cc47a273805fc71413475b08aa64df40",
+      "file_sha256": "b3777df35bc40fc666c9ebfb929f88525749c16a49a8e6bd1ae27a7700f8ee06",
+      "file_bytes": 1397722,
+      "poster_sha256": "b8c0fa9a727da203b639e1e6e6f24b2d093108abad1505096390688234023f54",
+      "model": "Seedance 2.5 reference-to-video",
+      "duration_s": 10,
+      "resolution": "480p",
+      "takes": 1,
+      "prompt_file_as_sent": "2_plain.txt",
+      "prompt_file_sha256": "8517cfa19b7d2dc984be4b47f4eaa59153dbd627283fbcf4499585d19475bdfc",
+      "prompt_file_committed": "examples/bike-cliff/2_plain.txt",
+      "prompt_file_committed_sha256": "91e07385bf2421cebedd7ec23521be484f08740f87ad841d3ee1095408b37df9",
+      "file_format": "MP4, H.264 yuv420p 854x480 24 fps, AAC stereo, faststart, no metadata; re-encoded from the source",
+      "encode": "ffmpeg -i SOURCE -map 0:v:0 -map 0:a:0 -map_metadata -1 -map_chapters -1 -c:v libx264 -preset slow -crf 22 -maxrate 2000k -bufsize 4000k -pix_fmt yuv420p -c:a aac -b:a 96k -ac 2 -movflags +faststart -fflags +bitexact -flags:v +bitexact -flags:a +bitexact OUT.mp4"
+    },
+    {
+      "file": "3_skill.mp4",
+      "poster": "3_skill.jpg",
+      "poster_frame_at_s": 6.8,
+      "source_file": "bike_3_skill_seedance25_480p_v1.mp4",
+      "source_sha256": "cdde819988839b41658b42b7f747c9f257c3696b52d2ba320088fe729dd185dc",
+      "file_sha256": "829bbce368c436b0b20e314e9ce8ab67e86a023efc5dbbd56eeda43d9f30b2a3",
+      "file_bytes": 1080761,
+      "poster_sha256": "3022a449467933badf63a1c8458f4adea6320a0a619ca60a5f9b780d0a0b1adb",
+      "model": "Seedance 2.5 reference-to-video",
+      "duration_s": 10,
+      "resolution": "480p",
+      "takes": 1,
+      "prompt_file_as_sent": "3_skill.txt",
+      "prompt_file_sha256": "12352514a642190980e5ac79cff3b8f64ea533e9ce5ef298c4a8f694f5c67d1b",
+      "prompt_file_committed": "examples/bike-cliff/3_skill.txt",
+      "prompt_file_committed_sha256": "be6c7971327f60bcc08d7a695ef506d1d2bc9b58b5e002bb91b7d2156ac39759",
+      "file_format": "MP4, H.264 yuv420p 854x480 24 fps, AAC stereo, faststart, no metadata; re-encoded from the source",
+      "encode": "ffmpeg -i SOURCE -map 0:v:0 -map 0:a:0 -map_metadata -1 -map_chapters -1 -c:v libx264 -preset slow -crf 22 -maxrate 2000k -bufsize 4000k -pix_fmt yuv420p -c:a aac -b:a 96k -ac 2 -movflags +faststart -fflags +bitexact -flags:v +bitexact -flags:a +bitexact OUT.mp4"
+    }
+  ],
+  "compare": {
+    "file": "compare.gif",
+    "file_sha256": "3e7e28d6f84a5bea9767335df30976bb05d320741199848cbca74a43f5628162",
+    "file_bytes": 5479298,
+    "made_from": [
+      "1_noob.mp4",
+      "2_plain.mp4",
+      "3_skill.mp4"
+    ],
+    "file_format": "GIF 968x208, 10 fps, 100 frames, 100 colours, loops, no audio, no metadata; the 3 videos side by side, synced, with a label strip",
+    "reproduce": "scripts/build_compare_gif.sh (needs ffmpeg and swift; the output is byte-identical on a rerun on the same tools)",
+    "encode": "ffmpeg -t 10 -i 1_noob.mp4 -t 10 -i 2_plain.mp4 -t 10 -i 3_skill.mp4 -i labels.png -filter_complex \"[0:v]fps=10,scale=320:180:flags=lanczos,pad=324:180:0:0:0x121212[a];[1:v]fps=10,scale=320:180:flags=lanczos,pad=324:180:0:0:0x121212[b];[2:v]fps=10,scale=320:180:flags=lanczos[c];[a][b][c]hstack=inputs=3[row];[3:v]format=rgb24[h];[h][row]vstack=inputs=2,split[s0][s1];[s0]palettegen=max_colors=100:stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle\" -map_metadata -1 -fflags +bitexact -flags:v +bitexact -loop 0 compare.gif"
+  }
+}

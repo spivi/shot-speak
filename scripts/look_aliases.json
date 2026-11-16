@@ -1,0 +1,466 @@
+{
+ "_note": "Lookup table only. 'names' are titles and people: they are recognised in the user's words and replaced before anything is written or sent. A leading ~ marks a name that is also a common word: it matches only after a cue such as 'like'. 'words' are genre words: they are not names.",
+ "looks": {
+  "crime-drama-patriarch": {
+   "names": [
+    "the godfather",
+    "godfather",
+    "francis ford coppola",
+    "coppola",
+    "gordon willis",
+    "the sopranos"
+   ],
+   "words": [
+    "mafia movie",
+    "mob movie",
+    "gangster movie",
+    "mafia film"
+   ]
+  },
+  "pastel-symmetry": {
+   "names": [
+    "wes anderson",
+    "the grand budapest hotel",
+    "grand budapest hotel",
+    "moonrise kingdom",
+    "the royal tenenbaums",
+    "fantastic mr fox"
+   ],
+   "words": [
+    "dollhouse look"
+   ]
+  },
+  "handheld-thriller": {
+   "names": [
+    "jason bourne",
+    "the bourne identity",
+    "the bourne ultimatum",
+    "bourne",
+    "paul greengrass",
+    "~taken"
+   ],
+   "words": [
+    "shaky spy thriller"
+   ]
+  },
+  "neon-night-city": {
+   "names": [
+    "blade runner",
+    "blade runner 2049",
+    "~drive",
+    "nicolas winding refn",
+    "enter the void",
+    "ghost in the shell",
+    "~collateral"
+   ],
+   "words": [
+    "cyberpunk",
+    "neon city",
+    "synthwave"
+   ]
+  },
+  "epic-desert-wide": {
+   "names": [
+    "lawrence of arabia",
+    "david lean",
+    "mad max",
+    "fury road",
+    "~dune",
+    "the searchers"
+   ],
+   "words": [
+    "desert epic"
+   ]
+  },
+  "paranoia-zoom": {
+   "names": [
+    "the conversation",
+    "all the president's men",
+    "the parallax view",
+    "alan j. pakula",
+    "alan pakula",
+    "three days of the condor"
+   ],
+   "words": [
+    "70s thriller",
+    "seventies thriller",
+    "conspiracy thriller"
+   ]
+  },
+  "found-footage": {
+   "names": [
+    "the blair witch project",
+    "blair witch",
+    "paranormal activity",
+    "cloverfield",
+    "~rec"
+   ],
+   "words": [
+    "found footage",
+    "camcorder horror",
+    "home video horror"
+   ]
+  },
+  "music-video-gloss": {
+   "names": [
+    "hype williams",
+    "spike jonze",
+    "mtv",
+    "michel gondry"
+   ],
+   "words": [
+    "90s music video",
+    "nineties music video",
+    "music video"
+   ]
+  },
+  "animated-action": {
+   "names": [
+    "dragon ball",
+    "naruto",
+    "cowboy bebop",
+    "demon slayer",
+    "attack on titan",
+    "one punch man",
+    "~akira"
+   ],
+   "words": [
+    "anime",
+    "anime fight",
+    "shonen"
+   ]
+  },
+  "noir-shadows": {
+   "names": [
+    "the third man",
+    "double indemnity",
+    "the maltese falcon",
+    "orson welles",
+    "touch of evil",
+    "sin city"
+   ],
+   "words": [
+    "film noir",
+    "noir",
+    "detective movie"
+   ]
+  },
+  "western-standoff": {
+   "names": [
+    "sergio leone",
+    "the good, the bad and the ugly",
+    "the good the bad and the ugly",
+    "once upon a time in the west",
+    "a fistful of dollars",
+    "clint eastwood"
+   ],
+   "words": [
+    "spaghetti western",
+    "western",
+    "standoff",
+    "showdown"
+   ]
+  },
+  "frozen-time-action": {
+   "names": [
+    "the matrix",
+    "matrix",
+    "the wachowskis",
+    "wachowski"
+   ],
+   "words": []
+  },
+  "unbroken-take": {
+   "names": [
+    "1917",
+    "children of men",
+    "birdman",
+    "alfonso cuaron",
+    "emmanuel lubezki",
+    "the revenant",
+    "russian ark"
+   ],
+   "words": []
+  },
+  "dolly-zoom-dread": {
+   "names": [
+    "~vertigo",
+    "jaws",
+    "alfred hitchcock",
+    "hitchcock",
+    "psycho",
+    "rear window"
+   ],
+   "words": []
+  },
+  "corridor-dread": {
+   "names": [
+    "stanley kubrick",
+    "kubrick",
+    "the shining",
+    "2001: a space odyssey",
+    "a clockwork orange",
+    "eyes wide shut"
+   ],
+   "words": []
+  },
+  "snap-cut-comedy": {
+   "names": [
+    "edgar wright",
+    "shaun of the dead",
+    "hot fuzz",
+    "scott pilgrim",
+    "baby driver"
+   ],
+   "words": []
+  },
+  "golden-memory": {
+   "names": [
+    "terrence malick",
+    "the tree of life",
+    "days of heaven",
+    "badlands",
+    "nomadland"
+   ],
+   "words": [
+    "magic hour"
+   ]
+  },
+  "smeared-neon-romance": {
+   "names": [
+    "wong kar-wai",
+    "chungking express",
+    "in the mood for love",
+    "fallen angels",
+    "christopher doyle"
+   ],
+   "words": []
+  },
+  "comic-hero-moment": {
+   "names": [
+    "marvel",
+    "avengers",
+    "the avengers",
+    "zack snyder",
+    "man of steel",
+    "the dark knight",
+    "spider-man",
+    "superman",
+    "batman"
+   ],
+   "words": [
+    "superhero movie",
+    "superhero landing",
+    "comic book movie",
+    "superhero"
+   ]
+  },
+  "slick-heist": {
+   "names": [
+    "ocean's eleven",
+    "oceans eleven",
+    "steven soderbergh",
+    "guy ritchie",
+    "~snatch",
+    "the italian job"
+   ],
+   "words": [
+    "heist movie",
+    "heist"
+   ]
+  },
+  "samurai-duel": {
+   "names": [
+    "akira kurosawa",
+    "kurosawa",
+    "seven samurai",
+    "yojimbo",
+    "rashomon",
+    "~harakiri"
+   ],
+   "words": [
+    "samurai movie",
+    "samurai"
+   ]
+  },
+  "martial-arts-wide": {
+   "names": [
+    "jackie chan",
+    "bruce lee",
+    "enter the dragon",
+    "crouching tiger, hidden dragon",
+    "crouching tiger hidden dragon",
+    "shaw brothers",
+    "ip man"
+   ],
+   "words": [
+    "kung fu movie",
+    "kung fu",
+    "martial arts movie"
+   ]
+  },
+  "slow-burn-horror": {
+   "names": [
+    "hereditary",
+    "ari aster",
+    "the witch",
+    "it follows",
+    "the babadook",
+    "robert eggers"
+   ],
+   "words": [
+    "slow horror",
+    "elevated horror"
+   ]
+  },
+  "stalker-view": {
+   "names": [
+    "john carpenter",
+    "~halloween",
+    "friday the 13th",
+    "~scream",
+    "michael myers"
+   ],
+   "words": [
+    "slasher",
+    "slasher movie"
+   ]
+  },
+  "space-silence": {
+   "names": [
+    "interstellar",
+    "~gravity",
+    "ad astra",
+    "christopher nolan",
+    "apollo 13",
+    "first man"
+   ],
+   "words": [
+    "space movie"
+   ]
+  },
+  "wildlife-documentary": {
+   "names": [
+    "planet earth",
+    "david attenborough",
+    "attenborough",
+    "bbc earth",
+    "national geographic",
+    "blue planet"
+   ],
+   "words": [
+    "nature documentary",
+    "wildlife documentary",
+    "nature doc"
+   ]
+  },
+  "fisheye-skate-video": {
+   "names": [
+    "thrasher",
+    "tony hawk",
+    "~jackass"
+   ],
+   "words": [
+    "skate video",
+    "skate tape",
+    "fisheye"
+   ]
+  },
+  "mockumentary": {
+   "names": [
+    "the office",
+    "parks and recreation",
+    "modern family",
+    "what we do in the shadows",
+    "this is spinal tap"
+   ],
+   "words": [
+    "mockumentary"
+   ]
+  },
+  "raw-car-chase": {
+   "names": [
+    "bullitt",
+    "the french connection",
+    "ronin",
+    "fast and furious",
+    "the fast and the furious",
+    "~baby driver chase"
+   ],
+   "words": [
+    "car chase"
+   ]
+  },
+  "gothic-fairy-tale": {
+   "names": [
+    "tim burton",
+    "edward scissorhands",
+    "sleepy hollow",
+    "guillermo del toro",
+    "pan's labyrinth",
+    "the nightmare before christmas",
+    "coraline"
+   ],
+   "words": [
+    "gothic"
+   ]
+  },
+  "suburban-wonder": {
+   "names": [
+    "steven spielberg",
+    "spielberg",
+    "e.t.",
+    "stranger things",
+    "the goonies",
+    "super 8",
+    "close encounters"
+   ],
+   "words": [
+    "80s movie",
+    "eighties movie",
+    "80s adventure"
+   ]
+  },
+  "staccato-combat": {
+   "names": [
+    "saving private ryan",
+    "band of brothers",
+    "black hawk down",
+    "dunkirk"
+   ],
+   "words": [
+    "war movie",
+    "war film"
+   ]
+  },
+  "classic-musical": {
+   "names": [
+    "singin' in the rain",
+    "singing in the rain",
+    "la la land",
+    "fred astaire",
+    "gene kelly",
+    "busby berkeley",
+    "west side story"
+   ],
+   "words": [
+    "musical number",
+    "old musical"
+   ]
+  },
+  "training-montage": {
+   "names": [
+    "~rocky",
+    "~creed",
+    "friday night lights",
+    "raging bull",
+    "chariots of fire"
+   ],
+   "words": [
+    "sports ad",
+    "sports commercial",
+    "training montage"
+   ]
+  }
+ }
+}

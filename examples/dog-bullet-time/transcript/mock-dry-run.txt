@@ -1,0 +1,66 @@
+SHOT-SPEAK MOCK CARD  "I want my dog to do a bullet time thingy when I throw him a bone, dramatically"
+
+--- Option A: Frozen-moment arc (bullet time)  [recommended]
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height. Camera placement: at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: everything caught perfectly sharp at one instant: dust and small debris hang still in the air.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/dog-bullet-time/option_A.png
+
+--- Option B: Low-angle wide shot
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.
+LENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.
+LIGHT: the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow.
+COLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.
+MOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/dog-bullet-time/option_B.png
+
+--- Option C: Speed ramp
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/dog-bullet-time/option_C.png
+
+--- Option D: Long-lens profile close-up
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame in clean profile at the subject's chest height, the eyes aimed at something outside the frame, the far background compressed close and out of focus. Camera placement: exactly side-on, at the subject's chest height, 6 m away, never in front of the face.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: a dark space with one narrow hard-edged blade of light that crosses the eyes; the rest of the face and body falls into deep shadow; the light comes from one visible gap or window.
+COLOUR: black and white with a full tonal range: true black, clean white, fine grain, strong shapes.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/dog-bullet-time/option_D.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    4
+Estimate:  0.28 USD
+Basis:     4 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      31764767c391
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
+After a clear yes, run again with
+  --confirm 31764767c391

@@ -1,0 +1,55 @@
+SHOT-SPEAK MOCK CARD  "make it feel epic but sad"
+
+--- Option A: Pull-back (dolly out)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a wide frame with the subject small, seen three-quarter from behind, alone in a large empty place, a lot of empty ground between camera and subject. Camera placement: on the floor, 3 m away, side-on, the lens level.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/unclear-look/round_2/option_A.png
+
+--- Option B: Pull-back (dolly out)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a wide frame with the subject small, seen three-quarter from behind, alone in a large empty place, a lot of empty ground between camera and subject. Camera placement: at eye height, three-quarter to the subject, 3 m away.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/unclear-look/round_2/option_B.png
+
+--- Option C: Pull-back (dolly out)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a wide frame with the subject small, seen three-quarter from behind, alone in a large empty place, a lot of empty ground between camera and subject. Camera placement: 3 m up, looking down at a steep angle, three-quarter to the subject, 4 m away.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/unclear-look/round_2/option_C.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    3
+Estimate:  0.21 USD
+Basis:     3 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      d290c2d48388
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Round:     2 of 3 at most. Decision under test: height.
+Total:     0.00 USD estimated for the rounds before this one; 0.21 USD with this round.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "3 mock stills, about 0.21 USD - go?"
+After a clear yes, run again with
+  --confirm d290c2d48388

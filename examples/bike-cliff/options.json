@@ -1,0 +1,220 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "10 seconds of a cool action scene: a guy rides a bike over a cliff, ditches the bike mid-air and does a superhero landing",
+  "matched": true,
+  "interpretation": [
+    "The look you named is, in film language: comic-book hero moment. The camera is on the ground. The person is large against the sky. The sun is behind them. Their edge is bright and their front is dark. Time slows for 1 beat at the peak. Then the speed is real again.",
+    "Air moments read best from a low camera, with a real height and real gravity.",
+    "Power comes from a low camera and a wide lens, not from a centred pose."
+  ],
+  "subject": "a young man in a grey hoodie and jeans",
+  "action": "rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing",
+  "setting": "a rocky desert canyon at late afternoon",
+  "aspect": "16:9",
+  "options": [
+    {
+      "label": "A",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "plain": "The camera sits on the floor with a wide lens and looks along the ground. The subject towers.",
+      "movement": "locked: the camera does not move, the action comes to it",
+      "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens": "18 mm",
+      "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+      "light": {
+        "key": "hard_backlight",
+        "name": "One hard low sun, camera facing into the light",
+        "plain": "A single low, hard sun behind the subject. The camera looks toward it.",
+        "prompt": "one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow"
+      },
+      "grade": {
+        "key": "bleach_bypass",
+        "name": "Bleach bypass",
+        "plain": "Harsh and silvery: strong contrast, washed-out colour.",
+        "prompt": "bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain"
+      },
+      "speed": {
+        "key": "slow_motion",
+        "name": "Slow motion (one beat)",
+        "plain": "The moment is stretched. Use it for one moment in the whole piece.",
+        "prompt": "slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats",
+        "still": "a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement"
+      },
+      "duration": "2 to 4 s",
+      "feel": "Scale and power. The subject is bigger than the viewer.",
+      "when": "A landing, an entrance, the top of a jump. It makes a modest real jump look heroic.",
+      "risks": [
+        "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+        "Slow motion plus a jump invites floating. Write a real height and real gravity."
+      ],
+      "still": "the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground",
+      "snippet": "{subject} {action}, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light",
+      "slop_avoided": [
+        "Eye-level medium shot as the default",
+        "The 35 to 50 mm default"
+      ],
+      "topdown": "static",
+      "frame": "low_wide",
+      "recommended": true,
+      "look_id": "comic-hero-moment",
+      "look_name": "Comic-book hero moment",
+      "look_clause": "the camera on the ground with a very wide lens, the figure large against the sky with the sun behind, one slow beat at the peak, harsh silvery contrast",
+      "look_makes": [
+        "The camera is on the ground. The person is large against the sky.",
+        "The sun is behind them. Their edge is bright and their front is dark.",
+        "Time slows for 1 beat at the peak. Then the speed is real again."
+      ],
+      "recommended_because": "It is the look you named, as decisions: comic-book hero moment. The camera is on the ground. The person is large against the sky.",
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, in a rocky desert canyon at late afternoon. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nLOOK: the camera on the ground with a very wide lens, the figure large against the sky with the sun behind, one slow beat at the peak, harsh silvery contrast.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats; the camera on the ground with a very wide lens, the figure large against the sky with the sun behind, one slow beat at the peak, harsh silvery contrast. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "B",
+      "technique": "speed_ramp",
+      "pro_term": "Speed ramp",
+      "plain": "Normal speed, a short slow-down at the best instant, then normal speed again.",
+      "movement": "a side-on tracking move that travels with the subject at their speed",
+      "placement": "side-on at hip height, 4 m away, travelling parallel to the action",
+      "lens": "50 mm",
+      "lens_why": "A normal lens side-on keeps body shapes true while the speed change does the work.",
+      "light": {
+        "key": "overcast_soft",
+        "name": "Flat overcast daylight",
+        "plain": "A grey sky. Even, honest light with soft shadows under things.",
+        "prompt": "flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun"
+      },
+      "grade": {
+        "key": "cool_desat",
+        "name": "Cool and desaturated",
+        "plain": "Cold, quiet, a little grey-blue. Serious.",
+        "prompt": "cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks"
+      },
+      "speed": {
+        "key": "speed_ramp",
+        "name": "Speed ramp",
+        "plain": "Normal speed, a short slow-down at the peak, then back to normal speed.",
+        "prompt": "real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact",
+        "still": "the frame at the peak of the action, the body sharp, the background with a slight streak of motion"
+      },
+      "duration": "3 to 5 s",
+      "feel": "The viewer feels the speed and then gets a clear look at the best instant.",
+      "when": "Sport, tricks, a jump, a throw: fast action with one peak.",
+      "risks": [
+        "Generators stay slow after the ramp. Write 'back to real time before the landing'.",
+        "Say exactly which instant is slow."
+      ],
+      "still": "a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel",
+      "snippet": "{subject} {action}, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time",
+      "slop_avoided": [
+        "Slow motion everywhere",
+        "Centred, front-facing subject"
+      ],
+      "topdown": "track",
+      "frame": "side_full",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, in a rocky desert canyon at late afternoon. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.\nLENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.\nMOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time; 50 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact. Avoid: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "C",
+      "technique": "crane_reveal",
+      "pro_term": "Crane up (rising reveal)",
+      "plain": "The camera starts low behind something and rises to show the whole place.",
+      "movement": "one rise: the camera starts low behind a foreground object and lifts straight up to reveal the place beyond the subject",
+      "placement": "behind the subject, starting at knee height and ending 4 m up",
+      "lens": "24 mm",
+      "lens_why": "A wide lens makes the rise feel large and shows the place it reveals.",
+      "light": {
+        "key": "low_side_sun",
+        "name": "Low hard side sun",
+        "plain": "Late sun from one side. One half of everything is lit, one half is dark.",
+        "prompt": "low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground"
+      },
+      "grade": {
+        "key": "warm_natural",
+        "name": "Warm natural",
+        "plain": "Warm sunlight colour, but real: no orange wash over everything.",
+        "prompt": "warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "4 to 6 s",
+      "feel": "Arrival. The world opens.",
+      "when": "The first view of a place, or the last shot of a story.",
+      "risks": [
+        "Generators invent the revealed place. Describe what is beyond in one clear sentence.",
+        "It becomes a slow drift. Give it a start, an end and a time."
+      ],
+      "still": "a high frame from behind the subject, who is small in the lower third with their back to the camera, a large place opening beyond them toward the light",
+      "snippet": "the camera rises from knee height behind {subject} {action}, straight up to 4 m, and reveals the place beyond them; the subject keeps their back to the camera",
+      "slop_avoided": [
+        "Centred, front-facing subject",
+        "Aquarium speed: slow floating camera and slow bodies"
+      ],
+      "topdown": "crane",
+      "frame": "back_small",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, in a rocky desert canyon at late afternoon. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a high frame from behind the subject, who is small in the lower third with their back to the camera, a large place opening beyond them toward the light. Camera placement: behind the subject, starting at knee height and ending 4 m up.\nLENS: 24 mm; wide lens look: the place is as present as the subject, clear depth from foreground to background.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "The camera rises from knee height behind a young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, straight up to 4 m, and reveals the place beyond them; the subject keeps their back to the camera; 24 mm lens; low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground; warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    },
+    {
+      "label": "D",
+      "technique": "frozen_arc",
+      "pro_term": "Frozen-moment arc (bullet time)",
+      "plain": "Time almost stops and the camera sweeps part of the way around the subject.",
+      "movement": "a fast, smooth arc of about 130 degrees around the subject: it starts behind the shoulder, passes the profile and stops at a front three-quarter view; it never reaches a view straight in front",
+      "placement": "at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move",
+      "lens": "35 mm",
+      "lens_why": "Wide enough to feel the camera travel past the background, not so wide that bodies bend at the frame edge.",
+      "light": {
+        "key": "hard_backlight",
+        "name": "One hard low sun, camera facing into the light",
+        "plain": "A single low, hard sun behind the subject. The camera looks toward it.",
+        "prompt": "one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow"
+      },
+      "grade": {
+        "key": "film_deep_blacks",
+        "name": "Film print, deep blacks",
+        "plain": "Looks like real film: fine grain, true black shadows, natural colour.",
+        "prompt": "photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation"
+      },
+      "speed": {
+        "key": "frozen_moment",
+        "name": "Frozen moment",
+        "plain": "Time almost stops while the camera keeps moving.",
+        "prompt": "time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move",
+        "still": "everything caught perfectly sharp at one instant: dust and small debris hang still in the air"
+      },
+      "duration": "2 to 3 s",
+      "feel": "The viewer gets a held breath: one instant, seen from more than one side.",
+      "when": "One peak moment in the whole piece: the top of a jump, the instant before a landing or a hit.",
+      "risks": [
+        "A full 180 or 360 degree orbit turns faces into the lens and flips left and right on screen. Ask for about 130 degrees.",
+        "Generators let frozen bodies float upward. Write 'real gravity, drifting only a hand's width'.",
+        "The background behind the subject is invented during the move. Keep the place simple."
+      ],
+      "still": "the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height",
+      "snippet": "{subject} {action}; time almost stops while the camera sweeps a fast, smooth arc of about 130 degrees around them at their own height, lens level, from behind the shoulder past the profile to a front three-quarter view",
+      "slop_avoided": [
+        "180 or 360 degree orbit",
+        "Floating, weightless bodies"
+      ],
+      "topdown": "arc",
+      "frame": "profile_wide",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing, in a rocky desert canyon at late afternoon. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height. Camera placement: at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move.\nLENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.\nLIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nMOMENT: everything caught perfectly sharp at one instant: dust and small debris hang still in the air.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A young man in a grey hoodie and jeans rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing; time almost stops while the camera sweeps a fast, smooth arc of about 130 degrees around them at their own height, lens level, from behind the shoulder past the profile to a front three-quarter view; 35 mm lens; one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move. Avoid: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays."
+    }
+  ],
+  "look": {
+    "id": "comic-hero-moment",
+    "name": "Comic-book hero moment"
+  },
+  "note": "Options A, D slow time down. In a finished piece, use slow motion for 1 beat only."
+}

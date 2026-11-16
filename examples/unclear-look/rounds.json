@@ -1,0 +1,41 @@
+{
+  "rounds": [
+    {
+      "number": 1,
+      "vary": "light",
+      "base": "A",
+      "values": [
+        "overcast_soft",
+        "soft_window",
+        "hard_backlight"
+      ],
+      "status": "planned",
+      "estimated_usd": null,
+      "measured_usd": null,
+      "images": []
+    },
+    {
+      "number": 2,
+      "vary": "height",
+      "base": "A",
+      "values": [
+        "low",
+        "eye",
+        "high"
+      ],
+      "status": "planned",
+      "estimated_usd": null,
+      "measured_usd": null,
+      "images": []
+    }
+  ],
+  "rejected": {
+    "light": [
+      "hard_backlight"
+    ]
+  },
+  "kept": {
+    "light": "overcast_soft",
+    "height": "high"
+  }
+}

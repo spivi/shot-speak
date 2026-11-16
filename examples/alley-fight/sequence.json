@@ -1,0 +1,81 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "two guys fight in an alley and I want to feel every punch, raw and shaky",
+  "picked": "B",
+  "pattern": "impact",
+  "pattern_name": "Contact beat",
+  "plain": "1 contact shown 2 times: the whole move in a medium shot, then the contact in a tight shot. The cut comes at the end of the reaction.",
+  "seconds": 10.0,
+  "cut_times_s": [
+    1.5,
+    4.0,
+    6.0,
+    8.0
+  ],
+  "people": 2,
+  "shots": [
+    {
+      "n": 1,
+      "role": "the stillness",
+      "start_s": 0.0,
+      "end_s": 1.5,
+      "seconds": 1.5,
+      "hero": false,
+      "size_lens": "full shot, 35 mm",
+      "camera": "locked, side-on at waist height, both sides of the action in the frame",
+      "beat": "both men still, one on each side of the frame, eyes on each other",
+      "speed": "real time"
+    },
+    {
+      "n": 2,
+      "role": "the move",
+      "start_s": 1.5,
+      "end_s": 4.0,
+      "seconds": 2.5,
+      "hero": false,
+      "size_lens": "medium shot, 50 mm",
+      "camera": "locked, side-on at chest height, both people in the frame from the knees up",
+      "beat": "the man on screen left throws a right hook: the first visible motion is the punch itself",
+      "speed": "real time"
+    },
+    {
+      "n": 3,
+      "role": "the contact",
+      "start_s": 4.0,
+      "end_s": 6.0,
+      "seconds": 2.0,
+      "hero": true,
+      "size_lens": "Contact insert with a ramp on contact, 85 mm",
+      "camera": "locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles; exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+      "beat": "the knuckles stop on the side of the jaw and the cheek gives",
+      "speed": "slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends"
+    },
+    {
+      "n": 4,
+      "role": "the reaction",
+      "start_s": 6.0,
+      "end_s": 8.0,
+      "seconds": 2.0,
+      "hero": false,
+      "size_lens": "medium shot, 50 mm",
+      "camera": "handheld, three-quarter, small late reframing",
+      "beat": "the head turns away from the fist, the shoulders follow, he takes one step back, and the cut comes when he stops",
+      "speed": "real time"
+    },
+    {
+      "n": 5,
+      "role": "the end",
+      "start_s": 8.0,
+      "end_s": 10.0,
+      "seconds": 2.0,
+      "hero": false,
+      "size_lens": "wide shot, 24 mm",
+      "camera": "locked, low at knee height, side-on",
+      "beat": "both men still again: one a step back on screen right with a hand on his jaw, one with his fist still up",
+      "speed": "real time"
+    }
+  ],
+  "open_brackets": 2,
+  "prompt_block": "SEQUENCE: 10 s, 16:9 frame. 5 shots joined by 4 hard cuts at exactly 1.5, 4, 6, 8 s.\nONE ACTION AND ONE CAMERA MOVE IN EACH SHOT. Each cut comes when the motion of its shot ends.\nSUBJECT AND ACTION: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night.\nPEOPLE: exactly 2. Each person keeps 1 screen side for the whole clip. Nobody looks into the lens: the eyes stay on a target inside the scene.\nSTAGE: the whole action stays within 2 m of the green steel door. The camera stays on 1 side of the action for every shot.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them. The same light direction in every shot.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain. The same grade in every shot.\nSPEED RULE: slow motion only on the approach of the contact insert; real speed from the frame of contact; real time in every other shot.\nSHOT LIST:\n  1. 0 to 1.5 s | full shot, 35 mm | camera: locked, side-on at waist height, both sides of the action in the frame | action: both men still, one on each side of the frame, eyes on each other | speed: real time\n  2. 1.5 to 4 s | medium shot, 50 mm | camera: locked, side-on at chest height, both people in the frame from the knees up | action: the man on screen left throws a right hook: the first visible motion is the punch itself | speed: real time\n  3. 4 to 6 s | Contact insert with a ramp on contact, 85 mm | camera: locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles; exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face | action: the knuckles stop on the side of the jaw and the cheek gives | speed: slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends\n  4. 6 to 8 s | medium shot, 50 mm | camera: handheld, three-quarter, small late reframing | action: the head turns away from the fist, the shoulders follow, he takes one step back, and the cut comes when he stops | speed: real time\n  5. 8 to 10 s | wide shot, 24 mm | camera: locked, low at knee height, side-on | action: both men still again: one a step back on screen right with a hand on his jaw, one with his fist still up | speed: real time\nFIRST FRAME: [where each person stands and what each person holds at 0 s].\nLAST FRAME: [where each person is at the end; hold it still]. Use this frame as the start of the next clip.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean."
+}

@@ -1,0 +1,13 @@
+SEQUENCE: 10 s, 16:9. 5 shots, 4 hard cuts at exactly 2.5, 4.5, 5.5 and 8.5 s. One action and one camera move in each shot.
+SUBJECT: exactly 1 person: a man in a grey hoodie, dark jeans and trainers, on a mountain bike, in a rocky desert canyon in the late afternoon. He never looks into the lens.
+STAGE: 1 cliff edge and 1 flat sandy ledge about 4 m below it. The camera stays on 1 side of the action for every shot.
+LIGHT: one hard low sun behind him; the camera faces into the light; bright rims on hair and shoulders, long shadows toward the lens, a third of the frame in deep shadow. Same light direction in every shot.
+COLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.
+SHOT LIST:
+1. 0 to 2.5 s | wide shot, 24 mm, locked, far back, side-on | he pedals hard from screen left toward the cliff edge | real time
+2. 2.5 to 4.5 s | medium shot, 50 mm, side-on tracking at his speed | the front wheel leaves the edge and he flies out over the canyon | real time
+3. 4.5 to 5.5 s | close detail, 85 mm, locked, side-on, tight on his hands | in the air he lets go and pushes the bike away from his body | real time
+4. 5.5 to 8.5 s | HERO: low-angle wide shot, 18 mm, locked camera on the ground of the ledge, 3 m away, lens level, looking along the ground into the sun | he drops onto the ledge and lands on one knee and one fist, dust bursts out | slow motion for this one beat only; real gravity and weight, nothing floats
+5. 8.5 to 10 s | wide shot, 24 mm, locked, knee height, three-quarter from behind | he rises slowly and looks out over the canyon; the bike lies on its side below | real time
+LAST FRAME: he stands still on the ledge, seen three-quarter from behind.
+AVOID: no orbiting camera; no slow floating drift; nobody floats; no soft even glow; no bloom, haze, fog or god rays; no slow motion outside shot 4; nobody looks into the lens; worn real textures with dust and scuffs, nothing plastic or perfectly clean.

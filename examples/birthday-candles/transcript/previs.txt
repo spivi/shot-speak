@@ -1,0 +1,12 @@
+BLOCKING PREVIS  route: headless  Blender 5.2.2
+Option A: Push-in (dolly in)  [ok]
+  Camera start: 1.6 m high, 3 m from the group, 50 mm.
+  Camera end:   1.6 m high, 1.8 m from the group, 50 mm. Path: 1.2 m in 4 s.
+  Middle frame: S1 centre, medium shot.
+  still_start: option_A/still_start.png
+  still_mid: option_A/still_mid.png
+  still_end: option_A/still_end.png
+  plan_overhead: option_A/plan_overhead.png
+
+Files are in examples/birthday-candles/previs. Manifest: examples/birthday-candles/previs/previs.json
+Use: A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.

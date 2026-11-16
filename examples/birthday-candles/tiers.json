@@ -1,0 +1,59 @@
+{
+  "slug": "birthday-candles",
+  "title": "The birthday candles",
+  "phrase": "grandma blows out the candles, zoom in slowly, make it warm and emotional",
+  "user_says": "A",
+  "commands": {
+    "plan": "python3 scripts/shotspeak.py plan --phrase \"grandma blows out the candles, zoom in slowly, make it warm and emotional\" --subject \"an old woman\" --action \"blowing out the candles on a birthday cake\" --setting \"a small dark kitchen\" --out examples/birthday-candles",
+    "choose": "python3 scripts/shotspeak.py choose --options examples/birthday-candles/options.json --pick A"
+  },
+  "bad": {
+    "prompt": "beautiful emotional cinematic shot of grandma blowing out birthday candles, warm glow, soft golden glow, creamy bokeh, smiling at the camera, masterpiece",
+    "what_you_get": "A smooth, perfect face that smiles into the lens. Everything glows. The candles light nothing.",
+    "tells": [
+      "Eyes into the lens",
+      "No camera position stated",
+      "Soft, even golden glow",
+      "No light source stated",
+      "Fake creamy bokeh, or everything in focus",
+      "No lens stated",
+      "No speed stated",
+      "Over-saturated HDR look",
+      "'Cinematic' and 'epic' with no direction"
+    ],
+    "named": [],
+    "image": "docs/img/birthday-candles_bad.jpg"
+  },
+  "plain": {
+    "prompt": "An old woman sits at a kitchen table in a small dark kitchen. A birthday cake with lit candles is in front of her. She breathes in and blows out the candles.",
+    "what_you_get": "The correct moment from the front, at table height. The room is evenly lit, so the candles are not the light. It is flat.",
+    "missing": [
+      "No camera position stated",
+      "No light source stated",
+      "No lens stated",
+      "No speed stated"
+    ],
+    "image": "docs/img/birthday-candles_plain.jpg"
+  },
+  "skill": {
+    "picked": "A",
+    "mixed": {},
+    "pro_term": "Push-in (dolly in)",
+    "plain_words": "The whole camera moves toward the subject. The background slides and grows too.",
+    "feel": "The viewer leans in. A decision or a realisation is happening.",
+    "look_makes": [],
+    "what_you_get": "The camera moves toward her from the side. The candles are the only light. When they go out, the frame goes dark.",
+    "decisions": {
+      "Camera movement": "a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view",
+      "Camera placement": "at the subject's eye height, from the side at a three-quarter angle, starting 3 m away",
+      "Lens": "50 mm",
+      "Light": "Firelight",
+      "Colour grade": "Film print, deep blacks",
+      "Speed": "Real time"
+    },
+    "prompt_block": "SHOT: Push-in (dolly in). 16:9 frame, 3 to 5 s.\nSUBJECT AND ACTION: an old woman blowing out the candles on a birthday cake, in a small dark kitchen.\nCAMERA MOVE: a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view.\nCAMERA PLACEMENT: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.\nLENS: 50 mm.\nLIGHT: one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nSPEED: real time for the whole shot, fast and crisp, no slow motion.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+    "one_line": "An old woman blowing out the candles on a birthday cake; the camera itself travels steadily toward them from a three-quarter side position at eye height, from a medium view to chest-up, the background sliding past; 50 mm lens; one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.",
+    "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: an old woman blowing out the candles on a birthday cake, in a small dark kitchen. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a chest-up frame from a three-quarter side position at the subject's eye height, with a soft foreground edge on one side of the frame that shows the camera is moving in. Camera placement: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.\nLENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.\nLIGHT: one low warm source, a fire or a single lamp, lighting faces from the side; the light falls off fast into darkness.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+    "image": "docs/img/birthday-candles_skill.jpg"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "tool": "shot-speak",
+  "schema": 1,
+  "phrase": "dramatic like the dark family crime drama look dinner scene",
+  "route": "headless",
+  "blender_version": "5.2.2",
+  "skipped": null,
+  "use": "A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.",
+  "options": [
+    {
+      "label": "A",
+      "technique": "push_in",
+      "pro_term": "Push-in (dolly in)",
+      "status": "ok",
+      "message": null,
+      "script": "option_A/blocking.py",
+      "script_sha256": "6601ba1e5bb46bb28d84d6ce319b16c3acd2c835546090f2336f5011b1a36988",
+      "frames": 96,
+      "fps": 24,
+      "resolution": [
+        480,
+        270
+      ],
+      "summary": {
+        "move": "dolly",
+        "people": 1,
+        "start": {
+          "height_m": 1.6,
+          "distance_m": 3.0,
+          "azimuth_deg": 49.999,
+          "lens_mm": 50.0,
+          "roll_deg": 0.0
+        },
+        "end": {
+          "height_m": 1.6,
+          "distance_m": 1.8,
+          "azimuth_deg": 50.0008,
+          "lens_mm": 50.0,
+          "roll_deg": 0.0
+        },
+        "camera_path_m": 1.2,
+        "placement_words": "at the subject's eye height, from the side at a three-quarter angle, starting 3 m away",
+        "lens_words": "50 mm"
+      },
+      "checks": {
+        "start": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.0,
+            "body_share": 1.4076,
+            "shot_size": "medium-full shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 49.999
+          }
+        ],
+        "mid": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.0,
+            "body_share": 1.731,
+            "shot_size": "medium shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 50.0002
+          }
+        ],
+        "end": [
+          {
+            "id": "S1",
+            "head_in_frame": true,
+            "feet_in_frame": false,
+            "frame_x": 0.0,
+            "body_share": 2.2555,
+            "shot_size": "medium shot",
+            "screen_side": "centre",
+            "face_to_lens_deg": 50.0008
+          }
+        ]
+      },
+      "notes": [],
+      "hidden": [],
+      "engine": "BLENDER_WORKBENCH",
+      "files": [
+        {
+          "role": "still_start",
+          "path": "option_A/still_start.png",
+          "bytes": 101156,
+          "sha256": "e3c0e9f4272a56be4c9f69c7f66bc099bf9c1be33febafb55e0e1103f8c18eac"
+        },
+        {
+          "role": "still_mid",
+          "path": "option_A/still_mid.png",
+          "bytes": 99270,
+          "sha256": "d35c65a5e0ee36b057fe959d85e9f38d5b0cdec0ccfa26ce33df9851dab5e843"
+        },
+        {
+          "role": "still_end",
+          "path": "option_A/still_end.png",
+          "bytes": 97984,
+          "sha256": "467236b5a41e1518b169de6d2a9b33e9e83e816be11be7a07d8e3301fc252aba"
+        },
+        {
+          "role": "plan_overhead",
+          "path": "option_A/plan_overhead.png",
+          "bytes": 10941,
+          "sha256": "0db3441b57fb32787484235b778b09502e781bd44e453c829e10f7432d313b1a"
+        }
+      ]
+    }
+  ]
+}

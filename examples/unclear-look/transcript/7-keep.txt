@@ -1,0 +1,2 @@
+Settled so far: light: overcast_soft; height: high. Saved in examples/unclear-look/refined.json.
+Next: choose or lock with --options examples/unclear-look/refined.json --pick A

@@ -1,0 +1,209 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "the bullet time thingy where the camera swishes around them mid-air",
+  "matched": true,
+  "interpretation": [
+    "'Bullet time' is a frozen-moment arc: time almost stops while the camera moves.",
+    "'Swishy' is a fast move with motion blur: a whip pan, a fast arc or a crash zoom.",
+    "'Around them' is an arc shot. A partial arc is safer than a full circle.",
+    "Air moments read best from a low camera, with a real height and real gravity."
+  ],
+  "subject": "two masked ninjas",
+  "action": "at the top of a jump off a low wall",
+  "setting": "a walled courtyard at sunset",
+  "aspect": "16:9",
+  "options": [
+    {
+      "label": "A",
+      "technique": "frozen_arc",
+      "pro_term": "Frozen-moment arc (bullet time)",
+      "plain": "Time almost stops and the camera sweeps part of the way around the subject.",
+      "movement": "a fast, smooth arc of about 130 degrees around the subject: it starts behind the shoulder, passes the profile and stops at a front three-quarter view; it never reaches a view straight in front",
+      "placement": "at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move",
+      "lens": "35 mm",
+      "lens_why": "Wide enough to feel the camera travel past the background, not so wide that bodies bend at the frame edge.",
+      "light": {
+        "key": "hard_backlight",
+        "name": "One hard low sun, camera facing into the light",
+        "plain": "A single low, hard sun behind the subject. The camera looks toward it.",
+        "prompt": "one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow"
+      },
+      "grade": {
+        "key": "film_deep_blacks",
+        "name": "Film print, deep blacks",
+        "plain": "Looks like real film: fine grain, true black shadows, natural colour.",
+        "prompt": "photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation"
+      },
+      "speed": {
+        "key": "frozen_moment",
+        "name": "Frozen moment",
+        "plain": "Time almost stops while the camera keeps moving.",
+        "prompt": "time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move",
+        "still": "everything caught perfectly sharp at one instant: dust and small debris hang still in the air"
+      },
+      "duration": "2 to 3 s",
+      "feel": "The viewer gets a held breath: one instant, seen from more than one side.",
+      "when": "One peak moment in the whole piece: the top of a jump, the instant before a landing or a hit.",
+      "risks": [
+        "A full 180 or 360 degree orbit turns faces into the lens and flips left and right on screen. Ask for about 130 degrees.",
+        "Generators let frozen bodies float upward. Write 'real gravity, drifting only a hand's width'.",
+        "The background behind the subject is invented during the move. Keep the place simple."
+      ],
+      "still": "the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height",
+      "snippet": "{subject} {action}; time almost stops while the camera sweeps a fast, smooth arc of about 130 degrees around them at their own height, lens level, from behind the shoulder past the profile to a front three-quarter view",
+      "slop_avoided": [
+        "180 or 360 degree orbit",
+        "Floating, weightless bodies"
+      ],
+      "topdown": "arc",
+      "frame": "profile_wide",
+      "recommended": true,
+      "recommended_because": "It is the closest match to your words. Best for: one peak moment in the whole piece: the top of a jump, the instant before a landing or a hit.",
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height. Camera placement: at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move.\nLENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.\nLIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.\nCOLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.\nMOMENT: everything caught perfectly sharp at one instant: dust and small debris hang still in the air.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Two masked ninjas at the top of a jump off a low wall; time almost stops while the camera sweeps a fast, smooth arc of about 130 degrees around them at their own height, lens level, from behind the shoulder past the profile to a front three-quarter view; 35 mm lens; one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move. Avoid: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "B",
+      "technique": "fast_arc",
+      "pro_term": "Arc shot (partial orbit, real time)",
+      "plain": "The camera swings around the subject at normal speed, fast, and stops.",
+      "movement": "one fast arc of about 90 degrees around the subject in real time, starting on a whip of motion blur and stopping dead on a side-on frame",
+      "placement": "at waist height, 2 m away, the lens level, on one side of the action",
+      "lens": "24 mm",
+      "lens_why": "A wide lens close to the subject makes the swing feel fast and keeps the place in the frame.",
+      "light": {
+        "key": "low_side_sun",
+        "name": "Low hard side sun",
+        "plain": "Late sun from one side. One half of everything is lit, one half is dark.",
+        "prompt": "low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground"
+      },
+      "grade": {
+        "key": "warm_natural",
+        "name": "Warm natural",
+        "plain": "Warm sunlight colour, but real: no orange wash over everything.",
+        "prompt": "warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "1.5 to 3 s",
+      "feel": "Energy and swagger. The camera has an attitude of its own.",
+      "when": "An entrance, a trick, a turn: any moment that needs speed more than awe.",
+      "risks": [
+        "Generators slow an arc to a gentle drift. Write 'fast', 'real time' and where it stops.",
+        "A wide lens stretches faces near the frame edge. Keep faces near the middle third."
+      ],
+      "still": "the camera is low at waist height and close, three-quarter from behind the subject, the background streaked sideways by the fast swing while the subject stays sharp",
+      "snippet": "{subject} {action}; in real time the camera whips one fast arc of about 90 degrees around them at waist height, close on a wide lens, and stops dead side-on",
+      "slop_avoided": [
+        "Aquarium speed: slow floating camera and slow bodies",
+        "180 or 360 degree orbit"
+      ],
+      "topdown": "arc",
+      "frame": "three_quarter_back",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is low at waist height and close, three-quarter from behind the subject, the background streaked sideways by the fast swing while the subject stays sharp. Camera placement: at waist height, 2 m away, the lens level, on one side of the action.\nLENS: 24 mm; wide lens look: the place is as present as the subject, clear depth from foreground to background.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; the camera never completes a half circle and never reaches a view straight in front of the face; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Two masked ninjas at the top of a jump off a low wall; in real time the camera whips one fast arc of about 90 degrees around them at waist height, close on a wide lens, and stops dead side-on; 24 mm lens; low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground; warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; the camera never completes a half circle and never reaches a view straight in front of the face; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    },
+    {
+      "label": "C",
+      "technique": "speed_ramp",
+      "pro_term": "Speed ramp",
+      "plain": "Normal speed, a short slow-down at the best instant, then normal speed again.",
+      "movement": "a side-on tracking move that travels with the subject at their speed",
+      "placement": "side-on at hip height, 4 m away, travelling parallel to the action",
+      "lens": "50 mm",
+      "lens_why": "A normal lens side-on keeps body shapes true while the speed change does the work.",
+      "light": {
+        "key": "low_side_sun",
+        "name": "Low hard side sun",
+        "plain": "Late sun from one side. One half of everything is lit, one half is dark.",
+        "prompt": "low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground"
+      },
+      "grade": {
+        "key": "cool_desat",
+        "name": "Cool and desaturated",
+        "plain": "Cold, quiet, a little grey-blue. Serious.",
+        "prompt": "cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks"
+      },
+      "speed": {
+        "key": "speed_ramp",
+        "name": "Speed ramp",
+        "plain": "Normal speed, a short slow-down at the peak, then back to normal speed.",
+        "prompt": "real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact",
+        "still": "the frame at the peak of the action, the body sharp, the background with a slight streak of motion"
+      },
+      "duration": "3 to 5 s",
+      "feel": "The viewer feels the speed and then gets a clear look at the best instant.",
+      "when": "Sport, tricks, a jump, a throw: fast action with one peak.",
+      "risks": [
+        "Generators stay slow after the ramp. Write 'back to real time before the landing'.",
+        "Say exactly which instant is slow."
+      ],
+      "still": "a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel",
+      "snippet": "{subject} {action}, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time",
+      "slop_avoided": [
+        "Slow motion everywhere",
+        "Centred, front-facing subject"
+      ],
+      "topdown": "track",
+      "frame": "side_full",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.\nLENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.\nMOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Two masked ninjas at the top of a jump off a low wall, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time; 50 mm lens; low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact. Avoid: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "D",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "plain": "The camera sits on the floor with a wide lens and looks along the ground. The subject towers.",
+      "movement": "locked: the camera does not move, the action comes to it",
+      "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens": "18 mm",
+      "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+      "light": {
+        "key": "silhouette_rim",
+        "name": "Silhouette with a rim",
+        "plain": "The subject is a dark shape against a bright opening, with a thin edge of light.",
+        "prompt": "the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow"
+      },
+      "grade": {
+        "key": "bleach_bypass",
+        "name": "Bleach bypass",
+        "plain": "Harsh and silvery: strong contrast, washed-out colour.",
+        "prompt": "bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain"
+      },
+      "speed": {
+        "key": "slow_motion",
+        "name": "Slow motion (one beat)",
+        "plain": "The moment is stretched. Use it for one moment in the whole piece.",
+        "prompt": "slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats",
+        "still": "a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement"
+      },
+      "duration": "2 to 4 s",
+      "feel": "Scale and power. The subject is bigger than the viewer.",
+      "when": "A landing, an entrance, the top of a jump. It makes a modest real jump look heroic.",
+      "risks": [
+        "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+        "Slow motion plus a jump invites floating. Write a real height and real gravity."
+      ],
+      "still": "the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground",
+      "snippet": "{subject} {action}, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light",
+      "slop_avoided": [
+        "Eye-level medium shot as the default",
+        "The 35 to 50 mm default"
+      ],
+      "topdown": "static",
+      "frame": "low_wide",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "Two masked ninjas at the top of a jump off a low wall, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; the subject as a near-black silhouette against one bright opening, a thin hard rim of light on the edge of the body, the shape readable, more than a third of the frame in deep shadow; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    }
+  ],
+  "note": "Options A, D slow time down. In a finished piece, use slow motion for 1 beat only."
+}

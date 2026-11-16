@@ -1,0 +1,32 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "make it feel epic but sad",
+  "picked": "A",
+  "mixed": {},
+  "locked": {
+    "movement": "a steady pull-back: the camera travels away from the subject in a straight line, from a tight view to a wide view",
+    "placement": "3 m up, looking down at a steep angle, three-quarter to the subject, 4 m away",
+    "lens": "35 mm",
+    "light": "Flat overcast daylight",
+    "grade": "Cool and desaturated",
+    "speed": "Real time"
+  },
+  "look": null,
+  "spec_sha256": "f2c8fb74c50586affb178379070400d0f144f79a9ddd6b8c38eb239875f0e8b2",
+  "references": [],
+  "mocks": [],
+  "rounds": {
+    "planned": 2,
+    "generated": 0,
+    "rejected": {
+      "light": [
+        "hard_backlight"
+      ]
+    },
+    "estimated_usd": 0,
+    "measured_usd": 0
+  },
+  "approval": "yes - the grey one from above. lock it",
+  "locked_at": "2026-11-15T12:00:00Z"
+}

@@ -1,0 +1,281 @@
+# Shot options for: "make it feel epic but sad"
+
+**What your words mean in film language:**
+
+- The look is not clear yet. The words name a mood (epic, sad), not a picture. A mood has many possible shots. 2 or more moods pull in different directions. The look must be found with the user. Find it with the user in rounds of 2 to 4 mock stills that differ in 1 decision, then lock it.
+- 'Dramatic' is not one technique. It is a choice of camera position, lens, light and speed.
+- Loneliness is a small subject in a large frame.
+
+Subject: a lone hiker reaching the top of a ridge. Place: a mountain ridge in cloud. Frame: 16:9.
+
+## Option A: Pull-back (dolly out)  (recommended)
+
+**Why recommended:** It is the closest match to your words. Best for: an ending, a loss, a reveal of where the subject really is.
+
+**In plain words:** The camera travels away from the subject and shows how much is around them.
+**What the viewer feels:** The subject gets smaller. Loneliness, or the size of the task.
+**Pro term to learn:** Pull-back (dolly out)
+**Choose it when:** An ending, a loss, a reveal of where the subject really is.
+
+| Decision | This option |
+|---|---|
+| Camera movement | a steady pull-back: the camera travels away from the subject in a straight line, from a tight view to a wide view |
+| Camera placement | at the subject's eye height, three-quarter from behind, ending 12 m away |
+| Lens | 35 mm. Moderately wide, so the growing space is felt without bending the subject at the start. |
+| Light | Flat overcast daylight: A grey sky. Even, honest light with soft shadows under things. |
+| Colour grade | Cool and desaturated: Cold, quiet, a little grey-blue. Serious. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 4 to 6 s |
+
+**AI look it avoids:** Centred, front-facing subject; Symmetrical hero framing.
+
+**Risks with AI video generators:**
+- Generators change the subject during a long pull-back. Keep them still.
+- Describe what enters the frame, or it fills with random objects.
+
+**Say this to a video model:**
+
+```text
+A lone hiker reaching the top of a ridge; the camera travels steadily away from them in a straight line, from a tight view to a wide view, until they are small in a large empty place; 35 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                               S = subject, faces ->
+            S ->               c = camera start, close, three-quarter behind
+           /                   C = camera end, far
+          c                    The camera travels away in a straight line.
+         /                     S gets small. The place gets large.
+        v
+       C
+
+   FRAME SKETCH
+   +------------------------------+
+   |     .   wide open place   .  |
+   |   .                         .|
+   |                              |
+   |            (o)               |
+   |____________/|\_______________|
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a wide frame with the subject small, seen three-quarter from behind, alone in a large empty place, a lot of empty ground between camera and subject. Camera placement: at the subject's eye height, three-quarter from behind, ending 12 m away.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option B: Long-lens profile close-up
+
+**In plain words:** A tight shot from far away, from the side. The face fills the frame and the background melts.
+**What the viewer feels:** Tension and focus. The viewer reads the thought on the face.
+**Pro term to learn:** Long-lens profile close-up
+**Choose it when:** The beat before the action, a reaction, a stare-down. For two people, use 2 matched profile shots and cut between them.
+
+| Decision | This option |
+|---|---|
+| Camera movement | locked, or a very slow push-in of a few centimetres |
+| Camera placement | exactly side-on, at the subject's chest height, 6 m away, never in front of the face |
+| Lens | 85 mm. A long lens from a distance compresses the space and isolates the face without the wide-angle bend. |
+| Light | Blade of light: A narrow strip of hard light crosses the eyes. The rest falls into shadow. |
+| Colour grade | Film print, deep blacks: Looks like real film: fine grain, true black shadows, natural colour. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 1 to 3 s |
+
+**AI look it avoids:** Centred, front-facing subject; Eyes into the lens.
+
+**Risks with AI video generators:**
+- Generators turn the face toward the camera. Write 'in profile, the camera never in front'.
+- Ask for the eyes to move, not the head, or the profile is lost.
+
+**Say this to a video model:**
+
+```text
+A chest-up shot of a lone hiker in clean profile, reaching the top of a ridge, from a long lens far away at chest height, the camera never in front of the face; only the eyes move; 85 mm lens; a dark space with one narrow hard-edged blade of light that crosses the eyes; the rest of the face and body falls into deep shadow; the light comes from one visible gap or window; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                       light ->
+        C --------> S ^        C = camera, locked, exactly side-on, far away
+                      |        S = subject, faces up the page (profile to C)
+                               The camera is never in front of the face.
+
+   FRAME SKETCH
+   +------------------------------+
+   |                              |
+   |        .-----.      ~  ~  ~  |
+   |       /   ==o >   ~  ~  ~  ~ |
+   |       \      /      ~  ~  ~  |
+   |     ___|    |____            |
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame in clean profile at the subject's chest height, the eyes aimed at something outside the frame, the far background compressed close and out of focus. Camera placement: exactly side-on, at the subject's chest height, 6 m away, never in front of the face.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: a dark space with one narrow hard-edged blade of light that crosses the eyes; the rest of the face and body falls into deep shadow; the light comes from one visible gap or window.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option C: Push-in (dolly in)
+
+**In plain words:** The whole camera moves toward the subject. The background slides and grows too.
+**What the viewer feels:** The viewer leans in. A decision or a realisation is happening.
+**Pro term to learn:** Push-in (dolly in)
+**Choose it when:** A character decides, understands or hides something. The most useful 'dramatic zoom'.
+
+| Decision | This option |
+|---|---|
+| Camera movement | a steady push-in: the camera itself travels toward the subject for the whole shot, from a medium view to a chest-up view |
+| Camera placement | at the subject's eye height, from the side at a three-quarter angle, starting 3 m away |
+| Lens | 50 mm. A normal lens keeps the face natural while the camera does the work. This is a decision here, not a default: the move carries the feeling. |
+| Light | Soft window light from one side: A large window on one side. Gentle, but still with a dark side. |
+| Colour grade | Film print, deep blacks: Looks like real film: fine grain, true black shadows, natural colour. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 3 to 5 s |
+
+**AI look it avoids:** Centred, front-facing subject; Soft, even golden glow.
+
+**Risks with AI video generators:**
+- Generators mix up a push-in and a zoom. Write 'the camera travels toward them, the background slides past'.
+- From the front it becomes the standard AI frame. Push in from the side.
+
+**Say this to a video model:**
+
+```text
+A lone hiker reaching the top of a ridge; the camera itself travels steadily toward them from a three-quarter side position at eye height, from a medium view to chest-up, the background sliding past; 50 mm lens; soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject; photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW
+                               C = camera start
+            S ->               c = camera end
+              ^                The camera itself travels toward S
+               \               from a three-quarter side position.
+                c              The background slides past.
+                 \
+                  C
+
+   FRAME SKETCH
+   +------------------------------+
+   |#                             |
+   |##          .---.             |
+   |##         /  o> |            |
+   |#          \    /             |
+   |#        ___|  |___           |
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame from a three-quarter side position at the subject's eye height, with a soft foreground edge on one side of the frame that shows the camera is moving in. Camera placement: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+## Option D: Locked-off wide (tableau)
+
+**In plain words:** The camera does not move at all. The frame is composed like a painting and the action happens inside it.
+**What the viewer feels:** Calm and control. The viewer has time to look.
+**Pro term to learn:** Locked-off wide (tableau)
+**Choose it when:** Establishing a place, quiet moments, dry comedy, a pause after action.
+
+| Decision | This option |
+|---|---|
+| Camera movement | locked: no movement at all for the whole shot |
+| Camera placement | far back at waist height, the lens level, with a dark foreground shape on one side |
+| Lens | 35 mm. Moderately wide and level keeps lines straight, so the composition holds like a painting. |
+| Light | Soft window light from one side: A large window on one side. Gentle, but still with a dark side. |
+| Colour grade | Muted earth tones: Browns, greys and dull greens. Worn and real. |
+| Speed | Real time: Normal speed. Fast things are fast. |
+| Length | 4 to 8 s |
+
+**AI look it avoids:** Aquarium speed: slow floating camera and slow bodies; Symmetrical hero framing.
+
+**Risks with AI video generators:**
+- Generators add a slow drift to every shot. Write 'locked camera, no movement at all'.
+- Without a foreground shape and a dark area it becomes a flat postcard.
+
+**Say this to a video model:**
+
+```text
+A locked camera, no movement at all: a composed wide frame from waist height with a dark foreground shape on one side, a lone hiker reaching the top of a ridge small and off-centre; 35 mm lens; soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it.
+```
+
+**Framing diagram:**
+
+```text
+   TOP VIEW                 light
+                              |
+                              v
+            S ->               S = subject, side-on to the camera
+                               C = camera, locked, low or close
+            ^                  The camera looks toward the light.
+            |
+            C
+
+   FRAME SKETCH
+   +------------------------------+
+   |####                          |
+   |####                          |
+   |####              o>          |
+   |####             /|\          |
+   |####_____________/_\__________|
+   +------------------------------+
+```
+
+**Mock image prompt (paste into any image tool):**
+
+```text
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a lone hiker reaching the top of a ridge, in a mountain ridge in cloud. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a composed wide frame from waist height: a dark foreground shape on one side, the subject small and off-centre in the middle distance, seen from the side. Camera placement: far back at waist height, the lens level, with a dark foreground shape on one side.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+```
+
+---
+
+Pick 1 option, mix parts of 2 options (for example "A with the light of C"), or ask for other options.
+
+Anti-slop check: passed for every option.
+LOOK NOT CLEAR. The words name a mood (epic, sad), not a picture. A mood has many possible shots. 2 or more moods pull in different directions. The look must be found with the user.
+Next: find the look in rounds (shotspeak.py round --options examples/unclear-look/options.json --base A --vary light), then lock it.
+Saved: examples/unclear-look/options.json and examples/unclear-look/options.md

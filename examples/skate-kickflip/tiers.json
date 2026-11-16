@@ -1,0 +1,63 @@
+{
+  "slug": "skate-kickflip",
+  "title": "The kid and the kickflip",
+  "phrase": "my kid lands a skateboard trick and I want it to look like a skate video",
+  "user_says": "A",
+  "commands": {
+    "plan": "python3 scripts/shotspeak.py plan --phrase \"my kid lands a skateboard trick and I want it to look like a skate video\" --subject \"a kid on a skateboard\" --action \"landing a kickflip off a low kerb\" --setting \"an empty car park on a grey day\" --out examples/skate-kickflip",
+    "choose": "python3 scripts/shotspeak.py choose --options examples/skate-kickflip/options.json --pick A"
+  },
+  "bad": {
+    "prompt": "cinematic skateboarding shot, kid doing an awesome trick, smooth cinematic camera movement, bokeh background, lens flares, hyper realistic, 8k",
+    "what_you_get": "A teenager in the centre, in slow motion, with a blurred background and flares from no light source. The board does not turn.",
+    "tells": [
+      "No camera position stated",
+      "Lens flare everywhere",
+      "No light source stated",
+      "Fake creamy bokeh, or everything in focus",
+      "No lens stated",
+      "Aquarium speed: slow floating camera and slow bodies",
+      "No speed stated",
+      "Over-saturated HDR look",
+      "'Cinematic' and 'epic' with no direction"
+    ],
+    "named": [],
+    "image": "docs/img/skate-kickflip_bad.jpg"
+  },
+  "plain": {
+    "prompt": "A kid on a skateboard rolls toward a low kerb in an empty car park on a grey day, does a kickflip off the kerb and lands it.",
+    "what_you_get": "The correct trick, seen from eye height and from far away. The kid is small in the frame. The speed is hard to feel.",
+    "missing": [
+      "No camera position stated",
+      "No light source stated",
+      "No lens stated",
+      "No speed stated"
+    ],
+    "image": "docs/img/skate-kickflip_plain.jpg"
+  },
+  "skill": {
+    "picked": "A",
+    "mixed": {},
+    "pro_term": "Low-angle wide shot",
+    "plain_words": "The camera sits on the floor with a wide lens and looks along the ground. The subject towers.",
+    "feel": "Scale and power. The subject is bigger than the viewer.",
+    "look_makes": [
+      "An extremely wide lens is very low and very close. The ground rushes past.",
+      "Straight lines bend at the edges of the frame.",
+      "The light is plain daylight. The camera rides along with the person."
+    ],
+    "what_you_get": "A very wide lens on the ground, next to the kerb. The wheels pass close to the lens. The trick looks fast and high.",
+    "decisions": {
+      "Camera movement": "locked: the camera does not move, the action comes to it",
+      "Camera placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "Lens": "18 mm",
+      "Light": "Flat overcast daylight",
+      "Colour grade": "Muted earth tones",
+      "Speed": "Slow motion (one beat)"
+    },
+    "prompt_block": "SHOT: Low-angle wide shot. 16:9 frame, 2 to 4 s.\nSUBJECT AND ACTION: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day.\nCAMERA MOVE: locked: the camera does not move, the action comes to it.\nCAMERA PLACEMENT: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nSPEED: slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats.\nLOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+    "one_line": "A kid on a skateboard landing a kickflip off a low kerb, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats; an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.",
+    "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nLOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+    "image": "docs/img/skate-kickflip_skill.jpg"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "two guys fight in an alley and I want to feel every punch, raw and shaky",
+  "picked": "B",
+  "mixed": {},
+  "spec": {
+    "pro_term": "Contact insert with a ramp on contact",
+    "movement": "locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles",
+    "placement": "exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+    "lens": "85 mm",
+    "lens_why": "A long lens from the side isolates the contact and keeps the camera out of the action.",
+    "light": "Night, practical lights only",
+    "grade": "Bleach bypass",
+    "speed": "Ramp on contact",
+    "duration": "1.5 to 2.5 s",
+    "risks": [
+      "Generators add a slow wind-up. Write 'the first visible motion is the action itself'.",
+      "The contact goes soft or misses. Name the part that strikes, the exact target and the reaction along the line of the force.",
+      "Generators stretch the whole shot into slow motion. State the frame where real speed returns."
+    ]
+  },
+  "anti_slop_findings": [],
+  "one_line": "A tight contact insert: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, exactly side-on to the line of the force, the frame kicking a hand's width with the force at the contact; 85 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends. Avoid: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.",
+  "prompt_block": "SHOT: Contact insert with a ramp on contact. 16:9 frame, 1.5 to 2.5 s.\nSUBJECT AND ACTION: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night.\nCAMERA MOVE: locked and tight on the point of contact; at the frame of contact the frame kicks a hand's width in the direction of the force, then settles.\nCAMERA PLACEMENT: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.\nLENS: 85 mm.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nSPEED: slow motion on the approach, then real speed from the exact frame of contact: the reaction happens at full speed and the shot ends when the reaction ends.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; no soft even glow; one motivated light source with a real dark side; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+  "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two stunt fighters in plain dark clothes trading blows, one hard right hook lands on the jaw, in a narrow brick alley at night. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a tight side-on frame of the instant of contact, the point of contact on one third of the frame, the one who takes the force in profile. Camera placement: exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face.\nLENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: the exact frame of contact: the moving part stopped on its target, the surface pushed in, everything sharp.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+  "previs": {
+    "label": "B",
+    "files": {
+      "still_start": "option_B/still_start.png",
+      "still_mid": "option_B/still_mid.png",
+      "still_end": "option_B/still_end.png",
+      "plan_overhead": "option_B/plan_overhead.png"
+    },
+    "summary": {
+      "move": "locked",
+      "people": 2,
+      "start": {
+        "height_m": 1.3,
+        "distance_m": 2.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 85.0,
+        "roll_deg": 0.0
+      },
+      "end": {
+        "height_m": 1.3,
+        "distance_m": 2.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 85.0,
+        "roll_deg": 0.0
+      },
+      "camera_path_m": 0.1974,
+      "placement_words": "exactly side-on to the line of the force, at chest height, 2 m away, never in front of a face",
+      "lens_words": "85 mm"
+    },
+    "notes": []
+  },
+  "layout_reference": false,
+  "lock": {
+    "status": "UNLOCKED",
+    "approval": null,
+    "locked_at": null
+  }
+}

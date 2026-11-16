@@ -1,0 +1,12 @@
+BLOCKING PREVIS  route: headless  Blender 5.2.2
+Option A: Low-angle wide shot  [ok]
+  Camera start: 0.15 m high, 3 m from the group, 18 mm.
+  Camera end:   0.15 m high, 3 m from the group, 18 mm. Path: 0 m in 3 s.
+  Middle frame: S1 centre, wide shot.
+  still_start: option_A/still_start.png
+  still_mid: option_A/still_mid.png
+  still_end: option_A/still_end.png
+  plan_overhead: option_A/plan_overhead.png
+
+Files are in examples/skate-kickflip/previs. Manifest: examples/skate-kickflip/previs/previs.json
+Use: A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.

@@ -1,0 +1,67 @@
+SHOT-SPEAK MOCK CARD  "my kid lands a skateboard trick and I want it to look like a skate video"
+
+--- Option A: Low-angle wide shot  [recommended]
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.
+LENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.
+LOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/skate-kickflip/option_A.png
+
+--- Option B: Follow shot (from behind)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a frame from close behind one shoulder at shoulder height: the back of the head and one shoulder large on one side, the place they walk into open ahead. Camera placement: behind one shoulder at shoulder height, 1 m back.
+LENS: 24 mm; wide lens look: the place is as present as the subject, clear depth from foreground to background.
+LIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.
+COLOUR: night grade with two saturated practical colours against true black, colour only where a light source reaches.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/skate-kickflip/option_B.png
+
+--- Option C: Speed ramp
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.
+MOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/skate-kickflip/option_C.png
+
+--- Option D: Tracking shot (lateral dolly)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a side-on frame from a long lens: the subject sharp in profile on one third of the frame, blurred foreground shapes wiping past, the background streaked sideways. Camera placement: side-on at waist height, 5 m away, with posts, people or plants passing between camera and subject.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.
+COLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/skate-kickflip/option_D.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    4
+Estimate:  0.28 USD
+Basis:     4 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      e805723fe366
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
+After a clear yes, run again with
+  --confirm e805723fe366

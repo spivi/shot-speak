@@ -1,0 +1,67 @@
+SHOT-SPEAK MOCK CARD  "dramatic like the dark family crime drama look dinner scene"
+
+--- Option A: Push-in (dolly in)  [recommended]
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old man at the head of a long table listening without a word, in a dark dining room. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame from a three-quarter side position at the subject's eye height, with a soft foreground edge on one side of the frame that shows the camera is moving in. Camera placement: at the subject's eye height, from the side at a three-quarter angle, starting 3 m away.
+LENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.
+LIGHT: one hard overhead source that makes a pool of light on the floor; the eyes fall into shadow under the brow; everything outside the pool is near black.
+COLOUR: photochemical film look: fine grain, deep true blacks with detail, natural skin and material colours, restrained saturation.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+LOOK: the light comes from straight above, so the eyes sink into shadow; warm amber tones, underexposed, most of the room black; the camera at eye height, almost still.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/named-look/option_A.png
+
+--- Option B: Locked-off wide (tableau)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old man at the head of a long table listening without a word, in a dark dining room. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a composed wide frame from waist height: a dark foreground shape on one side, the subject small and off-centre in the middle distance, seen from the side. Camera placement: far back at waist height, the lens level, with a dark foreground shape on one side.
+LENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.
+LIGHT: soft daylight from one large window on one side; the far side of the face falls into natural shadow; no fill light, the room behind stays darker than the subject.
+COLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no posed symmetrical hero framing; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/named-look/option_B.png
+
+--- Option C: Long-lens profile close-up
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old man at the head of a long table listening without a word, in a dark dining room. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a chest-up frame in clean profile at the subject's chest height, the eyes aimed at something outside the frame, the far background compressed close and out of focus. Camera placement: exactly side-on, at the subject's chest height, 6 m away, never in front of the face.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: a dark space with one narrow hard-edged blade of light that crosses the eyes; the rest of the face and body falls into deep shadow; the light comes from one visible gap or window.
+COLOUR: black and white with a full tonal range: true black, clean white, fine grain, strong shapes.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/named-look/option_C.png
+
+--- Option D: Rack focus (focus pull)
+A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.
+SUBJECT: an old man at the head of a long table listening without a word, in a dark dining room. Generic stand-in figures, not a likeness of any real person.
+CAMERA: a long-lens frame with a large soft object in the near foreground on one side and the subject sharp beyond it in three-quarter view, the focus clearly on the subject. Camera placement: close behind a foreground object at its own height, the subject 4 m beyond it, seen three-quarter.
+LENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.
+LIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.
+COLOUR: night grade with two saturated practical colours against true black, colour only where a light source reaches.
+MOMENT: a sharp frame with a little natural motion blur on the fastest limb only.
+FACES: turned away from the lens, in profile, three-quarter or from behind.
+AVOID: no cut-out subject on a smeared background; focus falls off naturally with distance; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks.
+One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.
+-> examples/named-look/option_D.png
+
+Backend:   openai  (model gpt-image-2.5-flare)
+Size:      1536x864   Quality: medium
+Images:    4
+Estimate:  0.28 USD
+Basis:     4 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
+Card:      052b4a3c7b70
+Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
+Anti-slop check: passed for every option.
+
+DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
+After a clear yes, run again with
+  --confirm 052b4a3c7b70

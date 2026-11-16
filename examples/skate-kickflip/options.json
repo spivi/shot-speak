@@ -1,0 +1,218 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "my kid lands a skateboard trick and I want it to look like a skate video",
+  "matched": true,
+  "interpretation": [
+    "The look you named is, in film language: fisheye skate video. An extremely wide lens is very low and very close. The ground rushes past. Straight lines bend at the edges of the frame. The light is plain daylight. The camera rides along with the person.",
+    "A hit, a catch or a landing is a contact. Show the move wide, then the contact tight, at full speed from the contact.",
+    "Air moments read best from a low camera, with a real height and real gravity."
+  ],
+  "subject": "a kid on a skateboard",
+  "action": "landing a kickflip off a low kerb",
+  "setting": "an empty car park on a grey day",
+  "aspect": "16:9",
+  "options": [
+    {
+      "label": "A",
+      "technique": "low_wide_hero",
+      "pro_term": "Low-angle wide shot",
+      "plain": "The camera sits on the floor with a wide lens and looks along the ground. The subject towers.",
+      "movement": "locked: the camera does not move, the action comes to it",
+      "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens": "18 mm",
+      "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+      "light": {
+        "key": "overcast_soft",
+        "name": "Flat overcast daylight",
+        "plain": "A grey sky. Even, honest light with soft shadows under things.",
+        "prompt": "flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun"
+      },
+      "grade": {
+        "key": "muted_earth",
+        "name": "Muted earth tones",
+        "plain": "Browns, greys and dull greens. Worn and real.",
+        "prompt": "muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces"
+      },
+      "speed": {
+        "key": "slow_motion",
+        "name": "Slow motion (one beat)",
+        "plain": "The moment is stretched. Use it for one moment in the whole piece.",
+        "prompt": "slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats",
+        "still": "a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement"
+      },
+      "duration": "2 to 4 s",
+      "feel": "Scale and power. The subject is bigger than the viewer.",
+      "when": "A landing, an entrance, the top of a jump. It makes a modest real jump look heroic.",
+      "risks": [
+        "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+        "Slow motion plus a jump invites floating. Write a real height and real gravity."
+      ],
+      "still": "the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground",
+      "snippet": "{subject} {action}, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light",
+      "slop_avoided": [
+        "Eye-level medium shot as the default",
+        "The 35 to 50 mm default"
+      ],
+      "topdown": "static",
+      "frame": "low_wide",
+      "recommended": true,
+      "look_id": "fisheye-skate-video",
+      "look_name": "Fisheye skate video",
+      "look_clause": "an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight",
+      "look_makes": [
+        "An extremely wide lens is very low and very close. The ground rushes past.",
+        "Straight lines bend at the edges of the frame.",
+        "The light is plain daylight. The camera rides along with the person."
+      ],
+      "recommended_because": "It is the look you named, as decisions: fisheye skate video. An extremely wide lens is very low and very close. The ground rushes past.",
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nLOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A kid on a skateboard landing a kickflip off a low kerb, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats; an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "B",
+      "technique": "follow_behind",
+      "pro_term": "Follow shot (from behind)",
+      "plain": "The camera walks or runs behind the subject, close to their shoulder.",
+      "movement": "a follow move close behind the subject at their speed, with the natural small bounce of a carried camera",
+      "placement": "behind one shoulder at shoulder height, 1 m back",
+      "lens": "24 mm",
+      "lens_why": "A wide lens close behind the shoulder shows where the subject is going.",
+      "light": {
+        "key": "practicals_night",
+        "name": "Night, practical lights only",
+        "plain": "Only the lamps that exist in the place: a street light, a sign, a screen.",
+        "prompt": "night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them"
+      },
+      "grade": {
+        "key": "neon_noir",
+        "name": "Neon noir",
+        "plain": "Night colours from signs and lamps against black.",
+        "prompt": "night grade with two saturated practical colours against true black, colour only where a light source reaches"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "4 to 8 s",
+      "feel": "The viewer is with the subject and discovers the place at the same time.",
+      "when": "Entering a place, a chase, a walk into trouble.",
+      "risks": [
+        "Generators swing round to show the face. Write 'the camera stays behind the shoulder for the whole shot'.",
+        "Long corridors change shape over time. Keep it under 8 s."
+      ],
+      "still": "a frame from close behind one shoulder at shoulder height: the back of the head and one shoulder large on one side, the place they walk into open ahead",
+      "snippet": "the camera follows close behind one shoulder of {subject} {action}, at their speed, with a small natural bounce, and stays behind the shoulder for the whole shot",
+      "slop_avoided": [
+        "Centred, front-facing subject",
+        "Eyes into the lens"
+      ],
+      "topdown": "follow",
+      "frame": "over_shoulder",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a frame from close behind one shoulder at shoulder height: the back of the head and one shoulder large on one side, the place they walk into open ahead. Camera placement: behind one shoulder at shoulder height, 1 m back.\nLENS: 24 mm; wide lens look: the place is as present as the subject, clear depth from foreground to background.\nLIGHT: night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them.\nCOLOUR: night grade with two saturated practical colours against true black, colour only where a light source reaches.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "The camera follows close behind one shoulder of a kid on a skateboard landing a kickflip off a low kerb, at their speed, with a small natural bounce, and stays behind the shoulder for the whole shot; 24 mm lens; night; the only light comes from sources visible in the place, each with its own colour and a short reach; large areas of true darkness between them; night grade with two saturated practical colours against true black, colour only where a light source reaches; real time for the whole shot, fast and crisp, no slow motion. Avoid: not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    },
+    {
+      "label": "C",
+      "technique": "speed_ramp",
+      "pro_term": "Speed ramp",
+      "plain": "Normal speed, a short slow-down at the best instant, then normal speed again.",
+      "movement": "a side-on tracking move that travels with the subject at their speed",
+      "placement": "side-on at hip height, 4 m away, travelling parallel to the action",
+      "lens": "50 mm",
+      "lens_why": "A normal lens side-on keeps body shapes true while the speed change does the work.",
+      "light": {
+        "key": "overcast_soft",
+        "name": "Flat overcast daylight",
+        "plain": "A grey sky. Even, honest light with soft shadows under things.",
+        "prompt": "flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun"
+      },
+      "grade": {
+        "key": "cool_desat",
+        "name": "Cool and desaturated",
+        "plain": "Cold, quiet, a little grey-blue. Serious.",
+        "prompt": "cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks"
+      },
+      "speed": {
+        "key": "speed_ramp",
+        "name": "Speed ramp",
+        "plain": "Normal speed, a short slow-down at the peak, then back to normal speed.",
+        "prompt": "real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact",
+        "still": "the frame at the peak of the action, the body sharp, the background with a slight streak of motion"
+      },
+      "duration": "3 to 5 s",
+      "feel": "The viewer feels the speed and then gets a clear look at the best instant.",
+      "when": "Sport, tricks, a jump, a throw: fast action with one peak.",
+      "risks": [
+        "Generators stay slow after the ramp. Write 'back to real time before the landing'.",
+        "Say exactly which instant is slow."
+      ],
+      "still": "a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel",
+      "snippet": "{subject} {action}, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time",
+      "slop_avoided": [
+        "Slow motion everywhere",
+        "Centred, front-facing subject"
+      ],
+      "topdown": "track",
+      "frame": "side_full",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a side-on full-body frame at hip height at the peak of the action, the body sharp in clean side view, the background slightly streaked by the camera's sideways travel. Camera placement: side-on at hip height, 4 m away, travelling parallel to the action.\nLENS: 50 mm; normal lens look: neutral perspective, close to how the eye sees.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks.\nMOMENT: the frame at the peak of the action, the body sharp, the background with a slight streak of motion.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A kid on a skateboard landing a kickflip off a low kerb, tracked side-on at hip height; real time into the move, a short ramp to slow motion at the peak, then back to real time; 50 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; cool desaturated grade: grey-blue shadows, neutral skin, low saturation, soft contrast with true blacks; real time into the move, a short ramp to slow motion at the peak of the action, then back to real time before the landing or the contact. Avoid: real time, with slow motion only where the shot states it; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays."
+    },
+    {
+      "label": "D",
+      "technique": "tracking_side",
+      "pro_term": "Tracking shot (lateral dolly)",
+      "plain": "The camera travels sideways with the subject, like a car driving beside them.",
+      "movement": "a lateral tracking move at the subject's speed, things in the foreground wiping past the lens",
+      "placement": "side-on at waist height, 5 m away, with posts, people or plants passing between camera and subject",
+      "lens": "85 mm",
+      "lens_why": "A long lens makes the foreground and background rush past, so the move feels fast.",
+      "light": {
+        "key": "overcast_soft",
+        "name": "Flat overcast daylight",
+        "plain": "A grey sky. Even, honest light with soft shadows under things.",
+        "prompt": "flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun"
+      },
+      "grade": {
+        "key": "warm_natural",
+        "name": "Warm natural",
+        "plain": "Warm sunlight colour, but real: no orange wash over everything.",
+        "prompt": "warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks"
+      },
+      "speed": {
+        "key": "real_time",
+        "name": "Real time",
+        "plain": "Normal speed. Fast things are fast.",
+        "prompt": "real time for the whole shot, fast and crisp, no slow motion",
+        "still": "a sharp frame with a little natural motion blur on the fastest limb only"
+      },
+      "duration": "3 to 6 s",
+      "feel": "Momentum. The viewer travels with the subject.",
+      "when": "Running, riding, walking with purpose.",
+      "risks": [
+        "Generators drift ahead of or behind the subject. Write 'the subject stays on the same third of the frame'.",
+        "Keep one screen direction: left to right or right to left, for the whole sequence."
+      ],
+      "still": "a side-on frame from a long lens: the subject sharp in profile on one third of the frame, blurred foreground shapes wiping past, the background streaked sideways",
+      "snippet": "{subject} {action}, tracked side-on from a long lens at their speed, the subject held on the same third of the frame while foreground shapes wipe past",
+      "slop_avoided": [
+        "Aquarium speed: slow floating camera and slow bodies",
+        "Centred, front-facing subject"
+      ],
+      "topdown": "track",
+      "frame": "side_third",
+      "recommended": false,
+      "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: a side-on frame from a long lens: the subject sharp in profile on one third of the frame, blurred foreground shapes wiping past, the background streaked sideways. Camera placement: side-on at waist height, 5 m away, with posts, people or plants passing between camera and subject.\nLENS: 85 mm; long lens look: compressed depth, the background pulled close and out of focus with natural optical falloff.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks.\nMOMENT: a sharp frame with a little natural motion blur on the fastest limb only.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+      "video_snippet": "A kid on a skateboard landing a kickflip off a low kerb, tracked side-on from a long lens at their speed, the subject held on the same third of the frame while foreground shapes wipe past; 85 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; warm natural grade: warm highlights where the sun lands, neutral shadows, natural colours, true blacks; real time for the whole shot, fast and crisp, no slow motion. Avoid: no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind; nobody looks into the lens; every eyeline goes to a target inside the scene; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; real time, with slow motion only where the shot states it."
+    }
+  ],
+  "look": {
+    "id": "fisheye-skate-video",
+    "name": "Fisheye skate video"
+  }
+}

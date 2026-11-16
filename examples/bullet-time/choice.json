@@ -1,0 +1,29 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "the bullet time thingy where the camera swishes around them mid-air",
+  "picked": "A",
+  "mixed": {
+    "grade": "D"
+  },
+  "spec": {
+    "pro_term": "Frozen-moment arc (bullet time)",
+    "movement": "a fast, smooth arc of about 130 degrees around the subject: it starts behind the shoulder, passes the profile and stops at a front three-quarter view; it never reaches a view straight in front",
+    "placement": "at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move",
+    "lens": "35 mm",
+    "lens_why": "Wide enough to feel the camera travel past the background, not so wide that bodies bend at the frame edge.",
+    "light": "One hard low sun, camera facing into the light",
+    "grade": "Bleach bypass",
+    "speed": "Frozen moment",
+    "duration": "2 to 3 s",
+    "risks": [
+      "A full 180 or 360 degree orbit turns faces into the lens and flips left and right on screen. Ask for about 130 degrees.",
+      "Generators let frozen bodies float upward. Write 'real gravity, drifting only a hand's width'.",
+      "The background behind the subject is invented during the move. Keep the place simple."
+    ]
+  },
+  "anti_slop_findings": [],
+  "one_line": "Two masked ninjas at the top of a jump off a low wall; time almost stops while the camera sweeps a fast, smooth arc of about 130 degrees around them at their own height, lens level, from behind the shoulder past the profile to a front three-quarter view; 35 mm lens; one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move. Avoid: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays.",
+  "prompt_block": "SHOT: Frozen-moment arc (bullet time). 16:9 frame, 2 to 3 s.\nSUBJECT AND ACTION: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset.\nCAMERA MOVE: a fast, smooth arc of about 130 degrees around the subject: it starts behind the shoulder, passes the profile and stops at a front three-quarter view; it never reaches a view straight in front.\nCAMERA PLACEMENT: at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move.\nLENS: 35 mm.\nLIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nSPEED: time almost stops: the subject drifts only a hand's width while the camera moves fast; real gravity returns at the end of the move.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; no bloom, no haze, no fog, no volumetric god rays; no soft even glow; one motivated light source with a real dark side; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+  "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: two masked ninjas at the top of a jump off a low wall, in a walled courtyard at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is at the middle of its arc, exactly side-on: the subject in clean profile at their own height. Camera placement: at the subject's own height, the lens level, 2 to 3 m away, on one side of the action for the whole move.\nLENS: 35 mm; moderately wide lens look: subject and surroundings both readable, natural perspective.\nLIGHT: one hard low sun as the only strong light, behind the subject; the camera faces into the light; bright rims on hair and shoulders, long shadows that fall toward the lens, about a third of the frame in deep true shadow.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: everything caught perfectly sharp at one instant: dust and small debris hang still in the air.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: the camera never completes a half circle and never reaches a view straight in front of the face; real gravity and real jump height, nobody floats; nobody looks into the lens; every eyeline goes to a target inside the scene; no soft even glow; one motivated light source with a real dark side; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border."
+}

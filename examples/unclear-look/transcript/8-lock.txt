@@ -1,0 +1,11 @@
+LOOK LOCKED.
+  movement: a steady pull-back: the camera travels away from the subject in a straight line, from a tight view to a wide view
+  placement: 3 m up, looking down at a steep angle, three-quarter to the subject, 4 m away
+  lens: 35 mm
+  light: Flat overcast daylight
+  grade: Cool and desaturated
+  speed: Real time
+  rounds: 0 generated, 0.00 USD estimated
+  references kept as provenance: 0. They are not in any prompt.
+  approval: "yes - the grey one from above. lock it"
+Saved: examples/unclear-look/look_lock.json. Run 'choose' with the same --pick and --mix for the final spec. A change needs a new lock.

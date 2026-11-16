@@ -1,0 +1,68 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "I want my dog to do a bullet time thingy when I throw him a bone, dramatically",
+  "picked": "B",
+  "mixed": {
+    "light": "C"
+  },
+  "spec": {
+    "pro_term": "Low-angle wide shot",
+    "movement": "locked: the camera does not move, the action comes to it",
+    "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+    "lens": "18 mm",
+    "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+    "light": "Low hard side sun",
+    "grade": "Bleach bypass",
+    "speed": "Slow motion (one beat)",
+    "duration": "2 to 4 s",
+    "risks": [
+      "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+      "Slow motion plus a jump invites floating. Write a real height and real gravity."
+    ]
+  },
+  "anti_slop_findings": [],
+  "one_line": "A scruffy brown dog at the top of a jump, about to catch a thrown bone, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground; bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.",
+  "prompt_block": "SHOT: Low-angle wide shot. 16:9 frame, 2 to 4 s.\nSUBJECT AND ACTION: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset.\nCAMERA MOVE: locked: the camera does not move, the action comes to it.\nCAMERA PLACEMENT: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nSPEED: slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+  "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a scruffy brown dog at the top of a jump, about to catch a thrown bone, in a backyard lawn at sunset. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: low, hard late-afternoon sun from one side only; one side of the subject lit, the other side in real shadow; long hard-edged shadows across the ground.\nCOLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats; no lens flare unless the light source itself is in the frame.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+  "previs": {
+    "label": "B",
+    "files": {
+      "still_start": "option_B/still_start.png",
+      "still_mid": "option_B/still_mid.png",
+      "still_end": "option_B/still_end.png",
+      "plan_overhead": "option_B/plan_overhead.png"
+    },
+    "summary": {
+      "move": "locked",
+      "people": 1,
+      "start": {
+        "height_m": 0.15,
+        "distance_m": 3.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 18.0,
+        "roll_deg": 0.0
+      },
+      "end": {
+        "height_m": 0.15,
+        "distance_m": 3.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 18.0,
+        "roll_deg": 0.0
+      },
+      "camera_path_m": 0.0,
+      "placement_words": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens_words": "18 mm"
+    },
+    "notes": [
+      "The thrown object is a simple bone shape. It arrives at the middle frame. Its path is a real curve of gravity.",
+      "The stand-in is a simple four-legged shape. It shows the size and the position of the animal, not its body."
+    ]
+  },
+  "layout_reference": false,
+  "lock": {
+    "status": "UNLOCKED",
+    "approval": null,
+    "locked_at": null
+  }
+}

@@ -1,0 +1,38 @@
+BLOCKING PREVIS  route: headless  Blender 5.2.2
+Option A: Frozen-moment arc (bullet time)  [ok]
+  Camera start: 1.6 m high, 2.5 m from the group, 35 mm.
+  Camera end:   1.6 m high, 2.5 m from the group, 35 mm. Path: 5.67 m in 2.5 s.
+  Middle frame: S1 right, medium-full shot; S2 left, medium-full shot.
+  still_start: option_A/still_start.png
+  still_mid: option_A/still_mid.png
+  still_end: option_A/still_end.png
+  plan_overhead: option_A/plan_overhead.png
+Option B: Arc shot (partial orbit, real time)  [ok]
+  Camera start: 1 m high, 2 m from the group, 24 mm.
+  Camera end:   1 m high, 2 m from the group, 24 mm. Path: 3.07 m in 2.25 s.
+  Middle frame: S1 right, full shot; S2 left, full shot.
+  Note: start still: the head of S2 is outside the frame.
+  Note: end still: the head of S1 is outside the frame.
+  still_start: option_B/still_start.png
+  still_mid: option_B/still_mid.png
+  still_end: option_B/still_end.png
+  plan_overhead: option_B/plan_overhead.png
+Option C: Speed ramp  [ok]
+  Camera start: 1 m high, 4 m from the group, 50 mm.
+  Camera end:   1 m high, 4 m from the group, 50 mm. Path: 3.72 m in 4 s.
+  Middle frame: S1 right, medium-full shot; S2 left, full shot.
+  still_start: option_C/still_start.png
+  still_mid: option_C/still_mid.png
+  still_end: option_C/still_end.png
+  plan_overhead: option_C/plan_overhead.png
+Option D: Low-angle wide shot  [ok]
+  Camera start: 0.15 m high, 3 m from the group, 18 mm.
+  Camera end:   0.15 m high, 3 m from the group, 18 mm. Path: 0 m in 3 s.
+  Middle frame: S1 right, wide shot; S2 left, wide shot.
+  still_start: option_D/still_start.png
+  still_mid: option_D/still_mid.png
+  still_end: option_D/still_end.png
+  plan_overhead: option_D/plan_overhead.png
+
+Files are in examples/bullet-time/previs. Manifest: examples/bullet-time/previs/previs.json
+Use: A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.

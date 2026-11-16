@@ -1,0 +1,14 @@
+# keys never go into Git
+.env
+.env.*
+!.env.example
+
+# generated output
+shotspeak_out/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Blender scene files hold data of the machine that made them
+*.blend
+*.blend1

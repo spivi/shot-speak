@@ -1,0 +1,63 @@
+{
+  "tool": "shot-speak",
+  "version": "0.2.0",
+  "phrase": "my kid lands a skateboard trick and I want it to look like a skate video",
+  "picked": "A",
+  "mixed": {},
+  "spec": {
+    "pro_term": "Low-angle wide shot",
+    "movement": "locked: the camera does not move, the action comes to it",
+    "placement": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+    "lens": "18 mm",
+    "lens_why": "An ultra-wide lens on the floor makes the ground rush to the lens and gives a small jump real scale.",
+    "light": "Flat overcast daylight",
+    "grade": "Muted earth tones",
+    "speed": "Slow motion (one beat)",
+    "duration": "2 to 4 s",
+    "risks": [
+      "Do not tilt the lens up at the face: it bends bodies and generators stretch them. Keep the lens level.",
+      "Slow motion plus a jump invites floating. Write a real height and real gravity."
+    ]
+  },
+  "anti_slop_findings": [],
+  "one_line": "A kid on a skateboard landing a kickflip off a low kerb, seen from a locked camera on the floor with an ultra-wide lens, the lens level, looking along the ground into the light; 18 mm lens; flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun; muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces; slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats; an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight. Avoid: not a default eye-level medium shot; no soft even glow; one motivated light source with a real dark side; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays.",
+  "prompt_block": "SHOT: Low-angle wide shot. 16:9 frame, 2 to 4 s.\nSUBJECT AND ACTION: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day.\nCAMERA MOVE: locked: the camera does not move, the action comes to it.\nCAMERA PLACEMENT: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nSPEED: slow motion for this one beat only; real gravity, weight and cloth move truthfully, nothing floats.\nLOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.\nRULES: State the exact number of people. Screen direction stays the same for the whole shot.\nAVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no slow floating camera drift; the camera is locked or makes one decisive move with a clear end; real gravity and real jump height, nobody floats; no bloom, no haze, no fog, no volumetric god rays; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean.",
+  "image_prompt": "A single still frame from a live-action film, 16:9 frame. A storyboard-grade production mock that shows framing, lens, light and colour.\nSUBJECT: a kid on a skateboard landing a kickflip off a low kerb, in an empty car park on a grey day. Generic stand-in figures, not a likeness of any real person.\nCAMERA: the camera is on the floor with the lens level: the ground stretches from the bottom edge of the frame to the subject, who is seen from the side against the light, with a lot of floor in the foreground. Camera placement: on the floor, 3 m away, the lens level and looking along the ground into the light.\nLENS: 18 mm; ultra-wide lens look: deep perspective, a large foreground, a small far background, strong converging lines.\nLIGHT: flat overcast daylight from a grey sky, soft contact shadows under bodies and objects, muted natural contrast, no sun.\nCOLOUR: muted earth-tone grade: browns, greys and dull greens, low saturation, soft highlights, worn surfaces.\nMOMENT: a crisp frame from slow motion: dust, cloth and hair caught sharp in mid-movement.\nLOOK: an extremely wide lens very low and very close to the wheels, the ground rushing past the bottom of the frame, lines bending at the edges, plain daylight.\nFACES: turned away from the lens, in profile, three-quarter or from behind.\nAVOID: not a default eye-level medium shot; nobody looks into the lens; every eyeline goes to a target inside the scene; no bloom, no haze, no fog, no volumetric god rays; matte worn floor, no glossy or wet reflections; worn real textures with dust, creases and small defects, nothing plastic or perfectly clean; no over-saturated HDR look; restrained colour and true blacks; real gravity and real jump height, nobody floats.\nOne frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
+  "previs": {
+    "label": "A",
+    "files": {
+      "still_start": "option_A/still_start.png",
+      "still_mid": "option_A/still_mid.png",
+      "still_end": "option_A/still_end.png",
+      "plan_overhead": "option_A/plan_overhead.png"
+    },
+    "summary": {
+      "move": "locked",
+      "people": 1,
+      "start": {
+        "height_m": 0.15,
+        "distance_m": 3.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 18.0,
+        "roll_deg": 0.0
+      },
+      "end": {
+        "height_m": 0.15,
+        "distance_m": 3.0,
+        "azimuth_deg": 90.0,
+        "lens_mm": 18.0,
+        "roll_deg": 0.0
+      },
+      "camera_path_m": 0.0,
+      "placement_words": "on the floor, 3 m away, the lens level and looking along the ground into the light",
+      "lens_words": "18 mm"
+    },
+    "notes": []
+  },
+  "layout_reference": false,
+  "lock": {
+    "status": "UNLOCKED",
+    "approval": null,
+    "locked_at": null
+  }
+}

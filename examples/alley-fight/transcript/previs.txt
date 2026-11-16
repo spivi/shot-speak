@@ -1,0 +1,36 @@
+BLOCKING PREVIS  route: headless  Blender 5.2.2
+Option A: Handheld close coverage  [ok]
+  Camera start: 1.31 m high, 1.52 m from the group, 35 mm.
+  Camera end:   1.31 m high, 1.5 m from the group, 35 mm. Path: 1.32 m in 3.5 s.
+  Middle frame: S1 left, medium shot; S2 right, medium close-up.
+  still_start: option_A/still_start.png
+  still_mid: option_A/still_mid.png
+  still_end: option_A/still_end.png
+  plan_overhead: option_A/plan_overhead.png
+Option B: Contact insert with a ramp on contact  [ok]
+  Camera start: 1.3 m high, 2 m from the group, 85 mm.
+  Camera end:   1.3 m high, 2 m from the group, 85 mm. Path: 0.197 m in 2 s.
+  Middle frame: S1 left, close-up; S2 right, close-up.
+  still_start: option_B/still_start.png
+  still_mid: option_B/still_mid.png
+  still_end: option_B/still_end.png
+  plan_overhead: option_B/plan_overhead.png
+Option C: Low-angle wide shot  [ok]
+  Camera start: 0.15 m high, 3 m from the group, 18 mm.
+  Camera end:   0.15 m high, 3 m from the group, 18 mm. Path: 0 m in 3 s.
+  Middle frame: S1 left, wide shot; S2 right, wide shot.
+  still_start: option_C/still_start.png
+  still_mid: option_C/still_mid.png
+  still_end: option_C/still_end.png
+  plan_overhead: option_C/plan_overhead.png
+Option D: Whip pan (swish pan)  [ok]
+  Camera start: 1.45 m high, 4 m from the group, 35 mm.
+  Camera end:   1.45 m high, 4 m from the group, 35 mm. Path: 0 m in 1.5 s.
+  Middle frame: S1 centre, full shot; S2 right, full shot.
+  still_start: option_D/still_start.png
+  still_mid: option_D/still_mid.png
+  still_end: option_D/still_end.png
+  plan_overhead: option_D/plan_overhead.png
+
+Files are in examples/alley-fight/previs. Manifest: examples/alley-fight/previs/previs.json
+Use: A previs frame controls framing, lens, camera path and where people stand. It never controls the look, the light, the colour or the identity of a person.
