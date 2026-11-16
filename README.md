@@ -39,6 +39,8 @@ It also does these things:
 - **Sequences.** It writes a multi-shot prompt with exact cut times for a fight, a hit or a small scene.
 - **De-slop mode.** Paste a video prompt. The skill shows which parts give the generic "AI look" and rewrites them.
   A technique that you chose (fog in the story, a look into the lens for an interview) stays.
+- **Any medium.** Live action is the default. Say "stop-motion", "3D animated", "cartoon" or "watercolour
+  illustration", and the prompts use the words of that medium: no film grain or "real gravity" in a cartoon.
 
 The skill is a helper, not a procedure. If you know what you want, say "just give me the prompt".
 It has 4 fixed rules only: a clear yes before money is spent, no names in a generator prompt, no personal
@@ -175,9 +177,9 @@ python3 scripts/shotspeak.py mock --options examples/dog-bullet-time/options.jso
 
 ```text
 Estimate:  0.28 USD
-Card:      31764767c391
+Card:      4d6891a346c3
 DRY RUN. Nothing was sent. Ask the user in 1 line: "4 mock stills, about 0.28 USD - go?"
-  --confirm 31764767c391
+  --confirm 4d6891a346c3
 ```
 Nothing is sent before a clear yes.
 </details>
@@ -285,10 +287,9 @@ git clone https://github.com/spivi/shot-speak.git .agents/skills/shot-speak     
 ## Quick start
 
 In the agent, write what you want: "I want the bullet time thingy where the camera swishes around them mid-air.
-Two ninjas jumping off a wall." The agent does the rest. To try the scripts directly:
+Two ninjas jumping off a wall." The agent does the rest. To try the scripts directly, from the folder of the clone:
 
 ```sh
-cd shot-speak
 python3 scripts/shotspeak.py prompt --phrase "slow push in on her face as she understands" \
   --subject "a young woman" --setting "a train carriage at night"   # fast path: 1 prompt, no options
 python3 scripts/shotspeak.py detect                                  # which image backend? never prints a key
@@ -296,7 +297,7 @@ python3 scripts/shotspeak.py plan --phrase "the bullet time thingy where the cam
   --subject "two masked ninjas" --action "at the top of a jump" --setting "a walled courtyard at sunset" \
   --out shotspeak_out/ninjas
 python3 scripts/shotspeak.py mock --options shotspeak_out/ninjas/options.json --dry-run   # prompts and cost, sends nothing
-python3 scripts/shotspeak.py mock --options shotspeak_out/ninjas/options.json --confirm FINGERPRINT   # paid
+python3 scripts/shotspeak.py mock --options shotspeak_out/ninjas/options.json --confirm FINGERPRINT   # paid: needs a key and the yes
 python3 scripts/shotspeak.py previs --options shotspeak_out/ninjas/options.json           # optional, free, local Blender
 python3 scripts/shotspeak.py choose --options shotspeak_out/ninjas/options.json --pick B --mix light=C
 python3 scripts/shotspeak.py sequence --options shotspeak_out/ninjas/options.json --pick B --pattern build --seconds 10
@@ -327,11 +328,13 @@ The mock stills come from the first backend that is available.
 - **In Codex with no key**, the skill uses the built-in image generation. **In Claude with no key and no image
   connector**, it says that the mock stills need an image model: add a key, or paste the prompts into an image tool.
 - **Nothing is sent without your yes.** `--dry-run` prints the prompts, the model, the estimate and a card fingerprint.
-  A paid run needs `--confirm` with that fingerprint. A changed prompt, model, size, quality or extra field changes
-  the fingerprint, and the tool refuses. An image is reused only for the exact request that made it.
-- **Caps:** 4 images in 1 run, and 1.00 USD in 1 run. An unknown cost is refused until you set a figure.
+  A paid run needs `--confirm` with that fingerprint. A changed prompt, model, size, quality, extra field or
+  estimate changes the fingerprint, and the tool refuses. An image is reused only for the exact request that made it.
+- **Caps:** 4 images in 1 run, and 1.00 USD in 1 run. An unknown cost is refused until you set a figure, or
+  accept the unknown cost with `--accept-unknown-cost`.
 - **The estimate is 0.07 USD for each image, 0.28 USD for 4.** It is a planning estimate, not a provider quote.
 - **No automatic retry.** After a timeout the result is unknown and can have been billed, so the tool stops.
+  The key goes only to the host of the request; a status link on another host is not opened.
 - **Keys are never printed, logged or stored** (the environment, then `.env.local`, then `.env`; keep them out of Git).
   Only the mock image prompt and its fixed settings go to a provider. The tool refuses an email, a URL, a file path,
   a key, or the name of a product, a film, a franchise or a director. These checks are word patterns, not a guarantee.
@@ -347,8 +350,8 @@ shot-speak/
   references/     index.md routes to topic folders. Each folder has an index.md and small child files.
                   flow/ camera/ light-colour/ language/ looks/ quality/ backends/ previs/ sequences/ commands.md
   scripts/        shotspeak.py (the command line), catalog.py (the craft data), previs.py, build_*.py
-  docs/           replay.svg, walkthrough/ (the interactive page), img/
-  tests/          offline unit tests
+  docs/           replay.svg, walkthrough/ (the interactive page), img/, video/, evaluation.md
+  tests/          offline tests and fixtures/ (the evaluation set)
   examples/       worked examples (index.md)
 ```
 
@@ -356,10 +359,10 @@ shot-speak/
 
 1. A generator fills every gap with its default. Close the gap with a decision.
 2. Put the camera where a crew can stand: low and next to the action, or far away on a long lens.
-3. Shoot from the side or three-quarter. Nobody looks into the lens.
+3. Shoot from the side or three-quarter. Nobody looks into the lens, unless the shot speaks to the viewer.
 4. Select the lens for a feeling: 18 mm low and close for scale, 85 to 135 mm from far away for tension.
 5. Use 1 hard light source. Point the camera toward it. Let a third of the frame go black.
-6. No glow, no bloom, no fog, no wet floor, no flare without a source.
+6. No glow, bloom, fog, wet floor or flare without a cause in the place or the story.
 7. Real time is the rule. Slow motion is for 1 beat.
 8. An arc is about 130 degrees, never a full circle.
 9. Energy comes from cutting: short shots, a new camera mode in each one.

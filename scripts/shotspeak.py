@@ -109,7 +109,11 @@ _PRIVATE_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+|https?://\S+|\bfile://\S+|\bd
 _NEGATION_RE = re.compile(r"(?<![\w-])(no|not|never|avoid|without|nobody|nothing|none|neither|nor|don't|don’t|do not|doesn't|"
                           r"does not|instead of|rather than)(?![\w-])", re.I)
 _AVOID_HEAD_RE = re.compile(r"\b(avoid|negative prompt|negative|do not include|don't include)\s*:", re.I)
-_CLAUSE_END_RE = re.compile(r"[.;:!?,\n]+|\s(?:but|while|whereas)\s", re.I)
+_CLAUSE_END_RE = re.compile(r"[.;:!?,\n]+|\s(?:but|while|whereas|except|unless|apart from|other than|outside|save for)\s", re.I)
+# An exception after a negation ("no slow motion except at the peak") makes the negation partial: it forbids nothing whole.
+_EXCEPTION_RE = re.compile(r"\b(except|unless|apart from|other than|outside|save for|only (at|in|for|on))\b", re.I)
+# A shot marker starts a unit that ends at the next marker or the end of its line. Text outside a shot applies to all.
+_SHOT_MARK_RE = re.compile(r"(?im)^\s*\d+\.\s|\bshot\s*\d+\s*[:.)-]")
 _SENTENCE_END_RE = re.compile(r"[.;!?\n]+")
 _ON_PURPOSE_RE = re.compile(r"\b(on purpose|deliberate(ly)?|intentional(ly)?|by design|as a (stylistic|creative|deliberate) choice)\b", re.I)
 
@@ -292,6 +296,32 @@ def _spared(tell, match_text, intended):
     return intended and (not tell.get("spares") or bool(re.fullmatch(tell["spares"], match_text.strip(" ,"), re.I)))
 
 
+def _shot_of(text, at):
+    """The start of the shot marker that holds position ``at``, or None for text that applies to every shot."""
+    marks = [m.start() for m in _SHOT_MARK_RE.finditer(text, 0, at + 1)]
+    return marks[-1] if marks and "\n" not in text[marks[-1]:at] else None
+
+
+def _forbidden(tell, parts, text, matches):
+    """True when the prompt forbids what a tell asks for: an unqualified negation of the same thing in the same shot
+    (or in text that applies to every shot). "No slow motion except at the peak" is qualified, so it forbids nothing whole."""
+    starts, at = [], 0
+    for part, _kind, _purpose in parts:
+        starts.append(at)
+        at += len(part)
+    asked = {_shot_of(text, starts[index] + m.start()) for index, m in matches}
+    for index, (part, kind, _purpose) in enumerate(parts):
+        if kind != "forbid" or not re.search(tell["forbids"], part, re.I):
+            continue
+        sentence_end = _SENTENCE_END_RE.search(text, starts[index])
+        if _EXCEPTION_RE.search(text, starts[index], sentence_end.start() if sentence_end else len(text)):
+            continue
+        shot = _shot_of(text, starts[index])
+        if shot is None or None in asked or shot in asked:
+            return True
+    return False
+
+
 def scan(text, check_missing=False, context=""):
     """The AI-slop tells in a prompt. Returns (flagged, kept), 2 lists of tell dicts with 'evidence'.
 
@@ -317,7 +347,7 @@ def scan(text, check_missing=False, context=""):
             live = []
         if live:
             hit = {**base, "evidence": live[0]}
-            if tell.get("forbids") and any(kind == "forbid" and re.search(tell["forbids"], part, re.I) for part, kind, _ in parts):
+            if tell.get("forbids") and _forbidden(tell, parts, text or "", matches):
                 hit["contradiction"] = True
             flagged.append(hit)
         elif spared:
@@ -572,8 +602,9 @@ def build_image_prompt(option, ctx):
         faces = []  # the user's words decide where the faces look
     else:
         faces = ["FACES: turned away from the lens, in profile, three-quarter or from behind."]
+    film = C.MEDIUMS[ctx.get("medium") or "live_action"]["film"]
     lines = [
-        f"A single still frame from a live-action film, {ctx['aspect']} frame. A storyboard-grade production mock that shows framing, lens, light and colour.",
+        f"A single still frame from {film}, {ctx['aspect']} frame. A storyboard-grade production mock that shows framing, lens, light and colour.",
         f"SUBJECT: {ctx['subject']} {ctx['action']}, in {ctx['setting']}. Generic stand-in figures, not a likeness of any real person.",
         f"CAMERA: {camera}. Camera placement: {option['placement']}.",
         f"LENS: {option['lens']}; {lens_look(option['lens'])}.",
@@ -584,7 +615,7 @@ def build_image_prompt(option, ctx):
         "AVOID: " + "; ".join(avoid_clauses(tells, choices)) + ".",
         "One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
     ]
-    return "\n".join(lines)
+    return medium_text("\n".join(lines), ctx)
 
 
 def build_video_snippet(option, ctx):
@@ -602,8 +633,8 @@ def build_video_snippet(option, ctx):
     body = template.format(subject=ctx["subject"], action=ctx["action"])
     body = body[0].upper() + body[1:]
     look = f"; {option['look_clause']}" if option.get("look_clause") else ""
-    return (f"{body}; {option['lens']} lens; {option['light']['prompt']}; {option['grade']['prompt']}; "
-            f"{option['speed']['prompt']}{look}. Avoid: {'; '.join(avoid_clauses(tells, user_choices(ctx)))}.")
+    return medium_text(f"{body}; {option['lens']} lens; {option['light']['prompt']}; {option['grade']['prompt']}; "
+                       f"{option['speed']['prompt']}{look}. Avoid: {'; '.join(avoid_clauses(tells, user_choices(ctx)))}.", ctx)
 
 
 # The generated prompts are derived from the decisions of an option. ``prompt_basis`` records what they were built
@@ -616,7 +647,23 @@ def doc_ctx(doc, action=None):
     ctx = {k: doc.get(k, "") for k in ("phrase", "subject", "action", "setting", "aspect")}
     if action:
         ctx["action"] = action
+    if doc.get("medium"):
+        if doc["medium"] not in C.MEDIUMS:
+            raise Refusal(f"Unknown medium '{doc['medium']}'. Use one of: {', '.join(C.MEDIUMS)}.")
+        ctx["medium"] = doc["medium"]
     return ctx
+
+
+def detect_medium(words):
+    """The visual medium that the user's words name: a key of C.MEDIUMS. Live action when the words name none."""
+    return next((key for key, medium in C.MEDIUMS.items() if re.search(medium["detect"], words or "", re.I)), "live_action")
+
+
+def medium_text(text, ctx):
+    """A prompt in the words of its medium: the phrases that hold only for a camera on a real set are replaced."""
+    for old, new in C.MEDIUMS[ctx.get("medium") or "live_action"]["swap"]:
+        text = text.replace(old, new)
+    return text
 
 
 def _digest(value):
@@ -625,7 +672,8 @@ def _digest(value):
 
 
 def _inputs_digest(option, ctx):
-    return _digest([{k: option.get(k) for k in PROMPT_INPUTS}, {k: ctx.get(k, "") for k in ("phrase", "subject", "action", "setting", "aspect")}])
+    keys = ("phrase", "subject", "action", "setting", "aspect") + (("medium",) if ctx.get("medium") else ())
+    return _digest([{k: option.get(k) for k in PROMPT_INPUTS}, {k: ctx.get(k, "") for k in keys}])
 
 
 def is_custom(option, field):
@@ -708,6 +756,10 @@ def build_options(phrase, subject=None, action=None, setting=None, aspect="16:9"
             matched = True
     ctx = {"phrase": phrase, "subject": subject or default_subject(phrase), "action": action or default_action(phrase),
            "setting": setting or "a plain, worn, uncluttered place", "aspect": aspect}
+    medium = detect_medium(" . ".join((phrase, subject or "", action or "", setting or "")))
+    if medium != "live_action":  # live action is the default and leaves no trace in the files
+        ctx["medium"] = medium
+        notes = notes + [f"The medium is {C.MEDIUMS[medium]['name'].lower()}, from your words. The prompts describe it in that medium."]
     for field in ("subject", "action", "setting"):
         problems = lint_prompt(ctx[field])
         if problems:
@@ -1036,12 +1088,14 @@ def estimate(backend, count, env):
 
 def request_fingerprint(backend, size, quality, prompts, env):
     """The card fingerprint. It binds the approval to everything that decides the requests and their cost:
-    the backend, the model, the size, the quality, every prompt and the extra input fields. These are all the parts
-    of each outgoing request apart from the key (see ``request_for``), so a changed request needs a new yes.
+    the backend, the model, the size, the quality, every prompt, the extra input fields, and the estimate that the
+    card shows (the number of images and the total). A changed request or a changed estimate needs a new yes.
     """
+    prompts = list(prompts)
+    total, _basis = estimate(backend, len(prompts), env)
     extra = provider_extra(env, backend["name"])
-    payload = [backend["name"], backend["model"], size, quality, list(prompts)] + ([extra] if extra else [])
-    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+    payload = [backend["name"], backend["model"], size, quality, prompts, {"images": len(prompts), "estimated_total_usd": total}]
+    return hashlib.sha256(json.dumps(payload + ([extra] if extra else []), sort_keys=True).encode("utf-8")).hexdigest()[:12]
 
 
 def card(doc, backend, size, quality, env):
@@ -1090,11 +1144,34 @@ class ProviderError(Exception):
 MAX_ANSWER_BYTES = 50_000_000
 
 
+# Headers that carry an account credential. They go only to the host that the request was made for.
+_CREDENTIAL_HEADERS = {"authorization", "proxy-authorization", "cookie", "x-api-key"}
+
+
+class _RedirectHandler(urllib.request.HTTPRedirectHandler):
+    """Follow a redirect only to an https address. A redirect to another host gets no credential header."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        target = urllib.parse.urlsplit(newurl)
+        if target.scheme != "https":
+            raise ProviderError("The provider sent a redirect to an address that is not https. It was not followed.", ambiguous=True)
+        new = super().redirect_request(req, fp, code, msg, headers, newurl)
+        if new is not None and target.hostname != urllib.parse.urlsplit(req.full_url).hostname:
+            for name in [h for h in new.headers if h.lower() in _CREDENTIAL_HEADERS]:
+                del new.headers[name]
+        return new
+
+
+@functools.lru_cache(maxsize=1)
+def _opener():
+    return urllib.request.build_opener(_RedirectHandler)
+
+
 def http_transport(method, url, headers, body=None, timeout=180):
     """Return (status, bytes). Raises ProviderError. Tests replace this function."""
     request = urllib.request.Request(url, data=body, headers=headers, method=method)
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with _opener().open(request, timeout=timeout) as response:
             data = response.read(MAX_ANSWER_BYTES + 1)
             if len(data) > MAX_ANSWER_BYTES:
                 raise ProviderError(f"The answer is larger than {MAX_ANSWER_BYTES // 1_000_000} MB. It was not used.", ambiguous=True)
@@ -1261,21 +1338,29 @@ def gen_fal(prompt, backend, key, size, quality, env, transport):
     return checked_image(_fetch(transport, link)), {"request_id": data.get("request_id")}
 
 
-def gen_replicate(prompt, backend, key, size, quality, env, transport, poll_seconds=2, max_polls=60, sleep=time.sleep):
+def gen_replicate(prompt, backend, key, size, quality, env, transport, poll_seconds=2, max_polls=60, max_seconds=300,
+                  sleep=time.sleep, clock=time.monotonic):
+    """Create 1 prediction, then check its status link. The key goes only to the https host of the create request.
+    The checks stop after ``max_polls`` or ``max_seconds``. The prediction is never created again."""
     headers = {"Authorization": f"Bearer {key}", "Prefer": "wait"}
     url, body = request_for({**backend, "name": "replicate"}, prompt, size, quality, env)
     data = _json_call(transport, "POST", url, headers, body)
-    polls = 0
-    while data.get("status") in ("starting", "processing") and polls < max_polls:
-        get_url = (data.get("urls") or {}).get("get")
-        if not get_url:
-            break
+    host, polls, started = urllib.parse.urlsplit(url).hostname, 0, clock()
+    while data.get("status") in ("starting", "processing"):
+        if polls >= max_polls or clock() - started >= max_seconds:
+            raise ProviderError(f"Prediction {data.get('id')} was still '{data.get('status')}' after {polls} checks in "
+                                f"{clock() - started:.0f} s. It was not created again.", ambiguous=True)
+        get_url = str((data.get("urls") or {}).get("get") or "")
+        link = urllib.parse.urlsplit(get_url)
+        if link.scheme != "https" or link.hostname != host:
+            raise ProviderError(f"Prediction {data.get('id')}: the status link is not on the https host of the request. "
+                                "It was not opened, and the prediction was not created again.", ambiguous=True)
         sleep(poll_seconds)
         data = _json_call(transport, "GET", get_url, {"Authorization": f"Bearer {key}"})
         polls += 1
     if data.get("status") != "succeeded":
         raise ProviderError(f"Prediction {data.get('id')} ended with status '{data.get('status')}': {data.get('error')}",
-                            ambiguous=data.get("status") in ("starting", "processing"))
+                            ambiguous=False)
     link = _first_url(data.get("output"))
     if not link:
         raise ProviderError("The provider answered without an image URL.", ambiguous=True)
@@ -1588,7 +1673,7 @@ def choose(doc, pick, mix=None, action_text=None, previs=None, layout_ref=False)
         "RULES: State the exact number of people. Screen direction stays the same for the whole shot.",
         "AVOID: " + "; ".join(avoid_clauses(tells, user_choices(ctx))) + ".",
     ] + ([LAYOUT_LINE] if layout_ref else [])
-    block = "\n".join(block)
+    block = medium_text("\n".join(block), ctx)
     if layout_ref and not previs:
         raise Refusal("--layout-ref needs a previs for the picked option. Run 'previs' first.")
     if previs and {"lens", "speed"} & set(mixed):
@@ -2192,7 +2277,7 @@ def build_sequence(doc, pick, pattern="coverage", seconds=10.0, beats=None, anch
         "LAST FRAME: [where each person is at the end; hold it still]. Use this frame as the start of the next clip.",
         "AVOID: " + "; ".join(avoid_clauses(tells, choices)) + ".",
     ]
-    block = "\n".join(lines)
+    block = medium_text("\n".join(lines), ctx)
     problems = lint_prompt(block)
     if problems:
         raise Refusal("The sequence prompt " + problems[0])

@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+### Medium-aware prompts, provider status checks and approval of the estimate
+
+- **The medium follows the user's words.** Live action stays the default, with the same prompts as before. Words such
+  as "stop-motion", "3D animated", "cartoon" or "watercolour illustration" select that medium: the mock still names
+  it, and the prompts use its words (believable weight, handmade or drawn textures, no film grain for drawn or
+  rendered work). `plan` says the medium in 1 line; `medium` in `options.json` changes it. There is no new question,
+  flag or step.
+- **A contradiction is checked in its own shot.** "No slow motion except at the peak" forbids nothing whole, and a
+  negation in another shot does not contradict this one. A forbid in a line for every shot (an `AVOID:` line) still counts.
+- **The card fingerprint covers the estimate.** The number of images and the estimated total are part of the yes, so a
+  changed estimate needs a new yes. The fingerprints in the examples and the README changed for this reason.
+- **Provider status checks.** A Replicate status link is opened only on the https host of the request, with at most
+  60 checks or 300 s. A redirect gets the key only on the same host, and only https redirects are followed.
+- `README.md`: the quick start, the caps, the fingerprint and the craft lines describe the current behaviour.
+
 ### Correctness, spend safety and context-aware anti-slop
 
 - **The decisions are the source of truth.** The image prompt and the video prompt of an option are rebuilt from its

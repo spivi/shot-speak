@@ -383,12 +383,16 @@ SLOP_CHOICES = {
 # The words that, after "no" or "avoid", forbid the same thing that a tell asks for. A prompt that asks for a tell
 # and forbids it too is contradictory, and the check says so.
 SLOP_FORBIDS = {
-    "frontal_centred": r"\b(cent(er|re)d?|front[- ]?facing|frontal)\b", "eyes_to_lens": r"\b(camera|lens|viewer)\b",
-    "symmetry_hero": r"\bsymmetr", "orbit_full": r"\b(orbit|circl|360|half[- ]circle|full circle)",
+    "frontal_centred": r"\b((?<!off-)cent(er|re)d|front[- ]?facing|frontal|in the (center|centre) of (the )?frame)\b",
+    "eyes_to_lens": r"\b(look\w* (straight |directly |right )?(at|into|to) (the )?(camera|lens|viewer)|eye contact|into the lens|at the camera)\b",
+    "symmetry_hero": r"\bsymmetr", "orbit_full": r"\b(orbit\w*|circl\w* (around|the)|360|half[- ]circle|full circle)",
     "soft_glow": r"\bglow", "bloom_haze": r"\b(bloom|haze|hazy|fog|mist|god[- ]?rays?|volumetric)",
-    "glossy_floor": r"\b(wet|glossy|reflect)", "flare_spam": r"\bflares?\b", "fake_bokeh": r"\b(bokeh|blur)",
-    "aquarium_speed": r"\b(float|drift|glid)", "slowmo_everywhere": r"\bslow[- ]?mo", "floating_bodies": r"\b(float|hover)",
-    "hdr_saturated": r"\b(hdr|over[- ]?saturat)", "perfect_textures": r"\b(plastic|perfect|clean)", "teal_orange_default": r"\bteal",
+    "glossy_floor": r"\b(glossy|wet (floor|street|ground|pavement|surface)|wet reflections?|reflective (floor|ground))",
+    "flare_spam": r"\bflares?\b", "fake_bokeh": r"\b(bokeh|blurr(ed|y) background)",
+    "aquarium_speed": r"\b((floating|drifting|gliding) camera|camera (drift|float|glide)\w*|camera drift|slow (drift|float))",
+    "slowmo_everywhere": r"\bslow[- ]?mo", "floating_bodies": r"\b((nobody|no one|nothing|bodies|people) (floats?|hovers?)|weightless|hover\w*)",
+    "hdr_saturated": r"\b(hdr|over[- ]?saturat)", "perfect_textures": r"\b(plastic|perfect(ly)? clean|flawless|pristine|polished|sleek)",
+    "teal_orange_default": r"\bteal",
 }
 for _tell in SLOP_TELLS:
     _tell.update(SLOP_CHOICES[_tell["id"]], forbids=SLOP_FORBIDS.get(_tell["id"]))
@@ -1298,3 +1302,41 @@ REFERENCE_SITES = [
     ("American Cinematographer", "theasc.com", "Articles in which crews explain how they made a look.", "Read the articles."),
     ("ShotDeck", "shotdeck.com", "A large tagged library of stills. It needs an account.", "Search link only. Never log in, never copy."),
 ]
+
+# --------------------------------------------------------------------------
+# Visual medium. Found in the user's words; live action when no medium is named.
+# ``detect``: words that name the medium (checked in this order, the first match wins).
+# ``film``:   how the mock still names its source.
+# ``swap``:   catalogue phrases that hold only for a camera on a real set, and the words that this medium uses.
+#             A stop-motion film is photographed, so it keeps the grain of a camera.
+# --------------------------------------------------------------------------
+_PHYSICS_SWAP = [
+    ("real gravity, weight and cloth move truthfully", "believable weight, and cloth that moves with the body"),
+    ("real gravity returns at the end of the move", "the weight returns at the end of the move"),
+    ("real gravity and real jump height, nobody floats", "believable weight and jump height, nobody floats"),
+    ("real surface texture", "surface texture"),
+]
+_GRAIN_SWAP = [("photochemical film look: fine grain, ", ""), (", visible grain", ""), ("fine grain, ", "")]
+_TEXTURES = "worn real textures with dust, creases and small defects, nothing plastic or perfectly clean"
+MEDIUMS = {
+    "live_action": {"name": "live action", "film": "a live-action film",
+                    "detect": r"\blive[- ]action\b|\bphotoreal(istic)?\b", "swap": []},
+    "stop_motion": {"name": "stop-motion", "film": "a stop-motion film shot on miniature sets with handmade puppets",
+                    "detect": r"\bstop[- ]?motion\b|\bclaymation\b|\bplasticine\b|\bclay (\w+ )?(puppets?|figures?|models?|characters?)\b|"
+                              r"\bpuppet animation\b|\bfelt puppets?\b",
+                    "swap": _PHYSICS_SWAP + [("photochemical film look: ", "")] + [(_TEXTURES, "handmade textures: fabric weave, clay marks and small imperfections, "
+                                                         "nothing plastic or perfectly clean")]},
+    "3d_animation": {"name": "3D animation", "film": "a 3D animated film",
+                     "detect": r"\b3d[- ](animat\w*|render\w*|cartoon|cg\w*|characters?)\b|\bcgi\b|\bcg animation\b|\bcomputer[- ]animated\b",
+                     "swap": _PHYSICS_SWAP + _GRAIN_SWAP + [(_TEXTURES, "surfaces with texture and small variations, "
+                                                                        "nothing plastic or perfectly clean")]},
+    "illustration": {"name": "illustration", "film": "an illustrated film in a painted style",
+                     "detect": r"\billustrat\w*|\bwatercolou?rs?\b|\bgouache\b|\bink (drawing|wash)\b|\bpencil (drawing|sketch)\b|"
+                               r"\boil painting\b|\bpainted (style|look)\b|\bcomic[- ]book\b|\bgraphic novel\b|\bpicture[- ]book\b",
+                     "swap": _PHYSICS_SWAP + _GRAIN_SWAP + [(_TEXTURES, "painted texture with visible brushwork, "
+                                                                        "nothing flat or computer-perfect")]},
+    "animation": {"name": "2D animation", "film": "a 2D animated film",
+                  "detect": r"\b2d\b|\bcartoons?\b|\bcel[- ]shad\w*|\bhand[- ]drawn\b|\banime\b|\banimation\b|\banimated (film|movie|short|series|style|look)\b",
+                  "swap": _PHYSICS_SWAP + _GRAIN_SWAP + [(_TEXTURES, "drawn texture: lines and colour fills with small variations, "
+                                                                     "nothing flat or computer-perfect")]},
+}

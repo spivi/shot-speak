@@ -20,17 +20,18 @@ FAKE_KEY = "sk-test-THISISAFAKEKEY1234567890"
 
 class Offline(unittest.TestCase):
     def setUp(self):
-        self._urlopen = urllib.request.urlopen
+        self._urlopen, self._open = urllib.request.urlopen, urllib.request.OpenerDirector.open
 
         def bomb(*args, **kwargs):
             raise AssertionError("A test tried to reach the network.")
 
         urllib.request.urlopen = bomb
+        urllib.request.OpenerDirector.open = bomb
         self.tmp = tempfile.TemporaryDirectory()
         self.dir = Path(self.tmp.name)
 
     def tearDown(self):
-        urllib.request.urlopen = self._urlopen
+        urllib.request.urlopen, urllib.request.OpenerDirector.open = self._urlopen, self._open
         self.tmp.cleanup()
 
     def base(self, *extra):
@@ -458,7 +459,7 @@ class Generation(Offline):
             if "fal.run" in url:
                 return 200, json.dumps({"images": [{"url": "https://cdn.example/a.png"}]}).encode()
             if url.endswith("/predictions"):
-                return 201, json.dumps({"id": "p1", "status": "processing", "urls": {"get": "https://host.example/predictions/p1"}}).encode()
+                return 201, json.dumps({"id": "p1", "status": "processing", "urls": {"get": "https://" + "api.replicate.com/v1/predictions/p1"}}).encode()
             if url.endswith("/predictions/p1"):
                 return 200, json.dumps({"id": "p1", "status": "succeeded", "output": ["https://cdn.example/b.png"]}).encode()
             return 200, PNG

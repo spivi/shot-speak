@@ -24,6 +24,9 @@ Read this file when a request fails, or before you send data to a provider.
 - What leaves the machine for 1 image: the key header, and a JSON body. For OpenAI the body is the model, the prompt,
   the size, the quality and `n: 1`. For Higgsfield, fal.ai and Replicate it is the prompt and the extra fields of
   `SHOTSPEAK_<NAME>_EXTRA_INPUT`. The image link in the answer is then opened, with no key. Only an https link is opened.
+- The key goes only to the host of the request. A redirect to another host gets no key, and a redirect that is not
+  https is not followed. A Replicate status link must be on the same https host, or it is not opened. The status
+  checks stop after 60 checks or 300 s; the result is then unknown, and nothing is sent again.
 - The extra fields cannot set the prompt or the number of images. A key or a value with a link, a file path, an email
   address, a key or a protected name is refused, so no user photo goes out this way.
 - The tool refuses a prompt, a subject or an extra field that contains an email address, a URL, a file path, a key or a

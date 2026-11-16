@@ -21,17 +21,18 @@ WEBP = b"RIFF" + (4 + 22).to_bytes(4, "little") + b"WEBP" + b"VP8L" + (14).to_by
 
 class Offline(unittest.TestCase):
     def setUp(self):
-        self._urlopen = urllib.request.urlopen
+        self._urlopen, self._open = urllib.request.urlopen, urllib.request.OpenerDirector.open
 
         def bomb(*args, **kwargs):
             raise AssertionError("A test tried to reach the network.")
 
         urllib.request.urlopen = bomb
+        urllib.request.OpenerDirector.open = bomb
         self.tmp = tempfile.TemporaryDirectory()
         self.dir = Path(self.tmp.name)
 
     def tearDown(self):
-        urllib.request.urlopen = self._urlopen
+        urllib.request.urlopen, urllib.request.OpenerDirector.open = self._urlopen, self._open
         self.tmp.cleanup()
 
     def base(self, *extra):
@@ -269,13 +270,14 @@ class OutgoingRequest(Offline):
         self.assertIn("does not match this card", err)
         self.assertNotIn("fal_secret_value_123456", err)
 
-    def test_the_fingerprint_without_extra_inputs_is_unchanged_from_0_2_0(self):
-        """The README and the examples show card fingerprints. The payload of 0.2.0 must give the same value."""
+    def test_the_fingerprint_covers_the_request_and_the_shown_estimate(self):
+        """The card shows the model, the image count and the estimate. The fingerprint is made of exactly those parts."""
         import hashlib
         backend = {"name": "openai", "model": S.OPENAI_DEFAULT_MODEL}
-        legacy = hashlib.sha256(json.dumps(["openai", S.OPENAI_DEFAULT_MODEL, "1536x864", "medium", ["a", "b"]],
-                                           sort_keys=True).encode()).hexdigest()[:12]
-        self.assertEqual(S.request_fingerprint(backend, "1536x864", "medium", ["a", "b"], {}), legacy)
+        payload = ["openai", S.OPENAI_DEFAULT_MODEL, "1536x864", "medium", ["a", "b"],
+                   {"images": 2, "estimated_total_usd": round(2 * S.OPENAI_EST_USD_PER_IMAGE, 4)}]
+        expected = hashlib.sha256(json.dumps(payload, sort_keys=True).encode()).hexdigest()[:12]
+        self.assertEqual(S.request_fingerprint(backend, "1536x864", "medium", ["a", "b"], {}), expected)
 
     def test_a_model_id_cannot_change_the_endpoint_path(self):
         for model in ("../../v1/other", "owner//model", "owner/model?x=1", "https://evil.example/x", ""):
@@ -340,7 +342,7 @@ class ProviderAnswers(Offline):
             def __exit__(self, *a):
                 return False
 
-        urllib.request.urlopen = lambda *a, **k: Big()
+        urllib.request.OpenerDirector.open = lambda *a, **k: Big()
         saved, S.MAX_ANSWER_BYTES = S.MAX_ANSWER_BYTES, 1000
         try:
             with self.assertRaises(S.ProviderError) as caught:
@@ -355,7 +357,7 @@ class ProviderAnswers(Offline):
         def cut(*a, **k):
             raise http.client.IncompleteRead(b"partial")
 
-        urllib.request.urlopen = cut
+        urllib.request.OpenerDirector.open = cut
         with self.assertRaises(S.ProviderError) as caught:
             S.http_transport("GET", "https://cdn.example.org/a.png", {})
         self.assertTrue(caught.exception.ambiguous)

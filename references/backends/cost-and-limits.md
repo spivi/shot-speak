@@ -9,7 +9,8 @@ Read this file before a paid request: the cost question, the fingerprint and the
 2. Ask in 1 line: "4 mock stills, about 0.28 USD - go?" The estimate is not a provider quote. Say so when
    the user asks about the price.
 3. After a clear yes, run the same command with `--confirm FINGERPRINT`. The fingerprint covers the backend, the
-   model, the size, the quality, every prompt and the extra input fields. If 1 of them changes, the tool refuses.
+   model, the size, the quality, every prompt, the extra input fields, the number of images and the estimate.
+   If 1 of them changes, the tool refuses.
    Ask again with the new number.
 
 The host path and the paste path send nothing from this tool.

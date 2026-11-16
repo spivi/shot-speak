@@ -44,7 +44,7 @@ Size:      1536x864   Quality: medium
 Images:    3
 Estimate:  0.21 USD
 Basis:     3 x 0.07 USD. Planning estimate for the default model, not a provider quote. The provider bills by tokens; check the final charge at the provider.
-Card:      35dc0395c0ab
+Card:      14f5fd62ce5f
 Key:       OPENAI_API_KEY was not found. A live run needs it in the environment or in .env.local.
 Round:     1 of 3 at most. Decision under test: light.
 Total:     0.00 USD estimated for the rounds before this one; 0.21 USD with this round.
@@ -52,4 +52,4 @@ Anti-slop check: passed for every option.
 
 DRY RUN. Nothing was sent. Ask the user in 1 line: "3 mock stills, about 0.21 USD - go?"
 After a clear yes, run again with
-  --confirm 35dc0395c0ab
+  --confirm 14f5fd62ce5f
