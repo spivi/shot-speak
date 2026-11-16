@@ -8,7 +8,8 @@ Read this file when you present options or the final shot spec in chat.
 - **Make the options different ideas.** Change the technique family, and with it the camera height, the lens
   and the light. 4 arcs at 4 speeds is 1 idea, not 4.
 - Mark exactly 1 option as recommended. Give the reason in 1 sentence that uses the user's own words.
-- Every option passes the anti-slop check ([the slop guide](slop-overview.md)) before any image exists.
+- Run the anti-slop check ([the slop guide](slop-overview.md)) before any image exists. Fix each finding, or keep
+  it when it is the user's choice.
 - If more than 1 option slows time down, say that a finished piece uses slow motion for 1 beat only.
 
 ## The card

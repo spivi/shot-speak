@@ -21,7 +21,9 @@ from __future__ import annotations
 import argparse
 import base64
 import copy
+import functools
 import hashlib
+import http.client
 import json
 import os
 import re
@@ -101,8 +103,15 @@ _BANNED_RE = re.compile(r"(?<![a-z0-9])(" + "|".join(re.escape(n) for n in sorte
 _CUE = r"(?:like|as in|style of|styled? like|inspired by|from|out of|a la|feel of|look of|vibe of|think)"
 _UNKNOWN_REF_RE = re.compile(r"\b(?:like|as in|style of|inspired by|a la)\s+(?:the |a |an |that |those )?"
                              r"((?:[A-Z0-9][\w'.:-]*)(?:\s+(?:of|the|and|in|a|to|[A-Z0-9][\w'.:-]*))*)")
-_PRIVATE_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+|https?://\S+|(?:/Users/|/home/|[A-Z]:\\)\S+|\b(?:sk|key|tok)[-_][A-Za-z0-9_-]{16,}")
-_NEGATION_RE = re.compile(r"\b(no|not|never|avoid|without|nobody|nothing|none|don't|do not|instead of)\b", re.I)
+_PRIVATE_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.]+|https?://\S+|\bfile://\S+|\bdata:[\w/+.-]+[;,]\S*|(?:/Users/|/home/|~/|[A-Z]:\\)\S+"
+                         r"|\b(?:sk|key|tok|r8|fal|hf)[-_][A-Za-z0-9_-]{16,}")
+# Negation scope: a negation word negates the rest of its clause. "Avoid:" negates the rest of its line.
+_NEGATION_RE = re.compile(r"(?<![\w-])(no|not|never|avoid|without|nobody|nothing|none|neither|nor|don't|don’t|do not|doesn't|"
+                          r"does not|instead of|rather than)(?![\w-])", re.I)
+_AVOID_HEAD_RE = re.compile(r"\b(avoid|negative prompt|negative|do not include|don't include)\s*:", re.I)
+_CLAUSE_END_RE = re.compile(r"[.;:!?,\n]+|\s(?:but|while|whereas)\s", re.I)
+_SENTENCE_END_RE = re.compile(r"[.;!?\n]+")
+_ON_PURPOSE_RE = re.compile(r"\b(on purpose|deliberate(ly)?|intentional(ly)?|by design|as a (stylistic|creative|deliberate) choice)\b", re.I)
 
 
 class Refusal(Exception):
@@ -237,46 +246,119 @@ def lint_prompt(text):
     return problems
 
 
-def _positive_clauses(text):
-    """Clauses that ask for something. Clauses that forbid something are dropped."""
-    clauses = re.split(r"[.;:\n]+|, (?=no |not |never |without )", text or "")
-    return " . ".join(c for c in clauses if not _NEGATION_RE.search(c))
+def segments(text):
+    """Cut ``text`` into consecutive parts: (part, kind, on_purpose). Joined, the parts give ``text`` back.
+
+    ``kind`` is "ask" (a clause or the start of a clause that asks for something), "forbid" (from a negation word
+    to the end of its clause, or everything after "Avoid:" on its line) or "gap" (the punctuation between clauses).
+    ``on_purpose`` is True when the sentence of the part says "on purpose", "deliberately" or a similar marker.
+    """
+    out = []
+    for line in re.split(r"(?<=\n)", text or ""):
+        head = _AVOID_HEAD_RE.search(line)
+        body, tail = (line[:head.start()], line[head.start():]) if head else (line, "")
+        at = 0
+        for end in [m for m in _CLAUSE_END_RE.finditer(body)] + [None]:
+            clause = body[at:end.start() if end else len(body)]
+            sentence_end = _SENTENCE_END_RE.search(body, at)
+            sentence_start = max((m.end() for m in _SENTENCE_END_RE.finditer(body, 0, at)), default=0)
+            purpose = bool(_ON_PURPOSE_RE.search(body[sentence_start:sentence_end.start() if sentence_end else len(body)]))
+            negation = _NEGATION_RE.search(clause)
+            if negation:
+                out += [(clause[:negation.start()], "ask", purpose), (clause[negation.start():], "forbid", purpose)]
+            else:
+                out.append((clause, "ask", purpose))
+            if end:
+                out.append((end.group(0), "gap", False))
+                at = end.end()
+        if tail:
+            out.append((tail, "forbid", False))
+    return [part for part in out if part[0]]
 
 
-def slop_tells(text, check_missing=False):
-    """AI-slop tells in a prompt. Returns a list of tell dicts with 'evidence'."""
-    positive = _positive_clauses(text)
-    hits = []
-    for tell in C.SLOP_TELLS:
-        evidence = None
+def _tell_matches(tell, parts):
+    """(index of the part, match) for each match of the tell's patterns in the parts that ask for something."""
+    found = []
+    for index, (part, kind, _purpose) in enumerate(parts):
+        if kind != "ask" or (tell.get("needs") and not re.search(tell["needs"], part, re.I)):
+            continue
         for pattern in tell.get("patterns", []):
-            match = re.search(pattern, positive, re.I)
-            if match:
-                evidence = match.group(0)
-                break
-        if evidence and tell["id"] == "default_medium" and re.search(
-                r"profile|three[- ]quarter|side[- ]on|from (the side|behind|below|above)|over[- ]the[- ]shoulder|floor|overhead", positive, re.I):
-            evidence = None
-        if evidence is None and check_missing and tell.get("missing") and not re.search(tell["missing"], text or "", re.I):
-            evidence = "(not stated)"
-        if evidence:
-            hits.append({**{k: tell[k] for k in ("id", "category", "tell", "why", "fix")}, "evidence": evidence})
-    return hits
+            found += [(index, m) for m in re.finditer(pattern, part, re.I)]
+    return sorted(found, key=lambda f: (f[0], f[1].start()))
 
 
-def anti_slop_check(option):
-    """Check one option before any image is made. Returns a list of findings."""
+def _spared(tell, match_text, intended):
+    """True when the user intends this technique and this piece of evidence belongs to it."""
+    return intended and (not tell.get("spares") or bool(re.fullmatch(tell["spares"], match_text.strip(" ,"), re.I)))
+
+
+def scan(text, check_missing=False, context=""):
+    """The AI-slop tells in a prompt. Returns (flagged, kept), 2 lists of tell dicts with 'evidence'.
+
+    Only the parts that ask for something count; "no fog" asks for nothing. A tell is kept, not flagged, when
+    the user clearly intends it: its intent words are in ``text`` or ``context`` (the user's own words), or its
+    sentence says "on purpose". A flagged tell that the prompt also forbids is marked 'contradiction'.
+    The test is words only. It does not understand the scene, so a kept tell says why it was kept.
+    """
+    parts = segments(text)
+    words = f"{text or ''} . {context or ''}"
+    asked = " . ".join(p for p, kind, _ in parts if kind == "ask")
+    flagged, kept = [], []
+    for tell in C.SLOP_TELLS:
+        base = {k: tell[k] for k in ("id", "category", "tell", "why", "fix", "fine_when")}
+        matches, intent = _tell_matches(tell, parts), None
+        if matches and tell.get("intent"):  # compiled only when needed: most prompts hit few tells
+            intent = re.search(tell["intent"], words, re.I)
+        live, spared = [], []
+        for index, match in matches:
+            (spared if _spared(tell, match.group(0), bool(intent) or parts[index][2]) else live).append(match.group(0))
+        if live and tell["id"] == "default_medium" and re.search(
+                r"profile|three[- ]quarter|side[- ]on|from (the side|behind|below|above)|over[- ]the[- ]shoulder|floor|overhead", asked, re.I):
+            live = []
+        if live:
+            hit = {**base, "evidence": live[0]}
+            if tell.get("forbids") and any(kind == "forbid" and re.search(tell["forbids"], part, re.I) for part, kind, _ in parts):
+                hit["contradiction"] = True
+            flagged.append(hit)
+        elif spared:
+            kept.append({**base, "evidence": spared[0], "because": intent.group(0) if intent else "on purpose"})
+        elif check_missing and tell.get("missing") and not re.search(tell["missing"], text or "", re.I):
+            if tell.get("supplied") and re.search(tell["supplied"], words, re.I):
+                kept.append({**base, "evidence": "(not stated)", "because": "a reference gives it"})
+            else:
+                flagged.append({**base, "evidence": "(not stated)"})
+    return flagged, kept
+
+
+def slop_tells(text, check_missing=False, context=""):
+    """The flagged AI-slop tells in a prompt (see ``scan``)."""
+    return scan(text, check_missing, context)[0]
+
+
+def finding(hit):
+    """1 line of advice for a flagged tell: what was found, the fix, and when the technique is right."""
+    lead = "Asked for and also forbidden: " if hit.get("contradiction") else ""
+    return f"{lead}{hit['tell']} ('{hit['evidence']}'). {hit['fix']} Fine when: {hit['fine_when']}."
+
+
+def anti_slop_check(option, context=""):
+    """Advice for 1 option. Returns a list of findings. A finding is advice: it never blocks a request.
+
+    ``context`` is the user's own words (the phrase, the subject, the action, the place). It can make a tell a choice.
+    An option can also list tell ids in ``on_purpose`` to keep them.
+    """
     findings = []
+    on_purpose = set(option.get("on_purpose") or [])
     text = " ".join(str(option.get(k, "")) for k in ("movement", "placement", "still", "video_snippet", "image_prompt"))
     light = option.get("light", {}).get("prompt", "")
-    for hit in slop_tells(text + " . " + light):
-        if hit["id"] == "vague_cinematic":
-            continue
-        findings.append(f"{hit['tell']} ('{hit['evidence']}'). {hit['fix']}")
+    for hit in slop_tells(text + " . " + light, context=context):
+        if hit["id"] != "vague_cinematic" and hit["id"] not in on_purpose:
+            findings.append(finding(hit))
     lens = re.findall(r"\d+", str(option.get("lens", "")))
     placement = str(option.get("placement", "")).lower()
     angled = re.search(r"side|profile|three[- ]quarter|behind|floor|above|overhead|knee|waist|hip|shoulder", placement)
-    if lens and all(35 <= int(n) <= 50 for n in lens) and re.search(r"chest|eye", placement) and not angled:
+    if lens and all(35 <= int(n) <= 50 for n in lens) and re.search(r"chest|eye", placement) and not angled \
+            and "default_lens" not in on_purpose:
         findings.append("The 35 to 50 mm default at chest or eye height. " + C.SLOP_BY_ID["default_lens"]["fix"])
     if not lens:
         findings.append("No lens stated. " + C.SLOP_BY_ID["missing_lens"]["fix"])
@@ -284,18 +366,38 @@ def anti_slop_check(option):
         findings.append("No light source stated. " + C.SLOP_BY_ID["missing_light"]["fix"])
     if not option.get("speed", {}).get("prompt"):
         findings.append("No speed stated. " + C.SLOP_BY_ID["missing_speed"]["fix"])
-    for degrees in re.findall(r"(\d{2,3}) degrees", str(option.get("movement", ""))):
-        if int(degrees) >= 180:
-            findings.append(f"An arc of {degrees} degrees. " + C.SLOP_BY_ID["orbit_full"]["fix"])
-    if option.get("grade", {}).get("key") == "teal_orange" and not option.get("grade_on_purpose"):
+    if "orbit_full" not in on_purpose:
+        for degrees in re.findall(r"(\d{2,3}) degrees", str(option.get("movement", ""))):
+            if int(degrees) >= 180:
+                findings.append(f"An arc of {degrees} degrees. " + C.SLOP_BY_ID["orbit_full"]["fix"])
+    if option.get("grade", {}).get("key") == "teal_orange" and not option.get("grade_on_purpose") \
+            and "teal_orange_default" not in on_purpose:
         findings.append("Teal and orange by default. " + C.SLOP_BY_ID["teal_orange_default"]["fix"])
     return findings
 
 
-def avoid_clauses(tell_ids):
+@functools.lru_cache(maxsize=256)
+def _user_choices(phrase, subject, action, setting):
+    sent = " . ".join((subject, action, setting))
+    asked = {h["id"] for h in sum(scan(sent, context=phrase), [])}  # the prompt itself will ask for these
+    chosen = {h["id"] for h in scan(phrase, context=sent)[1]}  # the user's words ask for these on purpose
+    words = f"{phrase} . {sent}"
+    present = {t["id"] for t in C.SLOP_TELLS if "avoid_kept" in t and re.search(t["intent"], words, re.I)}  # fog, rain in the place
+    return frozenset(asked | chosen | present)
+
+
+def user_choices(ctx):
+    """Tell ids whose avoid clause would contradict the user: the subject, the action or the place asks for the
+    technique, the user's words ask for it on purpose, or the place holds the thing (fog, rain)."""
+    return _user_choices(*(str(ctx.get(k) or "") for k in ("phrase", "subject", "action", "setting")))
+
+
+def avoid_clauses(tell_ids, choices=frozenset()):
+    """The avoid clauses of the tells, once each. A tell in ``choices`` gets its 'avoid_kept' clause, or none."""
     seen, out = set(), []
     for tell_id in tell_ids:
-        clause = C.SLOP_BY_ID[tell_id]["avoid"]
+        tell = C.SLOP_BY_ID[tell_id]
+        clause = tell.get("avoid_kept", "") if tell_id in choices else tell["avoid"]
         if clause and tell_id not in seen:
             seen.add(tell_id)
             out.append(clause)
@@ -424,6 +526,35 @@ def _airborne(option, ctx):
         re.search(r"jump|leap|flip|air|fall|dive|vault|trick|throw", ctx.get("action", ""), re.I))
 
 
+# The catalogue words of a technique (``still``, ``snippet``) repeat some of its decisions. When a round, a mix or an
+# edit changes 1 of those decisions, the words that name the old value are removed, so a prompt never says 2 things.
+_HEIGHT_WORDS = re.compile(r",?\s*\b(at|from) (the subject's |the character's |their )?(own|eye|waist|hip|shoulder|knee|chest) (height|level)\b"
+                           r"|,?\s*\b(on the floor|at floor level|from directly above|from high above)\b", re.I)
+_LENS_WORDS = re.compile(r",?\s*\b(on |with |from )?(an? )?(ultra-wide|wide|long) lens\b", re.I)
+_SPEED_WORDS = re.compile(r"\b(time almost stops while |in real time )|;?\s*real time into the move, a short ramp to slow motion at the peak, "
+                          r"then back to real time", re.I)
+
+
+def option_wording(option, field):
+    """The option's ``still`` or ``snippet``, true to its current decisions. None when its camera move changed:
+    then the prompt is built from the decisions alone. Words that the user wrote are returned as they are."""
+    text, tech = option[field], C.TECHNIQUES.get(option.get("technique"))
+    if not tech or text != tech[field]:
+        return text
+    if option.get("movement") != tech["movement"]:
+        return None
+    for changed, words in ((option.get("placement") != tech["placement"], _HEIGHT_WORDS), (option.get("lens") != tech["lens"], _LENS_WORDS),
+                           (option["speed"].get("key") != tech["speed"], _SPEED_WORDS)):
+        if changed:
+            text = words.sub("", text)
+    return text
+
+
+def _placement_changed(option):
+    tech = C.TECHNIQUES.get(option.get("technique"))
+    return bool(tech) and option.get("placement") != tech["placement"] and option.get("snippet") == tech["snippet"]
+
+
 def build_image_prompt(option, ctx):
     tech = C.TECHNIQUES.get(option.get("technique"), {})
     tells = list(tech.get("slop_avoids", [])) + C.STILL_BASE_AVOID
@@ -433,18 +564,24 @@ def build_image_prompt(option, ctx):
         tells.append("flare_spam")
     if option["light"]["key"] in ("overcast_soft", "high_key"):
         tells = [t for t in tells if t != "soft_glow"]
+    choices = user_choices(ctx)
+    camera = option_wording(option, "still") or f"{option['pro_term']}, the frame at the middle of the shot"
+    if option.get("technique") == "pov":
+        faces = ["FACES: no face of the point-of-view character is visible."]
+    elif "eyes_to_lens" in choices:
+        faces = []  # the user's words decide where the faces look
+    else:
+        faces = ["FACES: turned away from the lens, in profile, three-quarter or from behind."]
     lines = [
         f"A single still frame from a live-action film, {ctx['aspect']} frame. A storyboard-grade production mock that shows framing, lens, light and colour.",
         f"SUBJECT: {ctx['subject']} {ctx['action']}, in {ctx['setting']}. Generic stand-in figures, not a likeness of any real person.",
-        f"CAMERA: {option['still']}. Camera placement: {option['placement']}.",
+        f"CAMERA: {camera}. Camera placement: {option['placement']}.",
         f"LENS: {option['lens']}; {lens_look(option['lens'])}.",
         f"LIGHT: {option['light']['prompt']}.",
         f"COLOUR: {option['grade']['prompt']}.",
         f"MOMENT: {option['speed']['still']}.",
-    ] + ([f"LOOK: {option['look_clause']}."] if option.get("look_clause") else []) + [
-        "FACES: turned away from the lens, in profile, three-quarter or from behind." if option.get("technique") != "pov"
-        else "FACES: no face of the point-of-view character is visible.",
-        "AVOID: " + "; ".join(avoid_clauses(tells)) + ".",
+    ] + ([f"LOOK: {option['look_clause']}."] if option.get("look_clause") else []) + faces + [
+        "AVOID: " + "; ".join(avoid_clauses(tells, choices)) + ".",
         "One frame only: no collage, no split screen, no text, no captions, no logos, no watermark, no border.",
     ]
     return "\n".join(lines)
@@ -457,11 +594,63 @@ def build_video_snippet(option, ctx):
         tells.append("slowmo_everywhere")
     if not _airborne(option, ctx):
         tells = [t for t in tells if t != "floating_bodies"]
-    body = option["snippet"].format(subject=ctx["subject"], action=ctx["action"])
+    template = option_wording(option, "snippet")
+    if template is None:
+        template = "{subject} {action}; " + option["movement"] + "; camera " + option["placement"]
+    elif _placement_changed(option):
+        template += "; camera " + option["placement"]
+    body = template.format(subject=ctx["subject"], action=ctx["action"])
     body = body[0].upper() + body[1:]
     look = f"; {option['look_clause']}" if option.get("look_clause") else ""
     return (f"{body}; {option['lens']} lens; {option['light']['prompt']}; {option['grade']['prompt']}; "
-            f"{option['speed']['prompt']}{look}. Avoid: {'; '.join(avoid_clauses(tells))}.")
+            f"{option['speed']['prompt']}{look}. Avoid: {'; '.join(avoid_clauses(tells, user_choices(ctx)))}.")
+
+
+# The generated prompts are derived from the decisions of an option. ``prompt_basis`` records what they were built
+# from, so that a later run can tell a stale prompt (the decisions changed: rebuild it) from a hand edit (keep it).
+PROMPT_FIELDS = ("image_prompt", "video_snippet")
+PROMPT_INPUTS = ("technique", "pro_term", "movement", "placement", "lens", "still", "snippet", "light", "grade", "speed", "look_clause")
+
+
+def doc_ctx(doc, action=None):
+    ctx = {k: doc.get(k, "") for k in ("phrase", "subject", "action", "setting", "aspect")}
+    if action:
+        ctx["action"] = action
+    return ctx
+
+
+def _digest(value):
+    text = value if isinstance(value, str) else json.dumps(value, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()[:16]
+
+
+def _inputs_digest(option, ctx):
+    return _digest([{k: option.get(k) for k in PROMPT_INPUTS}, {k: ctx.get(k, "") for k in ("phrase", "subject", "action", "setting", "aspect")}])
+
+
+def is_custom(option, field):
+    """True when the user edited a generated prompt by hand after the tool wrote it."""
+    basis = option.get("prompt_basis") if isinstance(option.get("prompt_basis"), dict) else {}
+    return bool(option.get(field) and basis.get(field) and basis[field] != _digest(option[field]))
+
+
+def set_prompts(option, ctx, notes=None):
+    """Build the image prompt and the video prompt from the option's decisions. A hand edit is kept while the
+    decisions it was made for stay the same. A hand edit whose decisions changed later is refused."""
+    basis = option.get("prompt_basis") if isinstance(option.get("prompt_basis"), dict) else {}
+    inputs = _inputs_digest(option, ctx)
+    custom = [f for f in PROMPT_FIELDS if is_custom(option, f)]
+    if custom and basis.get("inputs") != inputs:
+        raise Refusal(f"Option {option.get('label')}: {custom[0]} was edited by hand, and its decisions changed after that edit. "
+                      f"Delete {custom[0]} to rebuild it from the decisions, or undo the change of the decisions.")
+    built = {"image_prompt": build_image_prompt(option, ctx), "video_snippet": build_video_snippet(option, ctx)}
+    for field, text in built.items():
+        if field in custom:
+            continue
+        if notes is not None and option.get(field) and not basis and option[field] != text:
+            notes.append(f"Option {option.get('label')}: the saved {field} did not match its decisions. It was rebuilt from them.")
+        option[field] = text
+    option["prompt_basis"] = {"inputs": inputs, **{f: basis[f] if f in custom else _digest(built[f]) for f in PROMPT_FIELDS}}
 
 
 # The place and the action can name the light. The first cue that matches gives the lights that fit the scene.
@@ -517,7 +706,7 @@ def build_options(phrase, subject=None, action=None, setting=None, aspect="16:9"
         if look:  # the look that the user named is option A; B to D are different ideas
             chosen = distinct_families([look["technique"]] + look["also"] + chosen, count)
             matched = True
-    ctx = {"subject": subject or default_subject(phrase), "action": action or default_action(phrase),
+    ctx = {"phrase": phrase, "subject": subject or default_subject(phrase), "action": action or default_action(phrase),
            "setting": setting or "a plain, worn, uncluttered place", "aspect": aspect}
     for field in ("subject", "action", "setting"):
         problems = lint_prompt(ctx[field])
@@ -553,8 +742,7 @@ def build_options(phrase, subject=None, action=None, setting=None, aspect="16:9"
         elif index == 0:
             option["recommended_because"] = ("It is the closest match to your words. Best for: " + tech["when"][0].lower() + tech["when"][1:]
                                              if matched else "It is the most useful general answer. Tell me more about the feeling you want.")
-        option["image_prompt"] = build_image_prompt(option, ctx)
-        option["video_snippet"] = build_video_snippet(option, ctx)
+        set_prompts(option, ctx)
         options.append(option)
     slow = [o["label"] for o in options if o["speed"]["key"] in ("slow_motion", "frozen_moment")]
     doc = {"tool": "shot-speak", "version": VERSION, "phrase": phrase, "matched": matched, "interpretation": notes,
@@ -579,8 +767,12 @@ def build_options(phrase, subject=None, action=None, setting=None, aspect="16:9"
     return doc
 
 
-def validate_doc(doc, max_images=DEFAULT_MAX_IMAGES):
-    """Raise Refusal when the option set breaks a rule. Returns anti-slop findings."""
+def validate_doc(doc, max_images=DEFAULT_MAX_IMAGES, notes=None):
+    """Raise Refusal when the option set breaks a rule. Returns the anti-slop advice for each option.
+
+    The structured decisions of each option are the source of truth: the generated prompts are rebuilt from them
+    here (see ``set_prompts``). ``notes`` collects a line for each saved prompt that did not match its decisions.
+    """
     options = doc.get("options") or []
     is_round = isinstance(doc.get("round"), dict)
     if is_round and not 2 <= len(options) <= 4:
@@ -596,7 +788,8 @@ def validate_doc(doc, max_images=DEFAULT_MAX_IMAGES):
         raise Refusal("The options must be different techniques, not variants of one idea.")
     if not is_round and sum(1 for o in options if o.get("recommended")) != 1:
         raise Refusal("Mark exactly 1 option as recommended, with a reason.")
-    ctx = {k: doc.get(k, "") for k in ("subject", "action", "setting", "aspect")}
+    ctx = doc_ctx(doc)
+    context = " . ".join(ctx[k] for k in ("phrase", "subject", "action", "setting"))
     findings = {}
     for option in options:
         for field in ("pro_term", "movement", "placement", "lens", "still"):
@@ -609,15 +802,12 @@ def validate_doc(doc, max_images=DEFAULT_MAX_IMAGES):
             option[part].setdefault("name", option[part]["key"])
         option["speed"].setdefault("still", "a sharp frame at the peak of the action")
         option.setdefault("snippet", "{subject} {action}; " + option["movement"])
-        if not option.get("image_prompt"):
-            option["image_prompt"] = build_image_prompt(option, ctx)
-        if not option.get("video_snippet"):
-            option["video_snippet"] = build_video_snippet(option, ctx)
-        for field in ("image_prompt", "video_snippet"):
+        set_prompts(option, ctx, notes)
+        for field in PROMPT_FIELDS:
             problems = lint_prompt(option[field])
             if problems:
                 raise Refusal(f"Option {option['label']} {field} {problems[0]}")
-        found = anti_slop_check(option)
+        found = anti_slop_check(option, context)
         if found:
             findings[option["label"]] = found
     return findings
@@ -844,13 +1034,22 @@ def estimate(backend, count, env):
                   "or add --accept-unknown-cost after the user accepted an unknown cost.")
 
 
+def request_fingerprint(backend, size, quality, prompts, env):
+    """The card fingerprint. It binds the approval to everything that decides the requests and their cost:
+    the backend, the model, the size, the quality, every prompt and the extra input fields. These are all the parts
+    of each outgoing request apart from the key (see ``request_for``), so a changed request needs a new yes.
+    """
+    extra = provider_extra(env, backend["name"])
+    payload = [backend["name"], backend["model"], size, quality, list(prompts)] + ([extra] if extra else [])
+    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()[:12]
+
+
 def card(doc, backend, size, quality, env):
     total, basis = estimate(backend, len(doc["options"]), env)
     prompts = [o["image_prompt"] for o in doc["options"]]
-    payload = json.dumps([backend["name"], backend["model"], size, quality, prompts], sort_keys=True)
     return {"backend": backend["name"], "model": backend["model"], "size": size, "quality": quality,
             "images": len(prompts), "estimated_total_usd": total, "basis": basis,
-            "fingerprint": hashlib.sha256(payload.encode("utf-8")).hexdigest()[:12]}
+            "fingerprint": request_fingerprint(backend, size, quality, prompts, env)}
 
 
 def print_card(doc, info, out_dir, stream=None):
@@ -887,17 +1086,26 @@ class ProviderError(Exception):
         self.ambiguous = ambiguous
 
 
+# A provider answer larger than this is refused. A mock still is a few MB; base64 makes it a third larger.
+MAX_ANSWER_BYTES = 50_000_000
+
+
 def http_transport(method, url, headers, body=None, timeout=180):
     """Return (status, bytes). Raises ProviderError. Tests replace this function."""
     request = urllib.request.Request(url, data=body, headers=headers, method=method)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
-            return response.status, response.read()
+            data = response.read(MAX_ANSWER_BYTES + 1)
+            if len(data) > MAX_ANSWER_BYTES:
+                raise ProviderError(f"The answer is larger than {MAX_ANSWER_BYTES // 1_000_000} MB. It was not used.", ambiguous=True)
+            return response.status, data
     except urllib.error.HTTPError as exc:
         detail = exc.read()[:400].decode("utf-8", "replace")
         raise ProviderError(f"HTTP {exc.code}: {detail}", ambiguous=exc.code >= 500)
     except (urllib.error.URLError, TimeoutError, OSError) as exc:
         raise ProviderError(f"No answer from the provider: {exc}", ambiguous=True)
+    except http.client.HTTPException as exc:  # for example an answer that stops before its end
+        raise ProviderError(f"The answer was cut off ({type(exc).__name__}).", ambiguous=True)
 
 
 def _json_call(transport, method, url, headers, payload=None):
@@ -909,7 +1117,36 @@ def _json_call(transport, method, url, headers, payload=None):
         raise ProviderError(f"HTTP {status}: the answer is not JSON.", ambiguous=True)
 
 
+def image_suffix(data):
+    """'.png', '.jpg' or '.webp' for the bytes of 1 complete image. None for anything else, or a cut-off file."""
+    if not data or len(data) > MAX_ANSWER_BYTES:
+        return None
+    if data[:8] == b"\x89PNG\r\n\x1a\n" and data[-12:-8] == b"\x00\x00\x00\x00" and data[-8:-4] == b"IEND":
+        return ".png"
+    if data[:3] == b"\xff\xd8\xff" and data.rstrip(b"\x00")[-2:] == b"\xff\xd9":
+        return ".jpg"
+    if data[:4] == b"RIFF" and data[8:12] == b"WEBP" and int.from_bytes(data[4:8], "little") + 8 in (len(data), len(data) - 1):
+        return ".webp"
+    return None
+
+
+def checked_image(data):
+    """The image bytes of a provider answer, or ProviderError. The request was sent, so a bad answer is ambiguous."""
+    if not image_suffix(data):
+        raise ProviderError(f"The provider answered with {len(data or b'')} bytes that are not 1 complete PNG, JPEG or WebP image. "
+                            "Nothing was saved.", ambiguous=True)
+    return data
+
+
 def _fetch(transport, url):
+    """The bytes of the image link in a provider answer. Only an https link is opened; a data: image is decoded here."""
+    if isinstance(url, str) and re.match(r"data:image/[a-z]+;base64,", url):
+        try:
+            return base64.b64decode(url.split(",", 1)[1], validate=True)
+        except ValueError:
+            raise ProviderError("The provider's data: image is not valid base64.", ambiguous=True)
+    if not (isinstance(url, str) and url.startswith("https://")):
+        raise ProviderError("The provider's image link is not an https link. It was not opened.", ambiguous=True)
     return transport("GET", url, {})[1]
 
 
@@ -923,8 +1160,34 @@ def _first_url(value):
     return None
 
 
-def _extra(env, name):
-    raw = env_value(env, name)
+EXTRA_INPUT_VARS = {"fal": "SHOTSPEAK_FAL_EXTRA_INPUT", "replicate": "SHOTSPEAK_REPLICATE_EXTRA_INPUT",
+                    "higgsfield": "SHOTSPEAK_HIGGSFIELD_EXTRA_INPUT"}
+# Fields that only the tool sets: the prompt, and the number of images (the cost cap counts 1 image for each request).
+RESERVED_INPUTS = {"prompt", "n", "num_images", "num_outputs", "batch_size", "count", "samples", "num_samples"}
+_MODEL_ID_RE = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]*(/[A-Za-z0-9][A-Za-z0-9._:-]*)*")
+
+
+def _strings(value, path=""):
+    """(path, text) for every key and every string value in a JSON value."""
+    if isinstance(value, dict):
+        for key, item in value.items():
+            yield f"{path}{key}", str(key)
+            yield from _strings(item, f"{path}{key}.")
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            yield from _strings(item, f"{path}{index}.")
+    elif isinstance(value, str):
+        yield path.rstrip("."), value
+
+
+def provider_extra(env, name):
+    """The extra input fields for a provider, from its SHOTSPEAK_<NAME>_EXTRA_INPUT variable. {} when there are none.
+
+    Refused: a field that the tool sets itself (the prompt, the image count), and any key or value that holds a link,
+    a file path, an email address, a key or a protected name. No user image or personal data goes out this way.
+    """
+    var = EXTRA_INPUT_VARS.get(name)
+    raw = env_value(env, var) if var else None
     if not raw:
         return {}
     try:
@@ -932,15 +1195,52 @@ def _extra(env, name):
     except ValueError:
         value = None
     if not isinstance(value, dict):
-        raise Refusal(f"{name} must be a JSON object.")
+        raise Refusal(f"{var} must be a JSON object.")
+    reserved = sorted(RESERVED_INPUTS & {str(k).lower() for k in value})
+    if reserved:
+        raise Refusal(f"{var} cannot set {', '.join(reserved)}: the tool sets the prompt and asks for 1 image in each request.")
+    for where, text in _strings(value):
+        if private_data(text) or banned_names(text):
+            raise Refusal(f"{var}: '{where}' holds a link, a file path, an email address, a key or a protected name. Nothing was sent.")
     return value
 
 
+PROVIDER_URLS = {"openai": lambda model: OPENAI_URL, "fal": lambda model: "https://fal.run/" + model,
+                 "replicate": lambda model: f"https://api.replicate.com/v1/models/{model}/predictions",
+                 "higgsfield": lambda model: f"{HIGGSFIELD_API}/{model}"}
+
+
+def request_for(backend, prompt, size, quality, env):
+    """(URL, JSON body) of the 1 request that makes 1 image. With the key header, this is all that leaves the machine."""
+    name, model = backend["name"], backend["model"]
+    if name not in PROVIDER_URLS:
+        raise Refusal(f"Backend '{name}' sends no request.")
+    if not model or not _MODEL_ID_RE.fullmatch(model) or ".." in model:
+        raise Refusal(f"'{model}' is not a model id that this tool sends to {name}.")
+    problems = lint_prompt(prompt)
+    if problems:
+        raise Refusal("The image prompt " + problems[0])
+    extra = provider_extra(env, name)
+    if name == "openai":
+        body = {"model": model, "prompt": prompt, "size": size, "quality": quality, "n": 1}
+    elif name == "replicate":
+        body = {"input": {**extra, "prompt": prompt}}
+    else:
+        body = {**extra, "prompt": prompt}
+    return PROVIDER_URLS[name](model), body
+
+
 def gen_openai(prompt, backend, key, size, quality, env, transport):
-    data = _json_call(transport, "POST", OPENAI_URL, {"Authorization": f"Bearer {key}"},
-                      {"model": backend["model"], "prompt": prompt, "size": size, "quality": quality, "n": 1})
+    url, body = request_for({**backend, "name": "openai"}, prompt, size, quality, env)
+    data = _json_call(transport, "POST", url, {"Authorization": f"Bearer {key}"}, body)
     item = (data.get("data") or [{}])[0]
-    image = base64.b64decode(item["b64_json"]) if item.get("b64_json") else (_fetch(transport, item["url"]) if item.get("url") else None)
+    if item.get("b64_json"):
+        try:
+            image = base64.b64decode(item["b64_json"], validate=True)
+        except ValueError:
+            raise ProviderError("The provider's image is not valid base64.", ambiguous=True)
+    else:
+        image = _fetch(transport, item["url"]) if item.get("url") else None
     if not image:
         raise ProviderError("The provider answered without an image.", ambiguous=True)
     usage = data.get("usage") or {}
@@ -949,22 +1249,22 @@ def gen_openai(prompt, backend, key, size, quality, env, transport):
     if all(isinstance(v, int) for v in (details.get("text_tokens"), details.get("image_tokens"), usage.get("output_tokens"))):
         measured = round((details["text_tokens"] * OPENAI_RATES["text_input"] + details["image_tokens"] * OPENAI_RATES["image_input"]
                           + usage["output_tokens"] * OPENAI_RATES["image_output"]) / 1_000_000, 6)
-    return image, {"usage": usage, "measured_usd_at_published_rates": measured}
+    return checked_image(image), {"usage": usage, "measured_usd_at_published_rates": measured}
 
 
 def gen_fal(prompt, backend, key, size, quality, env, transport):
-    data = _json_call(transport, "POST", f"https://fal.run/{backend['model']}", {"Authorization": f"Key {key}"},
-                      {"prompt": prompt, **_extra(env, "SHOTSPEAK_FAL_EXTRA_INPUT")})
-    url = _first_url(data.get("images") or data.get("image"))
-    if not url:
+    url, body = request_for({**backend, "name": "fal"}, prompt, size, quality, env)
+    data = _json_call(transport, "POST", url, {"Authorization": f"Key {key}"}, body)
+    link = _first_url(data.get("images") or data.get("image"))
+    if not link:
         raise ProviderError("The provider answered without an image URL.", ambiguous=True)
-    return _fetch(transport, url), {"request_id": data.get("request_id")}
+    return checked_image(_fetch(transport, link)), {"request_id": data.get("request_id")}
 
 
 def gen_replicate(prompt, backend, key, size, quality, env, transport, poll_seconds=2, max_polls=60, sleep=time.sleep):
     headers = {"Authorization": f"Bearer {key}", "Prefer": "wait"}
-    data = _json_call(transport, "POST", f"https://api.replicate.com/v1/models/{backend['model']}/predictions", headers,
-                      {"input": {"prompt": prompt, **_extra(env, "SHOTSPEAK_REPLICATE_EXTRA_INPUT")}})
+    url, body = request_for({**backend, "name": "replicate"}, prompt, size, quality, env)
+    data = _json_call(transport, "POST", url, headers, body)
     polls = 0
     while data.get("status") in ("starting", "processing") and polls < max_polls:
         get_url = (data.get("urls") or {}).get("get")
@@ -976,10 +1276,10 @@ def gen_replicate(prompt, backend, key, size, quality, env, transport, poll_seco
     if data.get("status") != "succeeded":
         raise ProviderError(f"Prediction {data.get('id')} ended with status '{data.get('status')}': {data.get('error')}",
                             ambiguous=data.get("status") in ("starting", "processing"))
-    url = _first_url(data.get("output"))
-    if not url:
+    link = _first_url(data.get("output"))
+    if not link:
         raise ProviderError("The provider answered without an image URL.", ambiguous=True)
-    return _fetch(transport, url), {"prediction_id": data.get("id")}
+    return checked_image(_fetch(transport, link)), {"prediction_id": data.get("id")}
 
 
 def _find_url(value):
@@ -1004,8 +1304,8 @@ def _find_url(value):
 def gen_higgsfield(prompt, backend, key, size, quality, env, transport, poll_seconds=3, max_polls=60, sleep=time.sleep):
     """Submit, then poll the status link of that request. One submit. The submit is never sent again."""
     headers = {"Authorization": f"Key {key}"}
-    data = _json_call(transport, "POST", f"{HIGGSFIELD_API}/{backend['model']}", headers,
-                      {"prompt": prompt, **_extra(env, "SHOTSPEAK_HIGGSFIELD_EXTRA_INPUT")})
+    url, body = request_for({**backend, "name": "higgsfield"}, prompt, size, quality, env)
+    data = _json_call(transport, "POST", url, headers, body)
     request_id, status_url = data.get("request_id"), data.get("status_url")
     polls = 0
     while str(data.get("status", "")).lower() in ("queued", "in_progress") and polls < max_polls:
@@ -1018,10 +1318,10 @@ def gen_higgsfield(prompt, backend, key, size, quality, env, transport, poll_sec
     if status != "completed":
         raise ProviderError(f"Request {request_id} ended with status '{status or 'unknown'}'.",
                             ambiguous=status in ("queued", "in_progress", ""))
-    url = _find_url(data)
-    if not url:
+    link = _find_url(data)
+    if not link:
         raise ProviderError("The provider answered without an image link.", ambiguous=True)
-    return _fetch(transport, url), {"request_id": request_id}
+    return checked_image(_fetch(transport, link)), {"request_id": request_id}
 
 
 GENERATORS = {"higgsfield": gen_higgsfield, "openai": gen_openai, "fal": gen_fal, "replicate": gen_replicate}
@@ -1038,41 +1338,111 @@ def validate_size(size):
                       "and 655,360 to 8,294,400 pixels in total.")
 
 
+IMAGE_SUFFIXES = (".png", ".jpg", ".webp")
+DONE = ("ok", "reused", "imported")  # receipt statuses with an image on disk
+
+
+def _sha256(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def load_receipts(out):
+    """{option label: its latest receipt} from receipts.json. An unreadable file gives {}."""
+    try:
+        receipts = json.loads((Path(out) / "receipts.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    if not isinstance(receipts, list):
+        return {}
+    return {r["option"]: r for r in receipts if isinstance(r, dict) and r.get("option")}
+
+
+def atomic_write(path, data):
+    """Write the whole file or nothing: a stopped run never leaves half a file under the real name."""
+    path = Path(path)
+    part = path.with_name(path.name + ".part")
+    part.write_bytes(data)
+    os.replace(part, path)
+
+
+def save_receipts(out, book):
+    atomic_write(Path(out) / "receipts.json", (json.dumps([book[k] for k in sorted(book)], indent=2) + "\n").encode("utf-8"))
+
+
+def reusable(out, label, receipt, request_sha256, prompt_sha256):
+    """The receipt of an image that this exact request already made (or that the user imported for this exact prompt),
+    when its file is still there with the same bytes. Else None: a missing or different receipt is never a cache hit."""
+    if not receipt or receipt.get("status") not in DONE:
+        return None
+    if receipt["status"] == "imported":
+        if receipt.get("prompt_sha256") != prompt_sha256:
+            return None
+    elif receipt.get("request_sha256") != request_sha256:
+        return None
+    name = str(receipt.get("file", ""))
+    if not re.fullmatch(rf"option_{re.escape(label)}\.(png|jpg|webp)", name):
+        return None
+    try:
+        data = (Path(out) / name).read_bytes()
+    except OSError:
+        return None
+    return receipt if _sha256(data) == receipt.get("image_sha256") and image_suffix(data) else None
+
+
 def generate(doc, backend, env, out_dir, size, quality, transport=None, force=False, log=None):
-    """Send 1 request for each option. Returns the receipts. Stops at the first failure."""
+    """Send 1 request for each option that has no image for exactly this request yet. Returns this run's receipts.
+
+    An image is reused only when its receipt names the same request (see ``request_for``) and its file still has the
+    receipt's hash. ``force`` requests every image again. The run stops at the first failure. A new image is checked,
+    then written in 1 step, and replaces the option's older file. ``receipts.json`` keeps the latest receipt of each
+    option and is written after each request.
+    """
     transport = transport or http_transport
     log = log or (lambda s: print(s, file=sys.stderr))
     secrets = secrets_of(env)
     key = env[backend["key_var"]][0]
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
-    receipts, images = [], {}
+    book, receipts, images = load_receipts(out), [], {}
     for option in doc["options"]:
-        target = out / f"option_{option['label']}.png"
-        base = {"option": option["label"], "backend": backend["name"], "model": backend["model"],
-                "prompt_sha256": hashlib.sha256(option["image_prompt"].encode("utf-8")).hexdigest(), "file": target.name}
-        if target.exists() and not force:
-            log(f"Option {option['label']}: {target.name} exists. Not requested again. Use --force for a new image.")
-            receipts.append({**base, "status": "kept_existing"})
-            images[option["label"]] = target.name
-            continue
-        started = time.time()
-        try:
-            image, extra = GENERATORS[backend["name"]](option["image_prompt"], backend, key, size, quality, env, transport)
-        except ProviderError as exc:
-            status = "ambiguous" if exc.ambiguous else "rejected"
-            receipts.append({**base, "status": status, "error": redact(exc, secrets)})
-            log(redact(f"Option {option['label']}: {status}. {exc}", secrets))
-            if exc.ambiguous:
-                log("The result of this request is unknown. It was NOT sent again. Check the provider's usage page before a new request.")
-            log("Stopped. The options after this one were not requested.")
-            break
-        target.write_bytes(image)
-        receipts.append({**base, "status": "ok", "seconds": round(time.time() - started, 1),
-                         "image_sha256": hashlib.sha256(image).hexdigest(), **extra})
-        images[option["label"]] = target.name
-        log(f"Option {option['label']}: saved {target}")
-    write_json(out / "receipts.json", receipts, ensure_ascii=True)
+        label, prompt = option["label"], option["image_prompt"]
+        url, body = request_for(backend, prompt, size, quality, env)
+        base = {"option": label, "backend": backend["name"], "model": backend["model"],
+                "prompt_sha256": _sha256(prompt.encode("utf-8")),
+                "request_sha256": _sha256(json.dumps({"url": url, "body": body}, sort_keys=True).encode("utf-8"))}
+        hit = None if force else reusable(out, label, book.get(label), base["request_sha256"], base["prompt_sha256"])
+        if hit:
+            receipt = hit if hit["status"] == "imported" else {**base, "status": "reused", "file": hit["file"],
+                                                               "image_sha256": hit["image_sha256"]}
+            log(f"Option {label}: {hit['file']} was made for this exact request. Not requested again.")
+        else:
+            started = time.time()
+            try:
+                image, extra = GENERATORS[backend["name"]](prompt, backend, key, size, quality, env, transport)
+            except ProviderError as exc:
+                status = "ambiguous" if exc.ambiguous else "rejected"
+                book[label] = {**base, "status": status, "error": redact(exc, secrets)}
+                receipts.append(book[label])
+                save_receipts(out, book)
+                log(redact(f"Option {label}: {status}. {exc}", secrets))
+                if exc.ambiguous:
+                    log("The result of this request is unknown. It was NOT sent again. Check the provider's usage page before a new request.")
+                log("Stopped. The options after this one were not requested.")
+                break
+            suffix = image_suffix(image)
+            target = out / f"option_{label}{suffix}"
+            atomic_write(target, image)
+            for old in out.glob(f"option_{label}.*"):
+                if old.suffix in IMAGE_SUFFIXES and old != target:
+                    old.unlink()
+                    log(f"Option {label}: removed {old.name}, the image of an older request.")
+            receipt = {**base, "status": "ok", "file": target.name, "format": suffix[1:], "bytes": len(image),
+                       "seconds": round(time.time() - started, 1), "image_sha256": _sha256(image), **extra}
+            log(f"Option {label}: saved {target}")
+        book[label] = receipt
+        receipts.append(receipt)
+        images[label] = receipt["file"]
+        save_receipts(out, book)
     write_outputs(doc, out, images)
     return receipts
 
@@ -1080,26 +1450,34 @@ def generate(doc, backend, env, out_dir, size, quality, transport=None, force=Fa
 # --------------------------------------------------------------------------
 # De-slop mode
 # --------------------------------------------------------------------------
+# Each rewrite belongs to 1 tell. It runs only on the parts of the prompt that ask for something, only when its tell
+# was flagged there, and never on evidence that the user intends (see ``scan``).
 REWRITES = [
-    (r",?\s*\b(8k|4k|hdr|ultra[- ]?(realistic|detailed|hd)|hyper[- ]?real(istic)?|highly detailed|masterpiece|award[- ]winning|stunning|breathtaking|trending[^,.]*|unreal engine|octane render|vibrant colou?rs|vivid colou?rs|beautiful lighting|perfect lighting)\b", ""),
-    (r"\b(epic |dramatic |super )?slow[- ]?mo(tion)? (throughout|everywhere)\b|\b(all|everything) in slow[- ]?motion\b", "real time, with one short slow-motion beat at the peak of the action"),
-    (r"\b(look(s|ing)?|stares?|staring|smil(es|ing)) (straight |directly |right )?(at|into|to) (the )?(camera|lens|viewer)\b", "with the eyes on a target inside the scene, off the lens"),
-    (r"\b(front[- ]?facing|facing (the )?(camera|viewer|lens)|straight[- ]on|head[- ]on)\b", "seen from a three-quarter side position"),
-    (r"\b(centered|centred|in the (center|centre) of (the )?frame)\b", "off-centre, on one third of the frame"),
-    (r"\b(360|three[- ]sixty|full|180)[- ]?(degree|deg|°)? ?(orbit|circle|rotation)\b", "partial arc of about 130 degrees"),
-    (r"\b(the )?(camera )?slowly (orbiting|circling|spinning|rotating) around\b", "the camera, in one fast move, arcs about 130 degrees around, never to the front of,"),
-    (r"\b(orbit(s|ing)?|circl(es?|ing)|spin(s|ning)?) (all the way )?around\b", "arcs about 130 degrees around, never to the front of,"),
-    (r"\b(a |the )?slow(ly)? (floating|drifting|gliding) (camera|shot)\b|\b(a |the )?floating camera\b", "the camera, in one fast decisive move,"),
-    (r"\bcamera (floats|drifts|glides)\b|\bsmooth cinematic (movement|motion|camera)\b|\bgentle camera movement\b", "one decisive camera move with a clear start and end"),
-    (r"\b(soft (golden |warm |even )?glow|golden glow|warm glow|ethereal glow|evenly lit|well[- ]lit)\b", "one hard light source from one side, with a real dark side"),
-    (r",?\s*\b(with |and )?(bloom|haze|hazy atmosphere|mist|fog|god[- ]?rays?|volumetric (light|lighting|rays|fog)|light shafts?|atmospheric (haze|fog|smoke)|lens flares?|anamorphic flares?|light leaks?)\b", ""),
-    (r"\b(wet|glossy|reflective|rain[- ]slick(ed)?) (floor|street|streets|ground|pavement|asphalt|surface)\b", r"matte, worn \3"),
-    (r"\b(creamy|beautiful|heavy) bokeh\b|\bbokeh background\b|\b(blurred|blurry) background\b", "the background soft with natural falloff from a long lens"),
-    (r"\b(teal and orange|orange and teal|teal[- ]orange)( colou?r)?( grad(e|ing))?\b|\bcinematic colou?r grad(e|ing)\b", "a film-print grade with deep true blacks and restrained colour"),
-    (r"\b(float(s|ing)?|hover(s|ing)?|glid(es|ing)|fl(ies|ying)) (in|through) (the )?air\b", "jumps to a real, modest height with real gravity"),
-    (r"\b(flawless|pristine|spotless|immaculate|polished|sleek)\b", "worn"),
-    (r",?\s*\b(cinematic|epic|movie[- ]like|film[- ]like|professional)\b", ""),
+    ("hdr_saturated", r",?\s*\b(8k|4k|hdr|ultra[- ]?(realistic|detailed|hd)|hyper[- ]?real(istic)?|highly detailed|masterpiece|award[- ]winning|stunning|breathtaking|trending[^,.]*|unreal engine|octane render|vibrant colou?rs|vivid colou?rs)\b", ""),
+    ("soft_glow", r",?\s*\b(beautiful lighting|perfect lighting)\b", ""),
+    ("slowmo_everywhere", r"\b(epic |dramatic |super )?slow[- ]?mo(tion)? (throughout|everywhere)\b|\b(all|everything) in slow[- ]?motion\b", "real time, with one short slow-motion beat at the peak of the action", "real time"),
+    ("eyes_to_lens", r"\b(look(s|ing)?|stares?|staring|smil(es|ing)) (straight |directly |right )?(at|into|to) (the )?(camera|lens|viewer)\b", "with the eyes on a target inside the scene, off the lens"),
+    ("frontal_centred", r"\b(front[- ]?facing|facing (the )?(camera|viewer|lens)|straight[- ]on|head[- ]on)\b", "seen from a three-quarter side position"),
+    ("frontal_centred", r"\b((?<!off-)(centered|centred)|in the (center|centre) of (the )?frame)\b", "off-centre, on one third of the frame"),
+    ("orbit_full", r"\b(360|three[- ]sixty|full|180)[- ]?(degree|deg|°)? ?(orbit|circle|rotation)\b", "partial arc of about 130 degrees"),
+    ("orbit_full", r"\b(the )?(camera )?slowly (orbiting|circling|spinning|rotating) around\b", "the camera, in one fast move, arcs about 130 degrees around, never to the front of,"),
+    ("orbit_full", r"\b(orbit(s|ing)?|circl(es?|ing)|spin(s|ning)?) (all the way )?around\b", "arcs about 130 degrees around, never to the front of,"),
+    ("aquarium_speed", r"\b(a |the )?slow(ly)? (floating|drifting|gliding) (camera|shot)\b|\b(a |the )?floating camera\b", "the camera, in one fast decisive move,"),
+    ("aquarium_speed", r"\bcamera (floats|drifts|glides)\b|\bsmooth cinematic (movement|motion|camera)\b|\bgentle camera movement\b", "one decisive camera move with a clear start and end"),
+    ("soft_glow", r"\b(soft (golden |warm |even )?glow|golden glow|warm glow|ethereal glow|evenly lit|well[- ]lit)\b", "one hard light source from one side, with a real dark side"),
+    ("bloom_haze", r",?\s*\b(with |and )?(bloom|haze|hazy atmosphere|mist|fog|god[- ]?rays?|volumetric (light|lighting|rays|fog)|light shafts?|atmospheric (haze|fog|smoke))\b", ""),
+    ("flare_spam", r",?\s*\b(with |and )?(lens flares?|anamorphic flares?|light leaks?)\b", ""),
+    ("glossy_floor", r"\b(wet|glossy|reflective|rain[- ]slick(ed)?) (floor|street|streets|ground|pavement|asphalt|surface)\b", r"matte, worn \3"),
+    ("fake_bokeh", r"\b(creamy|beautiful|heavy) bokeh\b|\bbokeh background\b|\b(blurred|blurry) background\b", "the background soft with natural falloff from a long lens"),
+    ("teal_orange_default", r"\b(teal and orange|orange and teal|teal[- ]orange)( colou?r)?( grad(e|ing))?\b|\bcinematic colou?r grad(e|ing)\b", "a film-print grade with deep true blacks and restrained colour"),
+    ("floating_bodies", r"\b(float(s|ing)?|hover(s|ing)?|glid(es|ing)|fl(ies|ying)) (in|through) (the )?air\b", "jumps to a real, modest height with real gravity"),
+    ("perfect_textures", r"\b(flawless|pristine|spotless|immaculate|polished|sleek)\b", "worn"),
+    ("vague_cinematic", r",?\s*\b(cinematic|epic|movie[- ]like|film[- ]like|professional)\b", ""),
 ]
+# A tell that a rewrite only deletes leaves no decision behind, so its avoid clause is added. A missing decision
+# lets the generator fall into 1 default: its fill line asks for the decision and the matching clause guards it.
+REMOVED_ONLY = ("hdr_saturated", "bloom_haze", "flare_spam")
+MISSING_GUARD = {"missing_camera": "eyes_to_lens", "missing_light": "soft_glow", "missing_speed": "aquarium_speed"}
 
 MISSING_FILL = {
     "missing_camera": "Camera: [state the height, the side and the distance, for example 'low at knee height, side-on, 3 m away'].",
@@ -1109,21 +1487,42 @@ MISSING_FILL = {
 }
 
 
-def deslop(text):
-    """Return (tells, rewritten text). The rewrite is a starting point for the agent."""
-    tells = slop_tells(text, check_missing=True)
-    rewritten = text
-    for pattern, replacement in REWRITES:
-        rewritten = re.sub(pattern, replacement, rewritten, flags=re.I)
+def deslop(text, context=""):
+    """Return (flagged tells, rewritten text). The rewrite is a starting point for the agent.
+
+    Proportional: a prompt with no flagged tell comes back unchanged. Only the parts that ask for a flagged tell
+    are rewritten; "no fog" and a technique that the user intends stay as written. Running deslop on its own
+    rewrite changes nothing more. The kept tells are in ``scan(text, True, context)[1]``.
+    """
+    tells, _kept = scan(text, check_missing=True, context=context)
+    if not tells:
+        return tells, text
+    flagged = {t["id"] for t in tells}
+    forbidden = {t["id"] for t in tells if t.get("contradiction")}
+    intent = {t: bool(C.SLOP_BY_ID[t].get("intent") and re.search(C.SLOP_BY_ID[t]["intent"], f"{text} . {context}", re.I)) for t in flagged}
+
+    def rewrite(part, purpose):
+        for tell_id, pattern, replacement, *if_forbidden in REWRITES:
+            tell = C.SLOP_BY_ID[tell_id]
+            if if_forbidden and tell_id in forbidden:  # the prompt forbids it elsewhere: do not bring it back
+                replacement = if_forbidden[0]
+            if tell_id not in flagged or (tell.get("needs") and not re.search(tell["needs"], part, re.I)):
+                continue
+            part = re.sub(pattern, lambda m, t=tell, r=replacement: m.group(0) if _spared(t, m.group(0), intent[t["id"]] or purpose)
+                          else m.expand(r), part, flags=re.I)
+        return part
+
+    rewritten = "".join(rewrite(part, purpose) if kind == "ask" else part for part, kind, purpose in segments(text))
     rewritten = re.sub(r"\s+,", ",", re.sub(r"[ \t]{2,}", " ", rewritten))
-    rewritten = re.sub(r",\s*(?=[.,])|^\s*,\s*", "", rewritten).strip()
-    additions = [MISSING_FILL[t["id"]] for t in tells if t["id"] in MISSING_FILL]
-    guards = avoid_clauses(["eyes_to_lens", "aquarium_speed", "soft_glow", "bloom_haze", "perfect_textures"])
+    rewritten = re.sub(r",\s*(?=[.,;])|^\s*,\s*", "", rewritten).strip().rstrip(",")
+    rewritten = re.sub(r"([.;!?])(?:\s*[.;])+(?=\s|$)", r"\1", rewritten)  # a removed last clause leaves no ". ."
     if rewritten and rewritten[-1] not in ".!?":
         rewritten += "."
     rewritten = rewritten[:1].upper() + rewritten[1:]
-    rewritten = " ".join([rewritten] + additions + ["Avoid: " + "; ".join(guards) + "."])
-    return tells, rewritten
+    additions = [MISSING_FILL[t["id"]] for t in tells if t["id"] in MISSING_FILL]
+    guards = [t for t in REMOVED_ONLY if t in flagged] + [MISSING_GUARD[t] for t in MISSING_GUARD if t in flagged]
+    guards = [g for g in avoid_clauses(guards) if g not in rewritten]
+    return tells, " ".join([rewritten] + additions + (["Avoid: " + "; ".join(guards) + "."] if guards else []))
 
 
 # --------------------------------------------------------------------------
@@ -1159,13 +1558,18 @@ def choose(doc, pick, mix=None, action_text=None, previs=None, layout_ref=False)
         if part == "lens":
             final["lens_why"] = by_label[label].get("lens_why", "")
         mixed[part] = label
-    ctx = {k: doc[k] for k in ("subject", "action", "setting", "aspect")}
-    if action_text:
-        ctx["action"] = action_text
-    final["image_prompt"] = build_image_prompt(final, ctx)  # the mock still of the final mix
-    image_prompt = final.pop("image_prompt")
-    final["video_snippet"] = build_video_snippet(final, ctx)
-    findings = anti_slop_check(final)
+    ctx = doc_ctx(doc, action_text)
+    # The prompts follow the final decisions. A hand-edited prompt of the picked option is kept when nothing changed it.
+    notes, picked = [], by_label[pick]
+    for field, build in (("image_prompt", build_image_prompt), ("video_snippet", build_video_snippet)):
+        if is_custom(picked, field) and not mixed and not action_text:
+            final[field] = picked[field]
+        else:
+            if is_custom(picked, field):
+                notes.append(f"Your own {field} of option {pick} was not used: the mix or the new action changes its decisions.")
+            final[field] = build(final, ctx)
+    image_prompt = final.pop("image_prompt")  # the mock still of the final mix
+    findings = anti_slop_check(final, " . ".join(ctx[k] for k in ("phrase", "subject", "action", "setting")))
     tells = list(C.TECHNIQUES.get(final.get("technique"), {}).get("slop_avoids", [])) + C.VIDEO_BASE_AVOID + ["soft_glow", "perfect_textures"]
     if not _airborne(final, ctx):
         tells = [t for t in tells if t != "floating_bodies"]
@@ -1182,7 +1586,7 @@ def choose(doc, pick, mix=None, action_text=None, previs=None, layout_ref=False)
         f"SPEED: {final['speed']['prompt']}.",
     ] + ([f"LOOK: {final['look_clause']}."] if final.get("look_clause") else []) + [
         "RULES: State the exact number of people. Screen direction stays the same for the whole shot.",
-        "AVOID: " + "; ".join(avoid_clauses(tells)) + ".",
+        "AVOID: " + "; ".join(avoid_clauses(tells, user_choices(ctx))) + ".",
     ] + ([LAYOUT_LINE] if layout_ref else [])
     block = "\n".join(block)
     if layout_ref and not previs:
@@ -1198,7 +1602,7 @@ def choose(doc, pick, mix=None, action_text=None, previs=None, layout_ref=False)
                      "grade": final["grade"]["name"], "speed": final["speed"]["name"], "duration": final.get("duration", ""),
                      "risks": final.get("risks", [])},
             "anti_slop_findings": findings, "one_line": final["video_snippet"], "prompt_block": block,
-            "image_prompt": image_prompt,
+            "image_prompt": image_prompt, **({"notes": notes} if notes else {}),
             **({"previs": previs, "layout_reference": bool(layout_ref)} if previs else {})}
 
 
@@ -1216,8 +1620,10 @@ def render_choice(choice):
         "## Watch for", ""] + [f"- {r}" for r in spec["risks"]] + [
         "", "## Prompt block", "", "```text", choice["prompt_block"], "```", "",
         "## One line", "", "```text", choice["one_line"], "```", ""]
+    if choice.get("notes"):
+        lines += [f"Note: {n}" for n in choice["notes"]] + [""]
     if choice["anti_slop_findings"]:
-        lines += ["## Anti-slop findings to fix", ""] + [f"- {f}" for f in choice["anti_slop_findings"]] + [""]
+        lines += ["## Anti-slop advice", ""] + [f"- {f}" for f in choice["anti_slop_findings"]] + [""]
     if choice.get("previs"):
         files = choice["previs"]["files"]
         lines += ["## Blocking previs", "", P.USE_RULE, ""]
@@ -1300,19 +1706,12 @@ def cmd_prompt(args, env):
     return 0
 
 
-IMAGE_MAGIC = {b"\x89PNG": ".png", b"\xff\xd8\xff": ".jpg", b"RIFF": ".webp"}
-
-
 def import_images(doc, out, items, log=print):
     """Register images that the user made with the pasted prompts. Returns {label: file name}."""
     by_label = {o["label"]: o for o in doc["options"]}
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
-    try:
-        receipts = json.loads((out / "receipts.json").read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        receipts = []
-    images = {}
+    book, images = load_receipts(out), {}
     for item in items:
         name, _, source = item.partition("=")
         label = name.replace("option_", "")
@@ -1322,25 +1721,23 @@ def import_images(doc, out, items, log=print):
             data = Path(source).read_bytes()
         except OSError as exc:
             raise Refusal(f"Cannot read {source}: {exc}")
-        suffix = next((ext for magic, ext in IMAGE_MAGIC.items() if data.startswith(magic)), None)
+        suffix = image_suffix(data)
         if not suffix:
-            raise Refusal(f"{source} is not a PNG, JPEG or WebP image.")
-        for old in out.glob(f"option_{label}.*"):
-            if old.suffix in IMAGE_MAGIC.values():
-                old.unlink()
+            raise Refusal(f"{source} is not 1 complete PNG, JPEG or WebP image.")
         target = out / f"option_{label}{suffix}"
-        target.write_bytes(data)
-        receipts = [r for r in receipts if r.get("option") != label] + [{
-            "option": label, "backend": "user", "model": None, "status": "imported", "file": target.name,
-            "prompt_sha256": hashlib.sha256(by_label[label]["image_prompt"].encode("utf-8")).hexdigest(),
-            "image_sha256": hashlib.sha256(data).hexdigest()}]
+        atomic_write(target, data)
+        for old in out.glob(f"option_{label}.*"):
+            if old.suffix in IMAGE_SUFFIXES and old != target:
+                old.unlink()
+        book[label] = {"option": label, "backend": "user", "model": None, "status": "imported", "file": target.name,
+                       "prompt_sha256": _sha256(by_label[label]["image_prompt"].encode("utf-8")), "image_sha256": _sha256(data)}
         images[label] = target.name
         log(f"Option {label}: registered {target}")
     for option in doc["options"]:
         for existing in sorted(out.glob(f"option_{option['label']}.*")):
-            if existing.suffix in IMAGE_MAGIC.values():
+            if existing.suffix in IMAGE_SUFFIXES:
                 images.setdefault(option["label"], existing.name)
-    write_json(out / "receipts.json", receipts, ensure_ascii=True)
+    save_receipts(out, book)
     write_outputs(doc, out, images)
     return images
 
@@ -1361,11 +1758,13 @@ def cmd_plan(args, env):
     return 3 if findings else 0
 
 
-def _print_findings(findings):
+def _print_findings(findings, notes=()):
+    for note in notes:
+        print(f"Note: {note}")
     if not findings:
         print("Anti-slop check: passed for every option.")
         return
-    print("ANTI-SLOP CHECK FAILED. Fix these before any image request:")
+    print("Anti-slop advice (keep a choice that is on purpose):")
     for label, items in findings.items():
         for item in items:
             print(f"  Option {label}: {item}")
@@ -1376,7 +1775,8 @@ def cmd_mock(args, env):
     if args.out:
         out = Path(args.out)
     max_images = int(env_value(env, "SHOTSPEAK_MAX_IMAGES", args.max_images))
-    findings = validate_doc(doc, max_images)
+    notes = []
+    findings = validate_doc(doc, max_images, notes)
     if args.import_image:
         images = import_images(doc, out, args.import_image)
         print(f"{len(images)} of {len(doc['options'])} options have an image in {out}. The cards in {out / 'options.md'} show them.")
@@ -1398,7 +1798,7 @@ def cmd_mock(args, env):
             raise Refusal(f"Round {number} is above the cap of {cap} rounds. Lock the look, or ask the user to raise the cap (--max-rounds).")
         if backend["name"] == "text":
             print("No image backend: this round uses the text diagrams. Tell the user that the look is less certain without pictures.")
-    _print_findings(findings)
+    _print_findings(findings, notes)
     name = backend["name"]
     if args.dry_run and name in ("text", "host"):
         print(f"\nDRY RUN. Nothing was sent and no file was written. Backend '{name}' makes no paid request.")
@@ -1422,8 +1822,6 @@ def cmd_mock(args, env):
         print("After a clear yes, run again with")
         print(f"  --confirm {info['fingerprint']}")
         return 0
-    if findings:
-        raise Refusal("The anti-slop check failed. Fix the options first.")
     if not args.confirm:
         print(f"\nNOT SENT. This is a paid request. Show the card to the user. After the user agrees, add --confirm {info['fingerprint']}")
         return 2
@@ -1440,7 +1838,7 @@ def cmd_mock(args, env):
         raise Refusal(f"The estimate of {info['estimated_total_usd']:.2f} USD is above the limit of {max_usd:.2f} USD (--max-usd).")
     write_outputs(doc, out)
     receipts = generate(doc, backend, env, out, size, args.quality, force=args.force)
-    ok = sum(1 for r in receipts if r["status"] in ("ok", "kept_existing"))
+    ok = sum(1 for r in receipts if r["status"] in DONE)
     if isinstance(doc.get("round"), dict):
         path = out.parent / "rounds.json"
         state = load_rounds(path)
@@ -1449,7 +1847,7 @@ def cmd_mock(args, env):
                 entry.update({"status": "generated" if ok == len(doc["options"]) else "partial", "estimated_usd": info["estimated_total_usd"],
                               "measured_usd": round(sum(r.get("measured_usd_at_published_rates") or 0 for r in receipts), 6),
                               "images": [{"path": f"{out.name}/{r['file']}", "sha256": r.get("image_sha256")} for r in receipts
-                                         if r["status"] == "ok"]})
+                                         if r["status"] in DONE]})
         write_json(path, state)
     print(f"\n{ok} of {len(doc['options'])} images are in {out}. Receipts: {out / 'receipts.json'}")
     return 0 if ok == len(doc["options"]) else 1
@@ -1467,9 +1865,10 @@ def cmd_deslop(args, env):
     if not text:
         raise Refusal("Give the prompt with --text, --file or standard input.")
     tells, rewritten = deslop(text)
+    kept = scan(text, check_missing=True)[1]
     names = banned_names(text)
     if args.json:
-        print(json.dumps({"tells": tells, "named": names, "rewrite": rewritten}, indent=2))
+        print(json.dumps({"tells": tells, "kept": kept, "named": names, "rewrite": rewritten}, indent=2))
         return 0
     if not tells and not names:
         print("No AI-slop tells found.")
@@ -1477,11 +1876,17 @@ def cmd_deslop(args, env):
         print(f"{len(tells)} AI-slop tell(s) found:\n")
         for category in ("composition", "lighting", "lens", "motion", "finish"):
             for tell in [t for t in tells if t["category"] == category]:
-                print(f"[{category}] {tell['tell']}  <- {tell['evidence']}")
+                also = "  (the prompt also forbids it)" if tell.get("contradiction") else ""
+                print(f"[{category}] {tell['tell']}  <- {tell['evidence']}{also}")
                 print(f"    Why it reads as AI: {tell['why']}")
-                print(f"    Fix: {tell['fix']}")
+                print(f"    Fix: {tell['fix']} Fine when: {tell['fine_when']}.")
         for name in names:
             print(f"[names] '{name}' is a product, model or protected title. Describe the look or the shape instead.")
+    for tell in kept:
+        print(f"[kept] {tell['tell']}  <- {tell['evidence']}: a choice ('{tell['because']}'). Not changed.")
+    if rewritten == text:
+        print("\nNothing to rewrite. The prompt is unchanged." if not names else "\nRemove the names. Nothing else to rewrite.")
+        return 0
     print("\nREWRITE (a starting point; replace each [bracket] with a decision):\n")
     print(rewritten)
     return 0
@@ -1555,7 +1960,7 @@ def build_parser():
     mock = sub.add_parser("mock", help="Print the mock card (--dry-run) or generate the stills (--confirm).")
     plan_args(mock, False)
     mock.add_argument("--options", help="An options.json from 'plan' (edited or not).")
-    mock.add_argument("--backend", help="openai, fal, replicate, host or text. Default: the first key found, else text.")
+    mock.add_argument("--backend", help="openai, higgsfield, fal, replicate, host or text. Default: the first key found, else text.")
     mock.add_argument("--model", help="Model id for the backend.")
     mock.add_argument("--size", help="WIDTHxHEIGHT. Default: from the aspect.")
     mock.add_argument("--quality", default="medium", choices=QUALITIES)
@@ -1563,7 +1968,7 @@ def build_parser():
     mock.add_argument("--dry-run", action="store_true", help="Print the prompts and the estimate. Send nothing.")
     mock.add_argument("--confirm", metavar="FINGERPRINT", help="The card fingerprint the user agreed to.")
     mock.add_argument("--accept-unknown-cost", action="store_true", help="The user accepted a cost this tool cannot estimate.")
-    mock.add_argument("--force", action="store_true", help="Request an image again when its file exists.")
+    mock.add_argument("--force", action="store_true", help="Request every image again, also one that this exact request already made.")
     mock.add_argument("--import", dest="import_image", action="append", metavar="option_LABEL=FILE",
                       help="Register an image that the user made with a pasted prompt. Repeatable. Sends nothing.")
 
@@ -1751,7 +2156,8 @@ def build_sequence(doc, pick, pattern="coverage", seconds=10.0, beats=None, anch
         problems = lint_prompt(text)
         if problems:
             raise Refusal(f"The {field} text {problems[0]}")
-    ctx = {k: doc[k] for k in ("subject", "action", "setting", "aspect")}
+    ctx = doc_ctx(doc)
+    choices = user_choices(ctx)
     people = P.people_count(ctx["subject"])
     shots = []
     for index, (role, size, camera, beat, speed, _weight) in enumerate(rows):
@@ -1772,8 +2178,8 @@ def build_sequence(doc, pick, pattern="coverage", seconds=10.0, beats=None, anch
         f"SEQUENCE: {seconds:g} s, {ctx['aspect']} frame. {len(shots)} shots joined by {len(shots) - 1} hard cuts at exactly {cuts} s.",
         "ONE ACTION AND ONE CAMERA MOVE IN EACH SHOT. Each cut comes when the motion of its shot ends.",
         f"SUBJECT AND ACTION: {ctx['subject']} {ctx['action']}, in {ctx['setting']}.",
-        f"PEOPLE: exactly {people}. " + ("Each person keeps 1 screen side for the whole clip. " if people > 1 else "")
-        + "Nobody looks into the lens: the eyes stay on a target inside the scene.",
+        (f"PEOPLE: exactly {people}. " + ("Each person keeps 1 screen side for the whole clip. " if people > 1 else "")
+         + ("" if "eyes_to_lens" in choices else "Nobody looks into the lens: the eyes stay on a target inside the scene.")).rstrip(),
         f"STAGE: the whole action stays within 2 m of {anchor or '[name 1 anchor object in the place]'}. "
         "The camera stays on 1 side of the action for every shot.",
         f"LIGHT: {hero['light']['prompt']}. The same light direction in every shot.",
@@ -1784,7 +2190,7 @@ def build_sequence(doc, pick, pattern="coverage", seconds=10.0, beats=None, anch
          for s in shots] + [
         "FIRST FRAME: [where each person stands and what each person holds at 0 s].",
         "LAST FRAME: [where each person is at the end; hold it still]. Use this frame as the start of the next clip.",
-        "AVOID: " + "; ".join(avoid_clauses(tells)) + ".",
+        "AVOID: " + "; ".join(avoid_clauses(tells, choices)) + ".",
     ]
     block = "\n".join(lines)
     problems = lint_prompt(block)
@@ -1915,13 +2321,14 @@ def apply_value(option, vary, value):
 def refined_doc(doc, base_label, kept):
     """The option set with the decisions that the rounds settled written into the base option."""
     out = copy.deepcopy(doc)
-    ctx = {k: out[k] for k in ("subject", "action", "setting", "aspect")}
+    ctx = doc_ctx(out)
     for option in out["options"]:
         if option["label"] == base_label:
             for vary, value in kept.items():
                 apply_value(option, vary, value)
-            option["image_prompt"] = build_image_prompt(option, ctx)
-            option["video_snippet"] = build_video_snippet(option, ctx)
+            for field in PROMPT_FIELDS:  # a settled decision replaces any hand-written prompt of the base option
+                option[field] = ""
+            set_prompts(option, ctx)
     return out
 
 
@@ -1932,7 +2339,7 @@ def build_round(doc, base_label, vary, number, max_rounds=DEFAULT_MAX_ROUNDS, wa
     if number > max_rounds:
         raise Refusal(f"Round {number} is above the cap of {max_rounds} rounds. Lock the look, or ask the user to raise the cap (--max-rounds).")
     base = by_label[base_label]
-    ctx = {k: doc[k] for k in ("subject", "action", "setting", "aspect")}
+    ctx = doc_ctx(doc)
     options = []
     for index, value in enumerate(round_values(vary, base, set(rejected), wanted, ctx)):
         option = copy.deepcopy(base)
@@ -1940,10 +2347,11 @@ def build_round(doc, base_label, vary, number, max_rounds=DEFAULT_MAX_ROUNDS, wa
         option.update({"label": LABELS[index], "recommended": False, "variant_of": base_label, "varies": vary, "value": value,
                        "plain": says})
         option.pop("recommended_because", None)
-        option["image_prompt"] = build_image_prompt(option, ctx)
-        option["video_snippet"] = build_video_snippet(option, ctx)
+        for field in PROMPT_FIELDS:  # each still of a round shows a changed decision: its prompts are rebuilt
+            option[field] = ""
+        set_prompts(option, ctx)
         options.append(option)
-    return {"tool": "shot-speak", "version": VERSION, "phrase": doc["phrase"], **ctx,
+    return {"tool": "shot-speak", "version": VERSION, **ctx,
             "round": {"number": number, "vary": vary, "base": base_label, "max_rounds": max_rounds, "state": "rounds.json",
                       "values": [o["value"] for o in options]},
             "interpretation": [f"Round {number}: the same shot {len(options)} times. Only the {vary} changes."], "options": options}

@@ -12,6 +12,8 @@ Read this file when the user has a fal.ai or Replicate key: the settings and the
 
 The Higgsfield, fal.ai and Replicate paths send only the prompt, plus the extra fields. Model input names differ, so the
 tool does not guess a size field. The aspect ratio is also written in the prompt text.
+The extra fields cannot set `prompt` or an image count (`n`, `num_images`, `num_outputs`, `batch_size`), and cannot
+hold a link or a file path. The card fingerprint covers them, so a changed field needs a new yes.
 
 ## See also
 

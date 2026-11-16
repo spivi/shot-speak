@@ -182,7 +182,7 @@ SLOP_TELLS = [
     # ---- composition
     {"id": "frontal_centred", "category": "composition",
      "tell": "Centred, front-facing subject",
-     "patterns": [r"\b(front[- ]?facing|facing (the )?(camera|viewer|lens)|centered|centred|in the (center|centre) of (the )?frame|straight[- ]on|head[- ]on)\b"],
+     "patterns": [r"\b(front[- ]?facing|facing (the )?(camera|viewer|lens)|(?<!off-)(centered|centred)|in the (center|centre) of (the )?frame|straight[- ]on|head[- ]on)\b"],
      "why": "A generator with no direction puts the subject in the middle, square to the camera. A film crew almost never stands there.",
      "fix": "Shoot from the side or from a three-quarter position. Put the subject off-centre, with space in the direction they look or move.",
      "avoid": "not a centred front-facing subject; the subject is off-centre, seen in profile, three-quarter or from behind"},
@@ -209,8 +209,9 @@ SLOP_TELLS = [
      "patterns": [r"\b(360|three[- ]sixty|full (orbit|circle|rotation)|180[- ]?(degree|deg|°)|half[- ]circle|orbit(s|ing)? (all the way )?around|circl(es?|ing) (all the way )?around|spin(s|ning)? around)\b"],
      "why": "A full orbit passes the front of the face, flips left and right on screen, and shows a background the generator must invent.",
      "fix": "Use a partial arc of about 90 to 130 degrees on one side of the action. Name the start view and the end view.",
-     "avoid": "the camera never completes a half circle and never reaches a view straight in front of the face"},
-    {"id": "missing_camera", "category": "composition", "missing": r"\b(low angle|high angle|on the floor|floor level|knee height|waist height|eye height|eye level|overhead|top[- ]down|from (the side|behind|above|below)|profile|three[- ]quarter|over[- ]the[- ]shoulder|side[- ]on)\b",
+     "avoid": "the camera never completes a half circle and never reaches a view straight in front of the face",
+     "needs": r"\b(camera|shot|orbit(s|ing)?|lens|we)\b"},
+    {"id": "missing_camera", "category": "composition", "missing": r"\b(low[- ]angle|high[- ]angle|on the (floor|ground)|(floor|ground)[- ]level|(knee|waist|hip|chest|shoulder|eye)[- ](height|level)|overhead|top[- ]down|aerial|bird'?s[- ]eye|worm'?s[- ]eye|from (the side|behind|above|below|far away)|profile|three[- ]quarter|over[- ]the[- ]shoulder|side[- ]on|point[- ]of[- ]view|pov|\d+(\.\d+)? ?m (away|up|from)|(extreme )?(close[- ]up|wide shot|long shot))\b",
      "tell": "No camera position stated",
      "why": "With no position, the generator selects the centred, front-facing, chest-height default.",
      "fix": "State the height, the side and the distance of the camera.",
@@ -218,7 +219,7 @@ SLOP_TELLS = [
     # ---- lighting
     {"id": "soft_glow", "category": "lighting",
      "tell": "Soft, even golden glow",
-     "patterns": [r"\b(soft (golden |warm |even )?(glow|lighting|light)|golden (glow|hour glow)|warm glow|glowing|ethereal|dreamy light|beautiful lighting|perfect lighting|evenly lit|well[- ]lit)\b"],
+     "patterns": [r"\b(soft (golden |warm |even )?(glow|lighting|light)|golden (glow|hour glow)|warm glow|glowing (skin|light|aura|atmosphere)|ethereal|dreamy light|beautiful lighting|perfect lighting|evenly lit|well[- ]lit)\b"],
      "why": "Light with no source and no shadow is the standard generator finish. Real light comes from one place and leaves a dark side.",
      "fix": "Name one source and its direction. Let a share of the frame, about a third, fall into true shadow.",
      "avoid": "no soft even glow; one motivated light source with a real dark side"},
@@ -240,7 +241,7 @@ SLOP_TELLS = [
      "why": "A flare needs a bright source inside or just outside the frame. Flares with no source are decoration.",
      "fix": "Allow one small natural flare only when the source itself is in the frame.",
      "avoid": "no lens flare unless the light source itself is in the frame"},
-    {"id": "missing_light", "category": "lighting", "missing": r"\b(sun|window|lamp|backlight|backlit|rim|silhouette|shadow|overcast|moon|fire|candle|practical|neon|street ?light|side light|top light|hard light|daylight)\b",
+    {"id": "missing_light", "category": "lighting", "missing": r"\b(sun|sunlight|window|lamp|backlight|backlit|rim|silhouette|shadows?|overcast|moon|moonlight|fire|firelight|candle|practical|neon|street ?lights?|side light|top light|hard light|key light|softbox|spotlight|headlights?|torch|flashlight|daylight|lit by)\b",
      "tell": "No light source stated",
      "why": "With no source, the generator fills the frame with even, sourceless light.",
      "fix": "Name the source, its direction and what stays dark.",
@@ -258,7 +259,7 @@ SLOP_TELLS = [
      "why": "Generators give either a flat frame with everything sharp or a cut-out subject on a smeared background. A real lens falls off with distance.",
      "fix": "State the lens and what is sharp. Let focus fall off with distance, and keep shapes readable in the background.",
      "avoid": "no cut-out subject on a smeared background; focus falls off naturally with distance"},
-    {"id": "missing_lens", "category": "lens", "missing": r"\b(\d{2,3} ?mm|wide[- ]angle|ultra[- ]wide|telephoto|long lens|macro|fisheye|anamorphic)\b",
+    {"id": "missing_lens", "category": "lens", "missing": r"\b(\d{1,3} ?mm|wide[- ]angle|ultra[- ]wide|wide lens|normal lens|telephoto|long lens|zoom lens|macro|fish[- ]?eye|anamorphic|tilt[- ]shift)\b",
      "tell": "No lens stated",
      "why": "With no lens, the generator uses the neutral normal lens.",
      "fix": "State a focal length and the reason for it.",
@@ -266,7 +267,7 @@ SLOP_TELLS = [
     # ---- motion
     {"id": "aquarium_speed", "category": "motion",
      "tell": "Aquarium speed: slow floating camera and slow bodies",
-     "patterns": [r"\b(slow(ly)? (floating|drifting|gliding|orbit(ing|s)?|pan(ning|s)?|dolly)|floating camera|camera (floats|drifts|glides)|smooth cinematic (movement|motion|camera)|gentle camera movement|slow cinematic)\b"],
+     "patterns": [r"\b(slow(ly)? (floating|drifting|gliding|orbit(ing|s)?)|floating camera|camera (floats|drifts|glides)|smooth cinematic (movement|motion|camera)|gentle camera movement|slow cinematic)\b"],
      "why": "Generated cameras drift and people move as if under water. Real action is fast, then still.",
      "fix": "Use a locked frame, or one fast, motivated move with a clear start and end. Write real-time action and cut on movement.",
      "avoid": "no slow floating camera drift; the camera is locked or makes one decisive move with a clear end"},
@@ -282,7 +283,7 @@ SLOP_TELLS = [
      "why": "Generated jumps hang too high for too long. The viewer reads it as fake at once.",
      "fix": "Write a real, modest height and real gravity. Make the jump heroic with a low camera and a cut at the top.",
      "avoid": "real gravity and real jump height, nobody floats"},
-    {"id": "missing_speed", "category": "motion", "missing": r"\b(real[- ]time|slow[- ]?mo(tion)?|speed ramp|time[- ]?lapse|freez|frozen|fast[- ]cut|hard cut|cuts?)\b",
+    {"id": "missing_speed", "category": "motion", "missing": r"\b(real[- ]time|normal speed|full speed|real speed|slow[- ]?mo(tion)?|speed ramp|time[- ]?lapse|hyperlapse|freez|frozen|fast[- ]cut|hard cut|cuts?|\d+ ?fps)\b",
      "tell": "No speed stated",
      "why": "With no speed, the generator selects a slow, even drift.",
      "fix": "State real time, or the exact beat that is slow.",
@@ -314,6 +315,83 @@ SLOP_TELLS = [
      "avoid": ""},
 ]
 SLOP_BY_ID = {t["id"]: t for t in SLOP_TELLS}
+
+# When a tell is a choice. A tell is advice, not a rule: these entries keep a technique that the user intends.
+# ``fine_when``  1 short line for the user: when this technique is right.
+# ``intent``     words anywhere in the user's text that make it a choice (the place, the story, the style).
+#                "on purpose", "deliberately" or "intentionally" in the same sentence also makes any tell a choice.
+# ``spares``     when the intent matches, only the evidence that fully matches this is kept (default: all of it).
+# ``avoid_kept`` for a tell that is a thing in the place (fog, rain): its intent words alone mean the
+#                avoid clause would forbid what the place holds. This clause replaces it ("" drops it).
+# ``supplied``   for a "missing" tell: words that say a reference gives this decision.
+_STYLISED = (r"animat(ed|ion)|cartoon|stop[- ]motion|claymation|clay|puppet|cel[- ]shad(ed|ing)|pixel art|toy|"
+             r"pop[- ]art|comic|storybook|kids'? show|3d render|cgi")
+_REFERENCE = r"[^.;\n]{0,40}\b(reference|previs|start frame|@image\d*|@video\d*)\b"
+SLOP_CHOICES = {
+    "frontal_centred": {"fine_when": "a planned symmetry, a product shot, an interview or a direct address to the viewer",
+                        "intent": r"\b(symmetr(y|ical)|one[- ]point perspective|product shot|pack ?shot|turntable|mugshot|passport photo|"
+                                  r"tableau|direct address|fourth wall|to camera|interview|presenter|news ?reader|vlog)\b"},
+    "eyes_to_lens": {"fine_when": "a direct address, an interview, a vlog or a fourth-wall break",
+                     "intent": r"\b(fourth[- ]wall|direct address|addresses the (camera|viewer|audience)|talks? (to|into) (the )?(camera|lens|viewer)|"
+                               r"(piece|talking) to camera|interview|vlog|presenter|confessional|selfie|video call|news ?reader)\b"},
+    "default_medium": {"fine_when": "dialogue and interviews, where a neutral height is the point",
+                       "intent": r"\b(interview|dialogue|conversation|talking head)\b"},
+    "symmetry_hero": {"fine_when": "a planned one-point perspective, a tableau or a poster frame",
+                      "intent": r"\b(one[- ]point perspective|tableau|poster|title card|key art|symmetrical (corridor|hallway|architecture|set)|" + _STYLISED + r")\b"},
+    "orbit_full": {"fine_when": "a product on a turntable, or a planned reveal with no face in the path of the camera",
+                   "intent": r"\b(turntable|product|pack ?shot|showroom|spinning platform)\b"},
+    "missing_camera": {"fine_when": "a reference frame or a previs gives the camera position",
+                       "supplied": r"\b(camera|framing|layout|composition)\b" + _REFERENCE},
+    "soft_glow": {"fine_when": "a named soft source (a window, a grey sky), a high-key comedy or product look, a dream or storybook style",
+                  "intent": r"\b((light|lighting|glow|lit)\b[^,.;]{0,15}\b(from|through|by) (a |an |the |one )?[^,.;]{0,25}(window|door|lamp|sky|skylight|candles?|fire|screen)|"
+                            r"window light|lamplight|candlelight|firelight|"
+                            r"high[- ]key|overcast|comedy|sitcom|product|beauty|cosmetics?|dream(like| sequence)?|" + _STYLISED + r")\b"},
+    "bloom_haze": {"fine_when": "fog, mist, smoke or steam is part of the place or the story ('a foggy harbour at dawn')",
+                   "intent": r"\b(foggy|misty|smoky|steamy|(in|through|into|out of|from) (the |a |thick |heavy |dense |morning |sea )?(fog|mist|haze|smoke|steam)|"
+                             r"fog (rolls|creeps|drifts|lifts|horn|bank)|sea fog|morning mist|smoke (from|rises)|steam (from|rises)|fog machine)\b",
+                   "spares": r"(foggy|misty|hazy|fog|mist|haze|smoke|steam)",
+                   "avoid_kept": "no bloom and no volumetric god rays; the blacks stay deep"},
+    "glossy_floor": {"fine_when": "rain or water is part of the story",
+                     "intent": r"\b(raining|rainy|rainstorm|downpour|puddles?|flooded|after the rain|in the rain|rain (falls|pours|lashes)|hosed down)\b",
+                     "avoid_kept": ""},
+    "flare_spam": {"fine_when": "the light source itself is in the frame, or an anamorphic look is a choice",
+                   "intent": r"\b((sun|headlights?|lamps?|torch|flashlight|street ?lights?|spotlight)s? (is |are )?(in|inside) (the )?(frame|shot)|"
+                             r"into the (sun|light|headlights)|toward the (sun|light)|faces? the (sun|light)|anamorphic (lens|glass))\b"},
+    "missing_light": {"fine_when": "a reference frame gives the light, or the style is flat 2D",
+                      "supplied": r"\b(light|lighting)\b" + _REFERENCE + r"|\b(2d|cel[- ]shad(ed|ing)|flat (animation|cartoon)|motion graphics|pixel art)\b"},
+    "default_lens": {"fine_when": "a normal lens chosen on purpose, when the move or the place carries the feeling"},
+    "fake_bokeh": {"fine_when": "a long lens or a macro lens makes the blur: state the lens and what is sharp",
+                   "intent": r"\b(macro|telephoto|long lens|(85|100|135|200) ?mm|f/?1\.\d|shallow depth of field|deep focus)\b"},
+    "missing_lens": {"fine_when": "a reference gives the lens, or the style has no lens (2D animation)",
+                     "supplied": r"\b(lens)\b" + _REFERENCE + r"|\b(2d|cel[- ]shad(ed|ing)|flat (animation|cartoon)|motion graphics|pixel art)\b"},
+    "aquarium_speed": {"fine_when": "a dream, underwater or zero-gravity scene, or a calm piece that wants a slow drift",
+                       "intent": r"\b(dream(like| sequence)?|underwater|in space|zero[- ]?gravity|weightless|meditat(e|ion|ive)|lullaby|ambient)\b"},
+    "slowmo_everywhere": {"fine_when": "a high-speed product, liquid or dream piece where slow is the whole idea",
+                          "intent": r"\b(high[- ]speed (camera|footage)|\d{3,4} ?fps|splash(es)?|droplets?|liquid|dream(like| sequence)?|product)\b"},
+    "floating_bodies": {"fine_when": "water, space, magic, or a light object (a feather, seeds, a balloon) really floats",
+                        "intent": r"\b(underwater|in space|zero[- ]?gravity|astronauts?|dream(like| sequence)?|levitat(e|es|ing|ion)|magic|ghosts?|spirits?|"
+                                  r"fair(y|ies)|balloons?|feathers?|seeds?|bubbles?|kites?|jellyfish|swim(s|ming)?|wire[- ]work)\b"},
+    "missing_speed": {"fine_when": "a reference gives the speed, or a frame rate is stated"},
+    "hdr_saturated": {"fine_when": "vivid colour in a cartoon, a toy or a pop style. Quality words (4k, 8k, masterpiece) never help",
+                      "intent": r"\b(" + _STYLISED + r"|commercial|candy)\b", "spares": r"(vibrant|vivid) colou?rs"},
+    "perfect_textures": {"fine_when": "a product, a toy, an animation or a new object that must look new",
+                         "intent": r"\b(product|commercial|advert|pack ?shot|showroom|sci[- ]fi|futuristic|" + _STYLISED + r"|"
+                                   r"polished (brass|steel|wood|concrete|marble|stone|chrome|silver|metal|leather|floor))\b"},
+    "teal_orange_default": {"fine_when": "a deliberate blockbuster look"},
+    "vague_cinematic": {"fine_when": "never needed: the camera, the lens, the light and the speed say it"},
+}
+# The words that, after "no" or "avoid", forbid the same thing that a tell asks for. A prompt that asks for a tell
+# and forbids it too is contradictory, and the check says so.
+SLOP_FORBIDS = {
+    "frontal_centred": r"\b(cent(er|re)d?|front[- ]?facing|frontal)\b", "eyes_to_lens": r"\b(camera|lens|viewer)\b",
+    "symmetry_hero": r"\bsymmetr", "orbit_full": r"\b(orbit|circl|360|half[- ]circle|full circle)",
+    "soft_glow": r"\bglow", "bloom_haze": r"\b(bloom|haze|hazy|fog|mist|god[- ]?rays?|volumetric)",
+    "glossy_floor": r"\b(wet|glossy|reflect)", "flare_spam": r"\bflares?\b", "fake_bokeh": r"\b(bokeh|blur)",
+    "aquarium_speed": r"\b(float|drift|glid)", "slowmo_everywhere": r"\bslow[- ]?mo", "floating_bodies": r"\b(float|hover)",
+    "hdr_saturated": r"\b(hdr|over[- ]?saturat)", "perfect_textures": r"\b(plastic|perfect|clean)", "teal_orange_default": r"\bteal",
+}
+for _tell in SLOP_TELLS:
+    _tell.update(SLOP_CHOICES[_tell["id"]], forbids=SLOP_FORBIDS.get(_tell["id"]))
 
 # Avoid clauses that go into every mock still and every video snippet.
 STILL_BASE_AVOID = ["eyes_to_lens", "soft_glow", "bloom_haze", "glossy_floor", "perfect_textures", "hdr_saturated"]

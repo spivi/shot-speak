@@ -8,8 +8,9 @@ Read this file before a paid request: the cost question, the fingerprint and the
    basis and a card fingerprint. It sends nothing.
 2. Ask in 1 line: "4 mock stills, about 0.28 USD - go?" The estimate is not a provider quote. Say so when
    the user asks about the price.
-3. After a clear yes, run the same command with `--confirm FINGERPRINT`. A changed prompt or setting changes
-   the fingerprint, and the tool refuses. Ask again with the new number.
+3. After a clear yes, run the same command with `--confirm FINGERPRINT`. The fingerprint covers the backend, the
+   model, the size, the quality, every prompt and the extra input fields. If 1 of them changes, the tool refuses.
+   Ask again with the new number.
 
 The host path and the paste path send nothing from this tool.
 
@@ -23,6 +24,13 @@ rates: 5 / 8 / 30 USD for each 1 million text input / image input / image output
 Check the current rates at the provider.
 
 The blocking previs, the sequence, the look recipes and the de-slop mode cost nothing.
+
+## Reuse of an image
+
+An image is reused, with no request, only when 2 conditions are true. Its receipt names the same request: the
+backend, the model, the size, the quality, the prompt and the extra fields. Its file still has the hash in the
+receipt. A file with no receipt, or with a different receipt, is requested again and replaced. An image that the user
+imported is kept for the prompt that it was imported for. `--force` requests every image again.
 
 ## Limits
 

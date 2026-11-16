@@ -7,7 +7,8 @@
 
 For each example scene it makes 3 images: the first prompt as typed, the clear prompt with no film language,
 and the mock still of the shot-speak result. It also makes the 4 option stills of the main session.
-Every image goes to a fixed path in ``docs/img/``. An image that exists is not requested again (--force).
+Every image goes to a fixed path in ``docs/img/``. An image that exists is not requested again (--force); this
+maintainer script keys on the file, not on a receipt, because its receipts describe the committed JPEG files.
 One request for each image. No automatic retry. Python 3 standard library only.
 
 The provider returns a large PNG. The repository keeps a small JPEG: 1280x720, no metadata. The conversion
@@ -124,8 +125,7 @@ def main(argv=None, environ=None, transport=None):
             if problems:
                 raise S.Refusal(f"{name}: the prompt {problems[0]}")
         total, basis = S.estimate(backend, len(todo), env)
-        payload = json.dumps([backend["name"], backend["model"], args.size, args.quality, [j[1] for j in todo]], sort_keys=True)
-        fingerprint = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:12]
+        fingerprint = S.request_fingerprint(backend, args.size, args.quality, [j[1] for j in todo], env)
         for name, prompt, what in todo:
             print(f"--- docs/img/{name}  ({what})")
             print(prompt)

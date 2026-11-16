@@ -20,10 +20,10 @@ Read this file when you need the exact command, its options or the exit codes.
 | `shotspeak.py previs --options PATH [--route R] [--only B]` | Builds the grey-box blocking previs and `previs/previs.json`. |
 | `shotspeak.py choose --options PATH --pick B [--mix light=C] [--layout-ref]` | Writes the final shot spec and the prompt block. |
 | `shotspeak.py sequence --options PATH --pick B --pattern impact` | Writes a multi-shot prompt with exact cut times. |
-| `shotspeak.py deslop --text "..."` | Flags AI-slop tells in a prompt and prints a rewrite. |
+| `shotspeak.py deslop --text "..."` | Flags AI-slop tells in a prompt and prints a rewrite. A clean prompt comes back unchanged. |
 
 Exit codes: `0` done, or an optional stage was skipped; `1` a request or a Blender run failed; `2` refused or
-not confirmed; `3` the anti-slop check found something.
+not confirmed; `3` the anti-slop check has advice (`plan` only; advice never blocks a request).
 
 ## See also
 

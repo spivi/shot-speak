@@ -7,7 +7,7 @@ python3 SKILL_DIR/scripts/shotspeak.py deslop --text "THE PROMPT"
 ```
 
 Show the tells in groups with 1 line of reason each. Rewrite the prompt from the script's rewrite, and replace
-each `[bracket]` with a decision. Run `deslop` on your rewrite until it finds no tell. List the changes in
+each `[bracket]` with a decision. A `[kept]` line is a technique that the user chose. Do not change it. Run `deslop` on your rewrite until it finds no tell. List the changes in
 plain words. For a take that the user describes without a prompt, use the table "The user says / Probable
 tell / First fix" below.
 

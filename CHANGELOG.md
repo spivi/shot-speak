@@ -2,6 +2,36 @@
 
 ## Unreleased
 
+### Correctness, spend safety and context-aware anti-slop
+
+- **The decisions are the source of truth.** The image prompt and the video prompt of an option are rebuilt from its
+  decisions on each run, so an edit of the lens, the move, the placement, the light, the grade, the speed or the
+  subject can no longer leave a stale prompt. `options.json` records what each prompt was built from
+  (`prompt_basis`). A prompt that you edit by hand is kept while its decisions stay the same; a hand edit whose
+  decisions changed later is refused with the fix. A round, a mix or an edit that changes the placement, the lens or
+  the speed removes the old words from the technique's wording and states the new decision.
+- **Image cache by content.** An image is reused only when its receipt names the exact request (backend, model, size,
+  quality, prompt, extra fields) and the file still has the receipt's hash. A file with no receipt is requested
+  again. `receipts.json` keeps the latest receipt of each option and is written after each request.
+- **Request integrity.** `SHOTSPEAK_<NAME>_EXTRA_INPUT` can no longer replace the prompt or ask for more images, and
+  cannot carry a link, a file path or a name. The card fingerprint covers the extra fields. With no extra fields the
+  fingerprint is the same as in 0.2.0. A model id cannot change the endpoint path.
+- **Provider answers are checked.** Only 1 complete PNG, JPEG or WebP image is saved, under the extension of its real
+  format, in 1 atomic write. An empty, cut-off, malformed or oversized answer, invalid base64 or a non-https image link
+  is an ambiguous failure, and nothing is saved.
+- **Anti-slop is advice, and it reads context.** A finding never blocks a request; the 4 hard gates are unchanged.
+  A negation covers only the rest of its clause, so "a man who never smiles, camera orbiting around him" is flagged
+  and "No fog, no haze" is never rewritten. A prompt that asks for a tell and forbids it is flagged as a contradiction.
+  A technique that the user's words make a choice (fog in the place, an interview, stop-motion, a product turntable,
+  "on purpose") is kept and shown as kept. Every tell has a "Fine when" note.
+- **De-slop is proportional.** A clean prompt comes back unchanged. The Avoid line holds only clauses for what was
+  removed or left undecided, and a second run changes nothing more.
+- **The builder follows the user's words.** A subject, an action or a place that asks for a technique (a foggy harbour,
+  a look into the lens) no longer gets an avoid clause that forbids it.
+- `README.md`: the install command has the real clone URL. New `docs/evaluation.md`: an offline evaluation set
+  (`tests/fixtures/prompt_cases.json`) and a protocol for a blind human review of takes.
+- `tests/test_release.py` checks the files that Git can commit, so a local tool cache no longer fails the gate.
+
 Small files with indexes. Every guide file is 100 lines or fewer, so an agent loads only what the step needs.
 
 - `SKILL.md` is 72 lines: the Spirit, the 4 hard gates, the usual path (1 line a step, each names its file) and

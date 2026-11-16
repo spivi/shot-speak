@@ -25,8 +25,9 @@ Use your judgement on the result. Replace an option that does not fit (`--techni
 - **"Like that film."** The user can name a film, a director, a genre or an era. `plan` turns a known name
   into a look recipe: option A is that look as decisions, and the name is removed. Tell the user "what makes
   that look" in plain words. See [the look recipes](../looks/index.md). List recipes with `shotspeak.py looks`.
-- **An anti-slop finding** means that an option contains a generic AI default. Fix the option before an image is
-  made. The script finds words. You judge the picture: [the slop guide](../quality/slop-overview.md).
+- **An anti-slop finding** means that an option may contain a generic AI default. It is advice, with a "Fine when"
+  note. Fix it, or keep it when it is the user's choice. The script finds words. You judge the picture:
+  [the slop guide](../quality/slop-overview.md).
 
 ## See also
 

@@ -16,7 +16,14 @@ TEXT_SUFFIXES = {".md", ".py", ".json", ".txt", ".example", ""}
 
 
 def repo_files():
-    for path in sorted(ROOT.rglob("*")):
+    """The text files that a commit can hold: tracked, or new and not ignored. Ignored tool caches are not the repo's."""
+    try:
+        listed = subprocess.run(["git", "-C", str(ROOT), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+                                capture_output=True, text=True, check=True, timeout=30).stdout
+        paths = sorted({ROOT / name for name in listed.split("\0") if name})
+    except (OSError, subprocess.SubprocessError):  # not a Git checkout: walk the folder
+        paths = sorted(ROOT.rglob("*"))
+    for path in paths:
         if path.is_file() and not {".git", "__pycache__", "shotspeak_out"} & set(path.parts) and path.suffix in TEXT_SUFFIXES:
             yield path
 

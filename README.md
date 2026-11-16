@@ -38,6 +38,7 @@ It also does these things:
   camera height, the camera path. It is free.
 - **Sequences.** It writes a multi-shot prompt with exact cut times for a fight, a hit or a small scene.
 - **De-slop mode.** Paste a video prompt. The skill shows which parts give the generic "AI look" and rewrites them.
+  A technique that you chose (fog in the story, a look into the lens for an interview) stays.
 
 The skill is a helper, not a procedure. If you know what you want, say "just give me the prompt".
 It has 4 fixed rules only: a clear yes before money is spent, no names in a generator prompt, no personal
@@ -271,10 +272,10 @@ The files are in [`examples/unclear-look/`](examples/unclear-look/). No image wa
 Clone the folder into the skills folder of your agent. Then start a new session and describe a shot.
 
 ```sh
-git clone <this-repo-url> ~/.claude/skills/shot-speak    # Claude Code, every project
-git clone <this-repo-url> .claude/skills/shot-speak      # Claude Code, 1 project
-git clone <this-repo-url> ~/.codex/skills/shot-speak     # Codex, every project
-git clone <this-repo-url> .agents/skills/shot-speak      # Codex, 1 project
+git clone https://github.com/spivi/shot-speak.git ~/.claude/skills/shot-speak    # Claude Code, every project
+git clone https://github.com/spivi/shot-speak.git .claude/skills/shot-speak      # Claude Code, 1 project
+git clone https://github.com/spivi/shot-speak.git ~/.codex/skills/shot-speak     # Codex, every project
+git clone https://github.com/spivi/shot-speak.git .agents/skills/shot-speak      # Codex, 1 project
 ```
 
 - Python 3.10 or later (CI tests 3.11 to 3.14). No packages to install. The scripts use the standard library only.
@@ -326,13 +327,14 @@ The mock stills come from the first backend that is available.
 - **In Codex with no key**, the skill uses the built-in image generation. **In Claude with no key and no image
   connector**, it says that the mock stills need an image model: add a key, or paste the prompts into an image tool.
 - **Nothing is sent without your yes.** `--dry-run` prints the prompts, the model, the estimate and a card fingerprint.
-  A paid run needs `--confirm` with that fingerprint. A changed prompt changes the fingerprint, and the tool refuses.
+  A paid run needs `--confirm` with that fingerprint. A changed prompt, model, size, quality or extra field changes
+  the fingerprint, and the tool refuses. An image is reused only for the exact request that made it.
 - **Caps:** 4 images in 1 run, and 1.00 USD in 1 run. An unknown cost is refused until you set a figure.
 - **The estimate is 0.07 USD for each image, 0.28 USD for 4.** It is a planning estimate, not a provider quote.
 - **No automatic retry.** After a timeout the result is unknown and can have been billed, so the tool stops.
 - **Keys are never printed, logged or stored** (the environment, then `.env.local`, then `.env`; keep them out of Git).
-  Only the mock image prompt goes to a provider. The tool refuses an email, a URL, a file path, a key, or the name of
-  a product, a film, a franchise or a director.
+  Only the mock image prompt and its fixed settings go to a provider. The tool refuses an email, a URL, a file path,
+  a key, or the name of a product, a film, a franchise or a director. These checks are word patterns, not a guarantee.
 - **The previs, the sequence, the look recipes and de-slop mode cost nothing.**
 
 More (variables, extra input fields, token rates, failures): [`references/backends/index.md`](references/backends/index.md).
@@ -399,6 +401,7 @@ python3 -m unittest discover -s tests -v   # offline; the Blender test runs only
 ```
 
 Each build script also takes `--check`. Keep examples generic: no real people, no brand names, no film titles in prompts.
+Before you claim that a change makes better prompts or videos, read [`docs/evaluation.md`](docs/evaluation.md).
 The comparison images in the examples are 1 request each to the default image model (paid, after a yes):
 `python3 scripts/build_images.py --dry-run`, then `--confirm FINGERPRINT`. The receipts are in `docs/img/receipts.json`.
 

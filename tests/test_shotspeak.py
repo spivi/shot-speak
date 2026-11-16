@@ -226,15 +226,34 @@ class AntiSlop(Offline):
                        "35 to 50 mm default", "An arc of 360 degrees"):
             self.assertIn(needle, found)
 
-    def test_failed_check_blocks_a_live_run(self):
+    def test_advice_never_blocks_a_confirmed_run(self):
+        """Anti-slop findings are advice (owner rule: 4 hard gates only). The spend gate still needs the card's yes."""
         doc = S.build_options(PHRASE)
         doc["options"][1]["light"]["prompt"] = "soft golden glow, volumetric fog"
-        doc["options"][1]["image_prompt"] = ""
         path = self.dir / "options.json"
         path.write_text(json.dumps(doc))
-        code, _, err = run(self.base("mock", "--options", str(path), "--confirm", "anything"), {"OPENAI_API_KEY": FAKE_KEY})
+        env = {"OPENAI_API_KEY": FAKE_KEY}
+        code, out, _ = run(self.base("mock", "--options", str(path), "--dry-run"), env)
+        self.assertEqual(code, 0)
+        self.assertIn("Anti-slop advice", out)
+        self.assertIn("Fine when:", out)
+        code, _, err = run(self.base("mock", "--options", str(path), "--confirm", "anything"), env)
         self.assertEqual(code, 2)
-        self.assertIn("anti-slop check failed", err)
+        self.assertIn("does not match this card", err)
+        fingerprint = out.split("--confirm ")[-1].split()[0]
+        calls = []
+
+        def transport(method, url, headers, body=None, timeout=180):
+            calls.append(url)
+            return 200, json.dumps({"data": [{"b64_json": base64.b64encode(PNG).decode()}]}).encode()
+
+        saved, S.http_transport = S.http_transport, transport
+        try:
+            code, _, err = run(self.base("mock", "--options", str(path), "--confirm", fingerprint), env)
+        finally:
+            S.http_transport = saved
+        self.assertEqual(code, 0, err)
+        self.assertEqual(len(calls), 4)
 
     def test_negated_mentions_are_not_tells(self):
         self.assertEqual(S.slop_tells("No bloom, no haze, no fog. Nobody looks into the camera. Never a full orbit around them."), [])
@@ -259,7 +278,7 @@ class AntiSlop(Offline):
                 "real time, locked camera, the far side of the kitchen in shadow.")
         tells, rewrite = S.deslop(text)
         self.assertEqual(tells, [])
-        self.assertTrue(rewrite.startswith(text))
+        self.assertEqual(rewrite, text)  # no boilerplate is added to a clean prompt
 
     def test_deslop_cli_flags_named_titles(self):
         code, out, _ = run(self.base("deslop", "--text", "A fight like John Wick, hdr"))
@@ -422,13 +441,14 @@ class Generation(Offline):
         self.assertEqual(receipts[0]["status"], "ambiguous")
         self.assertIn("NOT sent again", "".join(self.logs))
 
-    def test_existing_image_is_not_requested_again(self):
+    def test_existing_image_without_a_receipt_is_requested_again(self):
+        """A file name alone is not a cache key: an image with no receipt for this exact request is not reused."""
         out = self.dir / "o"
         out.mkdir()
         (out / "option_A.png").write_bytes(PNG)
         receipts = S.generate(self.doc, self.backend, self.env, out, "1536x864", "medium", self.ok_transport, log=self.logs.append)
-        self.assertEqual(len(self.calls), 3)
-        self.assertEqual(receipts[0]["status"], "kept_existing")
+        self.assertEqual(len(self.calls), 4)
+        self.assertEqual(receipts[0]["status"], "ok")
 
     def test_second_and_third_backend_request_shapes(self):
         calls = []

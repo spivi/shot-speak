@@ -1,0 +1,261 @@
+{
+ "about": "Offline evaluation set for the anti-slop check and the de-slop rewrite. flagged and kept: the exact tell ids. unchanged: the rewrite returns the text as it is. keeps: words that the rewrite keeps. drops: words that the rewrite removes from the prompt (an added Avoid line can name them). contradiction: tells that the prompt asks for and forbids. See docs/evaluation.md.",
+ "cases": [
+  {
+   "id": "clean-film-literate",
+   "text": "A chef plates a dish, seen side-on from a long lens at 85 mm, one hard window light from the left, real time, locked camera, the far side of the kitchen in shadow.",
+   "flagged": [],
+   "kept": [],
+   "unchanged": true
+  },
+  {
+   "id": "user-negations-stay",
+   "text": "A woman crosses a street at night, low angle, 24 mm, one street lamp above her, real time. No fog, no haze, no bloom, nobody looks into the camera.",
+   "flagged": [],
+   "kept": [],
+   "unchanged": true
+  },
+  {
+   "id": "negation-scope",
+   "text": "a man who never smiles, camera orbiting around him in slow motion throughout, golden glow",
+   "flagged": [
+    "orbit_full",
+    "slowmo_everywhere",
+    "soft_glow",
+    "missing_camera",
+    "missing_lens",
+    "missing_light"
+   ],
+   "kept": [],
+   "keeps": [
+    "never smiles"
+   ],
+   "drops": [
+    "orbiting around",
+    "slow motion throughout",
+    "golden glow"
+   ]
+  },
+  {
+   "id": "contradiction",
+   "text": "camera orbits around him in slow motion throughout; no orbiting camera, no slow motion",
+   "flagged": [
+    "orbit_full",
+    "slowmo_everywhere",
+    "missing_camera",
+    "missing_lens",
+    "missing_light"
+   ],
+   "contradiction": [
+    "orbit_full",
+    "slowmo_everywhere"
+   ],
+   "kept": [],
+   "keeps": [
+    "no orbiting camera, no slow motion"
+   ],
+   "drops": [
+    "slow-motion beat"
+   ]
+  },
+  {
+   "id": "fog-in-the-story",
+   "text": "A woman walks out of thick fog on a harbour at dawn, seen side-on from 30 m on a 135 mm lens, flat grey daylight, real time.",
+   "flagged": [],
+   "kept": [
+    "bloom_haze"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "fog-as-decoration",
+   "text": "A woman on a harbour, seen side-on from 30 m on a 135 mm lens, flat grey daylight, real time, volumetric fog, god rays.",
+   "flagged": [
+    "bloom_haze"
+   ],
+   "kept": [],
+   "drops": [
+    "volumetric fog",
+    "god rays"
+   ]
+  },
+  {
+   "id": "interview-eye-contact",
+   "text": "Documentary interview: she looks straight into the camera and talks to us, medium close-up at eye level, 50 mm, soft window light from the left, real time.",
+   "flagged": [],
+   "kept": [
+    "default_medium",
+    "eyes_to_lens"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "amateur-eye-contact",
+   "text": "a girl smiling at the camera, 50 mm, side light from a window, real time, close-up",
+   "flagged": [
+    "eyes_to_lens"
+   ],
+   "kept": [],
+   "drops": [
+    "smiling at the camera"
+   ]
+  },
+  {
+   "id": "stop-motion",
+   "text": "Stop-motion clay fox tiptoes past a sleeping farmer, centred symmetrical framing, polished miniature set, warm lamp light from the left, 35 mm, real time at 12 fps.",
+   "flagged": [
+    "missing_camera"
+   ],
+   "kept": [
+    "frontal_centred",
+    "perfect_textures",
+    "symmetry_hero"
+   ],
+   "unchanged": false,
+   "keeps": [
+    "centred symmetrical framing, polished miniature set"
+   ]
+  },
+  {
+   "id": "product-turntable",
+   "text": "Product commercial: a steel watch on a turntable, the camera does a full 360 orbit around it, sleek polished steel, one hard key light from the left with a black background, 100 mm macro, real time.",
+   "flagged": [
+    "missing_camera"
+   ],
+   "kept": [
+    "orbit_full",
+    "perfect_textures"
+   ],
+   "unchanged": false,
+   "keeps": [
+    "full 360 orbit around it, sleek polished steel"
+   ]
+  },
+  {
+   "id": "orbit-on-purpose",
+   "text": "A dancer spins on one foot on an empty stage, the camera circles all the way around her on purpose, low angle, 24 mm, one spotlight from above, real time.",
+   "flagged": [],
+   "kept": [
+    "orbit_full"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "skate-360-is-a-trick",
+   "text": "A kid does a 360 flip off a kerb, low angle, 18 mm, low side sun, real time.",
+   "flagged": [],
+   "kept": [],
+   "unchanged": true
+  },
+  {
+   "id": "subject-spins",
+   "text": "She spins around to face the door, real time, side-on at waist height, 35 mm, one lamp from the right.",
+   "flagged": [],
+   "kept": [],
+   "unchanged": true
+  },
+  {
+   "id": "soft-light-with-a-source",
+   "text": "An old man reads by the window, three-quarter from behind, 50 mm, soft light from a large window on the left, the room dark behind him, real time.",
+   "flagged": [],
+   "kept": [
+    "soft_glow"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "cartoon-colour",
+   "text": "2D cartoon: a cat chases a mouse through a living room, vivid colours, flat cel shading, side-on tracking, wide lens, real time.",
+   "flagged": [],
+   "kept": [
+    "hdr_saturated",
+    "missing_light"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "cartoon-quality-words",
+   "text": "2D cartoon: a cat chases a mouse, vivid colours, 8k, masterpiece, side-on tracking, wide lens, real time.",
+   "flagged": [
+    "hdr_saturated"
+   ],
+   "kept": [
+    "missing_light"
+   ],
+   "keeps": [
+    "vivid colours"
+   ],
+   "drops": [
+    "8k",
+    "masterpiece"
+   ]
+  },
+  {
+   "id": "rain-story",
+   "text": "Two men argue in the rain on a wet street at night, side-on at waist height, 35 mm, one street lamp, real time.",
+   "flagged": [],
+   "kept": [
+    "glossy_floor"
+   ],
+   "unchanged": true
+  },
+  {
+   "id": "amateur-all-defaults",
+   "text": "Epic cinematic shot of a warrior standing in the center of the frame looking at the camera, slow floating camera orbits around him, golden glow, volumetric fog, wet street, 8k, teal and orange",
+   "flagged": [
+    "frontal_centred",
+    "eyes_to_lens",
+    "orbit_full",
+    "missing_camera",
+    "soft_glow",
+    "bloom_haze",
+    "glossy_floor",
+    "missing_light",
+    "missing_lens",
+    "aquarium_speed",
+    "missing_speed",
+    "hdr_saturated",
+    "teal_orange_default",
+    "vague_cinematic"
+   ],
+   "kept": [],
+   "drops": [
+    "Epic",
+    "looking at the camera",
+    "volumetric fog",
+    "wet street",
+    "8k"
+   ]
+  },
+  {
+   "id": "readme-quick-start",
+   "text": "cinematic shot of a skateboarder, slow motion, camera orbiting around him, 4k",
+   "flagged": [
+    "orbit_full",
+    "missing_camera",
+    "missing_light",
+    "missing_lens",
+    "hdr_saturated",
+    "vague_cinematic"
+   ],
+   "kept": [],
+   "keeps": [
+    "skateboarder",
+    "slow motion"
+   ],
+   "drops": [
+    "4k",
+    "cinematic"
+   ]
+  },
+  {
+   "id": "reference-gives-the-camera",
+   "text": "A boxer throws a jab, the camera and framing from the layout reference @Image1, 85 mm, one hard top light, real time.",
+   "flagged": [],
+   "kept": [
+    "missing_camera"
+   ],
+   "unchanged": true
+  }
+ ]
+}
