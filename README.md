@@ -62,14 +62,13 @@ The tables and prompts come from the real files in [`examples/bike-cliff/`](exam
 <!-- BEGIN GENERATED: examples -->
 ![Bike over a cliff: the 3 videos side by side, in sync](docs/video/bike-cliff/compare.gif)
 
-The 3 videos play side by side above. Click a picture to open its video.
+Full-quality MP4s with sound: [prompt 1](docs/video/bike-cliff/1_noob.mp4) · [prompt 2](docs/video/bike-cliff/2_plain.mp4) · [prompt 3](docs/video/bike-cliff/3_skill.mp4)
 
 > 10 seconds of a cool action scene: a guy rides a bike over a cliff, ditches the bike mid-air and does a superhero landing
 
 |  | 1. The first prompt | 2. A clear prompt, no film language | 3. With shot-speak |
 |---|---|---|---|
-| | [![Bike over a cliff: the video of prompt 1](docs/video/bike-cliff/1_noob.jpg)](docs/video/bike-cliff/1_noob.mp4) | [![Bike over a cliff: the video of prompt 2](docs/video/bike-cliff/2_plain.jpg)](docs/video/bike-cliff/2_plain.mp4) | [![Bike over a cliff: the video of prompt 3](docs/video/bike-cliff/3_skill.jpg)](docs/video/bike-cliff/3_skill.mp4) |
-| **What you get** | A man in a dark red shirt and dark trousers, not the grey hoodie of the idea. He hangs in the air for about 4 seconds, the camera looks up at him, and he lands on a fist and stares into the lens. | The grey hoodie and jeans, a fast ride off the edge, and a landing on a knee and a fist. Dust fills the frame and the light is warm and even. He ends upright and looks off to the side. | 5 shots in black and white, with 1 hard sun. The close-up is on his hands as the bike leaves them. The landing is a low shot on the ground, then he stands with his back to the lens. |
+| **What you get** | A man in a dark red shirt and dark trousers, not the grey hoodie of the idea. He hangs in the air for about 4 seconds, the camera looks up at him, and he lands on a fist and stares into the lens. | The grey hoodie and jeans, a fast ride off the edge, and a landing on a knee and a fist. Dust fills the frame and the light is warm and even. He ends upright and looks off to the side. | 5 shots in the warm colour of red rock, with 1 hard sun. The close-up is on his hands as the bike leaves them. The landing is a low shot on the canyon floor with a big burst of dust. Then a medium shot shows his face as he stands, with the bike on the ground behind him. |
 
 Same model, same face reference, 1 take each. Only the prompt changed. The 2 commands and the plan are in [`examples/bike-cliff/`](examples/bike-cliff/).
 
@@ -98,35 +97,35 @@ In plain words: 3 shots that get closer and shorter, then the peak, then a still
 | Camera placement | on the floor, 3 m away, the lens level and looking along the ground into the light |
 | Lens | 18 mm |
 | Light | One hard low sun, camera facing into the light |
-| Colour grade | Bleach bypass |
+| Colour grade | Warm natural |
 | Speed | Slow motion (one beat) |
 
 The 5 shots, with hard cuts at 2.5, 4.5, 5.5, 8.5 s:
 
 | # | Time | Shot | What happens |
 |---|---|---|---|
-| 1 | 0 to 2.5 s | wide shot, 24 mm | he pedals hard toward the cliff edge |
-| 2 | 2.5 to 4.5 s | medium shot, 50 mm | the front wheel leaves the edge and he flies out over the canyon |
-| 3 | 4.5 to 5.5 s | close detail, 85 mm | in the air he pushes the bike away from his body and the bike falls away |
-| 4 | 5.5 to 8.5 s | Low-angle wide shot, 18 mm (hero) | he drops and lands on one knee and one fist, dust bursts out |
-| 5 | 8.5 to 10 s | wide shot, 24 mm | he rises slowly and looks out over the canyon |
+| 1 | 0 to 2.5 s | wide shot, 24 mm | he pedals hard from screen left toward the cliff edge |
+| 2 | 2.5 to 4.5 s | medium shot, 50 mm | the front wheel leaves the edge and he flies out over the drop |
+| 3 | 4.5 to 5.5 s | close detail, 85 mm | in the air he lets go and pushes the bike away from his body |
+| 4 | 5.5 to 8.5 s | low-angle wide shot, 18 mm (hero) | he drops from the top of the wall and lands under full control in a clean superhero landing: feet first, knees bend deep to absorb the impact, then he drops to one knee with one fist planted, back straight, head up; dust bursts out around him |
+| 5 | 8.5 to 10 s | medium shot, 35 mm | he rises slowly and steadily from the landing pose into a confident stand and looks up at the cliff edge he jumped from; his face is clearly visible and lit by warm light bouncing up from the sand, with the sun rim on his hair; the bike lies on its side behind him |
 
 The prompt as sent, without the `@Image1` lines of the face reference:
 
 ```text
 SEQUENCE: 10 s, 16:9. 5 shots, 4 hard cuts at exactly 2.5, 4.5, 5.5 and 8.5 s. One action and one camera move in each shot.
 SUBJECT: exactly 1 person: a man in a grey hoodie, dark jeans and trainers, on a mountain bike, in a rocky desert canyon in the late afternoon. He never looks into the lens.
-STAGE: 1 cliff edge and 1 flat sandy ledge about 4 m below it. The camera stays on 1 side of the action for every shot.
+STAGE: 1 cliff edge on top of a 4 m high rock wall, and the flat sandy canyon floor at the foot of the wall. He lands on the canyon floor: after the landing, the ground around him is flat and nothing drops away behind him. The camera stays on 1 side of the action for every shot.
 LIGHT: one hard low sun behind him; the camera faces into the light; bright rims on hair and shoulders, long shadows toward the lens, a third of the frame in deep shadow. Same light direction in every shot.
-COLOUR: bleach-bypass look: high contrast, low saturation, silvery highlights, dense blacks, visible grain.
+COLOUR: warm natural red-rock canyon palette: rust-red and orange sandstone, ochre sand, sage-green desert brush, a clear deep-blue sky; warm where the sun lands, neutral cool shadows; natural saturation, rich but never over-saturated; fine film grain.
 SHOT LIST:
 1. 0 to 2.5 s | wide shot, 24 mm, locked, far back, side-on | he pedals hard from screen left toward the cliff edge | real time
-2. 2.5 to 4.5 s | medium shot, 50 mm, side-on tracking at his speed | the front wheel leaves the edge and he flies out over the canyon | real time
+2. 2.5 to 4.5 s | medium shot, 50 mm, side-on tracking at his speed | the front wheel leaves the edge and he flies out over the drop | real time
 3. 4.5 to 5.5 s | close detail, 85 mm, locked, side-on, tight on his hands | in the air he lets go and pushes the bike away from his body | real time
-4. 5.5 to 8.5 s | HERO: low-angle wide shot, 18 mm, locked camera on the ground of the ledge, 3 m away, lens level, looking along the ground into the sun | he drops onto the ledge and lands on one knee and one fist, dust bursts out | slow motion for this one beat only; real gravity and weight, nothing floats
-5. 8.5 to 10 s | wide shot, 24 mm, locked, knee height, three-quarter from behind | he rises slowly and looks out over the canyon; the bike lies on its side below | real time
-LAST FRAME: he stands still on the ledge, seen three-quarter from behind.
-AVOID: no orbiting camera; no slow floating drift; nobody floats; no soft even glow; no bloom, haze, fog or god rays; no slow motion outside shot 4; nobody looks into the lens; worn real textures with dust and scuffs, nothing plastic or perfectly clean.
+4. 5.5 to 8.5 s | HERO: low-angle wide shot, 18 mm, locked camera on the canyon floor, 3 m away, lens level, looking back at the 4 m rock wall he jumped from, the sun just above the top of the wall | he drops from the top of the wall and lands under full control in a clean superhero landing: feet first, knees bend deep to absorb the impact, then he drops to one knee with one fist planted, back straight, head up; dust bursts out around him | slow motion for this one beat only; real gravity and weight, nothing floats
+5. 8.5 to 10 s | medium shot, 35 mm, locked, chest height, three-quarter front, 2 m away | he rises slowly and steadily from the landing pose into a confident stand and looks up at the cliff edge he jumped from; his face is clearly visible and lit by warm light bouncing up from the sand, with the sun rim on his hair; the bike lies on its side behind him | real time
+LAST FRAME: he stands still on the canyon floor at the foot of the rock wall, his face in three-quarter view, eyes up toward the cliff edge, not into the lens.
+AVOID: no tumbling, crawling, stumbling or falling onto the hands at the landing; no face hidden in shadow or turned away in shot 5; no black-and-white or washed-out colour; no orbiting camera; no slow floating drift; nobody floats; no soft even glow; no bloom, haze, fog or god rays; no slow motion outside shot 4; nobody looks into the lens; worn real textures with dust and scuffs, nothing plastic or perfectly clean.
 ```
 
 </details>

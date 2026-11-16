@@ -27,13 +27,24 @@ The 2 commands wrote [`options.md`](options.md) and [`sequence.md`](sequence.md)
 
 ```bash
 python3 scripts/shotspeak.py plan --phrase "10 seconds of a cool action scene: a guy rides a bike over a cliff, ditches the bike mid-air and does a superhero landing" --subject "a young man in a grey hoodie and jeans" --action "rides a mountain bike off a cliff edge, lets go of the bike in mid-air and lands on the ground below in a superhero landing" --setting "a rocky desert canyon at late afternoon" --out shotspeak_out/bike-cliff
-python3 scripts/shotspeak.py sequence --options shotspeak_out/bike-cliff/options.json --pick A --pattern build --seconds 10 --anchor "the cliff edge" --beats "he pedals hard toward the cliff edge; the front wheel leaves the edge and he flies out over the canyon; in the air he pushes the bike away from his body and the bike falls away; he drops and lands on one knee and one fist, dust bursts out; he rises slowly and looks out over the canyon" --out shotspeak_out/bike-cliff
+python3 scripts/shotspeak.py sequence --options shotspeak_out/bike-cliff/options.json --pick A --pattern build --seconds 10 --anchor "the cliff edge" --beats "he pedals hard toward the cliff edge; the front wheel leaves the edge and he flies out over the drop; in the air he pushes the bike away from his body and the bike falls away; he drops from the top of the wall and lands in a clean superhero landing, dust bursts out; he rises slowly into a confident stand and looks up at the cliff edge he jumped from" --out shotspeak_out/bike-cliff
 ```
 
-Then the agent made 3 changes to the prompt block:
+Then the agent made these changes to the prompt block:
 
 1. It filled the 2 `[brackets]` (`FIRST FRAME` and `LAST FRAME`).
-2. It fixed the `STAGE` line for a drop: 1 cliff edge and 1 flat sandy ledge about 4 m below it.
-3. It shortened the block to under 2,500 characters.
+2. It fixed the `STAGE` line for a drop: 1 cliff edge on top of a 4 m rock wall, and the flat sandy canyon floor
+   at the foot of the wall. He lands on the floor, and nothing drops away behind him.
+3. It took the colour grade of option C (warm natural) in place of the bleach bypass of option A, as the
+   `choose --mix grade=C` command does. It wrote the grade as a warm red-rock palette.
+4. It wrote the landing of shot 4 as a controlled superhero landing, and shot 5 as a medium shot from three-quarter
+   front, so that his face is visible as he rises.
+5. It added 2 clauses to `AVOID` for the landing and for the face in shot 5, and it added `no black-and-white or
+   washed-out colour`.
+6. It shortened the block to fit the prompt limit of the model.
 
-`3_skill.txt` is the final text, as sent (minus the `@Image1` lines).
+`options.md` and `sequence.md` show the plan as the commands wrote it, with the beats of the final prompt.
+`3_skill.txt` is the final text, as sent (minus the `@Image1` lines). The README at the top of the repository
+takes the shot list from `3_skill.txt`.
+
+In the video, the model cut at 1.67, 3.67, 4.88 and 7.92 s (measured), not at the 2.5, 4.5, 5.5 and 8.5 s of the prompt.

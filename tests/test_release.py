@@ -212,7 +212,9 @@ class Hygiene(unittest.TestCase):
                             "prompt_file_sha256"):
                     self.assertIn(key, receipt, f"{path.relative_to(ROOT)}: {key}")
                 self.assertEqual(receipt["file_sha256"], S.P.sha256_file(path.parent / receipt["file"]), receipt["file"])
-                self.assertEqual(receipt["poster_sha256"], S.P.sha256_file(path.parent / receipt["poster"]), receipt["poster"])
+                for key in ("poster", "poster_sha256", "poster_frame_at_s"):
+                    self.assertNotIn(key, receipt, f"{path.relative_to(ROOT)}: {key}")
+                self.assertEqual(receipt["file_bytes"], (path.parent / receipt["file"]).stat().st_size, receipt["file"])
                 self.assertEqual(receipt["prompt_file_committed_sha256"], S.P.sha256_file(ROOT / receipt["prompt_file_committed"]))
                 self.assertRegex(receipt["source_sha256"], r"^[0-9a-f]{64}$")
                 self.assertRegex(receipt["prompt_file_sha256"], r"^[0-9a-f]{64}$")
@@ -226,11 +228,13 @@ class Hygiene(unittest.TestCase):
             self.assertIn("ffmpeg", compare["encode"])
             self.assertIn("build_compare_gif.sh", compare["reproduce"])
 
-    def test_readme_video_section_links_every_video_and_poster(self):
+    def test_readme_video_section_shows_the_gif_and_links_every_video(self):
         text = read("README.md")
         self.assertIn("(docs/video/bike-cliff/compare.gif)", text)
+        self.assertEqual(list((ROOT / "docs" / "video" / "bike-cliff").glob("*.jpg")), [])  # no poster pictures
         for name in ("1_noob", "2_plain", "3_skill"):
-            self.assertIn(f"(docs/video/bike-cliff/{name}.jpg)](docs/video/bike-cliff/{name}.mp4)", text)
+            self.assertEqual(text.count(f"(docs/video/bike-cliff/{name}.mp4)"), 1, name)
+            self.assertNotIn(f"docs/video/bike-cliff/{name}.jpg", text)
         self.assertIn("examples/bike-cliff/", text)
         for slug in ("dog-bullet-time", "skate-kickflip", "alley-fight", "birthday-candles"):
             self.assertIn(f"](examples/{slug}/)", text)

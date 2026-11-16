@@ -514,23 +514,39 @@ class Walkthrough(unittest.TestCase):
             prompt = (ROOT / row["prompt"]).read_text(encoding="utf-8").strip()
             self.assertIn(prompt, readme, row["key"])
             self.assertIn(row["what_you_get"], readme, row["key"])
-            self.assertIn(f"({row['poster']})]({row['video']})", readme, row["key"])
-            for path in (row["poster"], row["video"]):
-                self.assertTrue((ROOT / path).is_file(), path)
+            self.assertNotIn("poster", row, row["key"])
+            self.assertTrue((ROOT / row["video"]).is_file(), row["video"])
             self.assertNotIn("@Image1", prompt, row["key"])
             self.assertEqual(S.lint_prompt(prompt), [], row["key"])
         by_key = {row["key"]: (ROOT / row["prompt"]).read_text(encoding="utf-8").strip() for row in tiers["tiers"]}
         self.assertGreaterEqual(len(S.slop_tells(by_key["noob"], check_missing=True)), 5)
         self.assertEqual(S.slop_tells(by_key["plain"]), [])
         self.assertEqual(S.slop_tells(by_key["skill"], check_missing=True), [])
-        self.assertLess(len(by_key["skill"]), 2500)
+        self.assertLess(len(by_key["skill"]), 4000)  # the Seedance route takes up to 4,000 characters (models.json of the production)
+        # The 3 videos show once: the GIF plays in the README, and 1 line links the 3 MP4 files. No second row of pictures.
+        links = " · ".join(f"[prompt {n}]({row['video']})" for n, row in enumerate(tiers["tiers"], 1))
+        self.assertIn("Full-quality MP4s with sound: " + links, readme)
+        self.assertNotRegex(readme.split("<!-- END GENERATED: examples -->")[0], r"!\[[^\]]*\]\(docs/video/[^)]*\.jpg\)")
+        self.assertEqual(readme.count("(docs/video/bike-cliff/3_skill.mp4)"), 1)
         # The decisions and the shot list in the README are the ones in the committed plan and sequence.
-        option = next(o for o in options["options"] if o["label"] == sequence["picked"])
+        by_label = {o["label"]: o for o in options["options"]}
+        option = dict(by_label[sequence["picked"]])
+        for part, label in tiers["mix"].items():  # the pick-and-mix of the example: the warm grade of option C
+            option[part] = by_label[label][part]
+        self.assertEqual(option["grade"]["key"], "warm_natural")
+        self.assertIn("warm natural", by_key["skill"].lower().split("colour:")[1].split("\n")[0])
+        self.assertNotIn("bleach", by_key["skill"].lower())
         for value in (option["movement"], option["placement"], option["lens"], option["light"]["name"], option["grade"]["name"],
                       option["speed"]["name"]):
             self.assertIn(f"| {value} |", readme)
-        for shot in sequence["shots"]:
+        self.assertNotIn("| Bleach bypass |", readme)
+        # The shot list in the README is the shot list of the prompt as sent, and the plan has the same times.
+        shot_lines = [ln for ln in by_key["skill"].splitlines() if re.match(r"\d+\. [\d.]+ to [\d.]+ s \|", ln)]
+        self.assertEqual(len(shot_lines), len(sequence["shots"]))
+        for line, shot in zip(shot_lines, sequence["shots"]):
+            self.assertTrue(line.startswith(f"{shot['n']}. {shot['start_s']:g} to {shot['end_s']:g} s |"), line)
             self.assertIn(f"| {shot['n']} | {shot['start_s']:g} to {shot['end_s']:g} s |", readme)
+            self.assertIn(line.split(" | ")[2].strip(), readme)  # the action of the shot
         self.assertIn("hard cuts at " + ", ".join(f"{c:g}" for c in sequence["cut_times_s"]) + " s", readme)
         # The 3_skill prompt is the sequence block with the 2 brackets filled.
         self.assertEqual(sequence["open_brackets"], 2)

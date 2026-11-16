@@ -16,9 +16,11 @@ No network. Run ``build_examples.py`` first, and ``build_previs_examples.py`` wh
 """
 
 import base64
+import copy
 import hashlib
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -335,20 +337,33 @@ MORE_EXAMPLES = [("dog-bullet-time", "dog"), ("skate-kickflip", "kickflip"), ("a
                  ("birthday-candles", "birthday candles")]
 
 
+SHOT_LINE = re.compile(r"^(\d+)\. ([\d.]+) to ([\d.]+) s \| (HERO: )?(.+? mm),[^|]*\| ([^|]+)")
+
+
+def prompt_shots(prompt):
+    """The shots of a sent sequence prompt: the shot list in the text is the source, not the plan the tool first wrote."""
+    shots = [m for m in map(SHOT_LINE.match, prompt.splitlines()) if m]
+    return [{"n": int(m[1]), "start_s": float(m[2]), "end_s": float(m[3]), "hero": bool(m[4]), "size_lens": m[5], "beat": m[6].strip()}
+            for m in shots]
+
+
 def readme_examples(_data):
     """The real-video example: the 3 prompts, the 3 videos and the shot-speak decisions, all from examples/bike-cliff/."""
     base = EXAMPLES / "bike-cliff"
     tiers = json.loads((base / "tiers.json").read_text(encoding="utf-8"))
     options = json.loads((base / "options.json").read_text(encoding="utf-8"))
     sequence = json.loads((base / "sequence.json").read_text(encoding="utf-8"))
-    option = next(o for o in options["options"] if o["label"] == sequence["picked"])
+    by_label = {o["label"]: o for o in options["options"]}
+    option = copy.deepcopy(by_label[sequence["picked"]])
+    for part, label in tiers.get("mix", {}).items():  # the same pick-and-mix as `shotspeak.py choose --mix`
+        option[part] = by_label[label][part]
     title, rows = tiers["title"], tiers["tiers"]
     prompts = {row["key"]: (ROOT / row["prompt"]).read_text(encoding="utf-8").strip() for row in rows}
+    shots = prompt_shots(prompts["skill"])
     out = [f"![{title}: the 3 videos side by side, in sync]({tiers['compare_gif']})", "",
-           "The 3 videos play side by side above. Click a picture to open its video.", "",
+           "Full-quality MP4s with sound: " + " · ".join(f"[prompt {n + 1}]({r['video']})" for n, r in enumerate(rows)), "",
            f"> {tiers['phrase']}", "",
            "| " + " | ".join([""] + [r["label"] for r in rows]) + " |", "|---|---|---|---|",
-           "| | " + " | ".join(f"[![{title}: the video of prompt {n + 1}]({r['poster']})]({r['video']})" for n, r in enumerate(rows)) + " |",
            "| **What you get** | " + " | ".join(r["what_you_get"] for r in rows) + " |", "",
            "Same model, same face reference, 1 take each. Only the prompt changed. The 2 commands and the plan are in "
            "[`examples/bike-cliff/`](examples/bike-cliff/).", "",
@@ -361,10 +376,10 @@ def readme_examples(_data):
            f"| Camera movement | {option['movement']} |", f"| Camera placement | {option['placement']} |",
            f"| Lens | {option['lens']} |", f"| Light | {option['light']['name']} |",
            f"| Colour grade | {option['grade']['name']} |", f"| Speed | {option['speed']['name']} |", "",
-           f"The {len(sequence['shots'])} shots, with hard cuts at " + ", ".join(f"{c:g}" for c in sequence["cut_times_s"]) + " s:", "",
+           f"The {len(shots)} shots, with hard cuts at " + ", ".join(f"{s['end_s']:g}" for s in shots[:-1]) + " s:", "",
            "| # | Time | Shot | What happens |", "|---|---|---|---|"]
     out += [f"| {s['n']} | {s['start_s']:g} to {s['end_s']:g} s | {s['size_lens']}{' (hero)' if s['hero'] else ''} | {s['beat']} |"
-            for s in sequence["shots"]]
+            for s in shots]
     out += ["", "The prompt as sent, without the `@Image1` lines of the face reference:", "", fence(prompts["skill"]), "", "</details>", "",
             "More examples with mock stills: " + ", ".join(f"[{name}](examples/{slug}/)" for slug, name in MORE_EXAMPLES) + ".", ""]
     return "\n".join(out)
