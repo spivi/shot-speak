@@ -13,8 +13,8 @@
 
 ![An animated replay of a shot-speak session: the dog request, the plan, the check, the cost question, 4 option cards and the final prompt](docs/replay.svg)
 
-**[Try the interactive walkthrough](docs/walkthrough/index.html)**: step through this session, click the 4
-options, try a mix, and compare a bad prompt with a good one. Open the file from a clone of this repository.
+**[Try the interactive walkthrough](https://spivi.github.io/shot-speak/docs/walkthrough/)**: step through this session, click the 4
+options, try a mix, and compare a bad prompt with a good one. In a clone, the same page is `docs/walkthrough/index.html`.
 
 `shot-speak` is an agent skill for Claude Code and Codex. It turns words like "that swishy movement",
 "the bullet time thingy" or "make it look dramatic" into 3 to 4 real, different shot options.
