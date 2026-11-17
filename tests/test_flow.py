@@ -462,14 +462,15 @@ class Walkthrough(unittest.TestCase):
         for scene in data["scenes"]:
             tiers = json.loads((ROOT / "examples" / scene["slug"] / "tiers.json").read_text(encoding="utf-8"))
             self.assertEqual(scene["skill"]["prompt_block"], tiers["skill"]["prompt_block"])
-        self.assertEqual((ROOT / "docs" / "walkthrough" / "data.js").read_text(encoding="utf-8").split("window.WALKTHROUGH = ", 1)[1].rstrip(";\n"),
-                         (ROOT / "docs" / "walkthrough" / "data.json").read_text(encoding="utf-8").rstrip())
+        page = (ROOT / "docs" / "walkthrough" / "index.html").read_text(encoding="utf-8")
+        inline = page.split("<script>window.WALKTHROUGH = ", 1)[1].split(";</script>", 1)[0]
+        self.assertEqual(json.loads(inline), data)
 
     def test_page_references_only_local_files(self):
         text = (ROOT / "docs" / "walkthrough" / "index.html").read_text(encoding="utf-8")
         self.assertNotRegex(text, r"https?://")
         self.assertNotRegex(text, r"(src|href)=[\"']//")
-        self.assertEqual(re.findall(r"<script src=\"([^\"]+)\"", text), ["data.js"])
+        self.assertNotIn("<script src", text)  # 1 downloaded file must work without its folder
         self.assertNotIn("<link", text)
         self.assertNotIn("@import", text)
         self.assertNotIn("fetch(", text)
